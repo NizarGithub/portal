@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="author" content="Script Tutorials" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Bootstrap one-page template with Parallax effect | Script Tutorials</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <!-- attach CSS styles -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/fancybox/jquery.fancybox.css" rel="stylesheet">
+  <script src="js/jquery-2.1.1.js"></script>
+  <link href="css/style.css" rel="stylesheet" />
+  <link href="css/custom-fonts.css" rel="stylesheet" />
+  <!-- thumnail grid -->
+  <link rel="stylesheet" type="text/css" href="css/thumbnail_grid/default.css" />
+		<link rel="stylesheet" type="text/css" href="css/thumbnail_grid/component.css" />
+  
+  <!-- menu -->
+    <link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
+    <link rel="stylesheet" href="css/style_menu.css"> <!-- Resource style -->
+    <script src="js/modernizr.js"></script> <!-- Modernizr -->
+    <style>
+    #services p , #services ul li{
+        line-height: 2em;
+        font-size: 15px !important;
+    }
+    </style>
+<script>
+	//paste this code under head tag or in a seperate js file.
+	// Wait for window load
+	$(window).load(function() {
+		// Animate loader off screen
+		$(".se-pre-con").fadeOut(3000);;
+	});
+</script>
+  
+</head>
+<body>
+<!--<div class="se-pre-con"></div>
+   menu -->
+    <nav class="navbar navbar-fixed-top" >
+    	<header class="cd-main-header">
+    		<a class="cd-logo" href="index.html"><img src="images/logo-tabs-solution.jpg" alt="Logo"></a>
+    
+    		<ul class="cd-header-buttons">
+    			<li><a class="cd-nav-trigger" href="#cd-primary-nav"><span></span></a></li>
+    		</ul> <!-- cd-header-buttons -->
+    	</header>
+    </nav>
+
+	<main class="cd-main-content">
+		<!-- your content here -->
+	</main>
+
+	<div class="cd-overlay"></div>
+
+	<nav class="cd-nav" >
+		<ul id="cd-primary-nav" class="cd-primary-nav is-fixed" style="z-index: 1200;">
+			<li><a href="profil.html">Profil</a></li>
+                <li><a href="produk.html">Produk & Layanan</a></li>
+                <li><a href="portofolio.html">Portofolio</a></li>
+                <li><a href="tim.html">Tim</a></li>
+                <li><a href="karir.html">Karir</a></li>
+                <li><a href="partner.html">Partner</a></li>
+                <li><a href="client.html">Client</a></li> 
+		</ul> <!-- primary-nav -->
+	</nav> <!-- cd-nav -->
+  <!-- third section - Services -->
+ 
+ <div id="services" style="margin-top: 3em;">
+    <div class="container">
+    
+    <hr />
+    <h1 class="text-center">CLIENT</h1>
+    <hr />
+    <div class="main">
+				<ul id="og-grid" class="og-grid">
+					<li>
+						<a target="_blank" data-toggle="tooltip" title="Clik me !" href="http://www.pln.co.id/" data-largesrc="images/client/client-tab-solution-pln.png" data-title="- PT PLN (Persero) Kantor Pusat" data-description="Jl. Trunojoyo Blok M 1 - no.135 Jakarta 12160 - Indonesia.<h3 style='padding-top:10px; color:#4C9ED9'>- PT PLN (Persero) Distribusi Jawa Barat</h3> Jl. asia Afrika no. 63 Bandung 40111 - Indonesia. <h3 style='padding-top:10px; color:#4C9ED9'>- PT PLN (Persero) Distribusi Jakarta dan Tangerang </h3>Jl. M.I. Ridwan Rais No.1 Gambir Jakarta - Indonesia">
+							<img src="images/client/thumbs/1.png" alt="img01"/>
+						</a>
+					</li>
+					<li>
+						<a data-toggle="tooltip" title="Clik me !" href="#" data-largesrc="images/client/dana-pensiun-pln-tab-solution.png" data-title=" Dana Pensiun PLN" data-description="Jl. Wolter Monginsidi No. 5 - Kebayoran Baru Jakarta 12110 - Indonesia.">
+							<img src="images/client/thumbs/2.png" alt="img02"/>
+						</a>
+					</li>
+                    <li>
+						<a data-toggle="tooltip" title="Clik me !" href="#" data-largesrc="images/client/lig-insurance-tab-solution.png" data-title="LIG Insurance " data-description="Plaza BII Tower II, 25th floor, Suite 2501 - Jl. M.H. Thnamrin No. 51 Jakarta - Indonesia.">
+							<img src="images/client/thumbs/10.jpg" alt="img01"/>
+						</a>
+					</li>
+					<li>
+						<a data-toggle="tooltip" title="Clik me !" href="#" data-largesrc="images/client/icon-plus-tab-solution-IT-teknologi-informasi.png" data-title="Icon Plus" data-description="Wisma Mulia Lt.50-51 - Jl. Jend. Gatot Subroto No. 42 Jakarta 12710, Indonesia.">
+							<img src="images/client/thumbs/5.jpg" alt="img02"/>
+						</a>
+					</li>
+					<li>
+						<a data-toggle="tooltip" title="Clik me !" href="#" data-largesrc="images/client/IT-solution-Pelayaran-Bahtera-Adhiguna.png" data-title="PT. Pelayaran Bahtera Adhiguna " data-description="Jl Kalibesar Timur No 10 - 12 - Jakarta 11110 - Indonesia.">
+							<img src="images/client/thumbs/6.jpg" alt="img03"/>
+						</a>
+					</li>
+					<li>
+						<a data-toggle="tooltip" title="Clik me !" href="#" data-largesrc="images/client/jmk-klien-tab-solution.png" data-title="PT. PLN (Persero) Jasa Manajemen Konstruksi " data-description="Jl Pluit Utara - No.2B Muara karang Jakarta Utara - Indonesia  .">
+							<img src="images/client/thumbs/7.jpg" alt="img01"/>
+						</a>
+					</li>
+					<li>
+						<a data-toggle="tooltip" title="Clik me !" href="#" data-largesrc="images/client/Kementerian-Pekerjaan-Umum-tab-solution.png" data-title="Kementrian Pekerjaan Umum dan Perumahan Rakyat Republik Indonesia" data-description="Gedung Pusdata Lt 1, Jl. Pattimura 20, Kebayoran Baru, Jakarta Selatan.">
+							<img src="images/client/thumbs/8.png" alt="img02"/>
+						</a>
+					</li>
+					<li>
+						<a data-toggle="tooltip" title="Clik me !" href="#" data-largesrc="images/client/kp3-tab-solution.png" data-title="Koperasi Pegawai PLN Pusat (KP3)" data-description="Kantor Pusat PLN , Jln Trunojoyo Blok M I/135 , Kebayoran Baru - Jakarta Selatan .">
+							<img src="images/client/thumbs/9.jpg" alt="img03"/>
+						</a>
+					</li>
+					<li>
+						<a data-toggle="tooltip" title="Clik me !" href="#" data-largesrc="images/client/pgn-client-tab-solution-IT.png" data-title="PT. PGN Kantor Pusat" data-description="Jl. K.H. Zainul Arifin No. 20 - Jakarta 11140 Indonesia .">
+							<img src="images/client/thumbs/11.jpg" alt="img02"/>
+						</a>
+					</li>
+					<li>
+						<a data-toggle="tooltip" title="Clik me !" href="#" data-largesrc="images/client/pln-batam-tab-solution.png" data-title="PLN Batam" data-description="Jl.Engku Putri, Batam Center - Batam - Indonesia.">
+							<img src="images/client/thumbs/12.jpg" alt="img03"/>
+						</a>
+					</li>
+					<li>
+						<a data-toggle="tooltip" title="Clik me !" href="#" data-largesrc="images/client/tabs-Pusat-Pelatihan-Kelautan-dan-Perikanan.png" data-title="Pusat Pelatihan Kelautan dan Perikanan" data-description="Jakarta - Indonesia.">
+							<img src="images/client/thumbs/13.jpg" alt="img01"/>
+						</a>
+					</li>
+					
+				</ul>
+				
+			</div>
+</div>
+ 
+ </div>
+ 
+
+  <!-- footer -->
+  <footer id="infofooter">
+    <div class="container">
+    <div class="row">
+        <div class="col-md-6" >
+        <h2>Alamat Kami :</h2>
+        <p>
+        Jl. Falatehan Raya No. 1A
+        <br />
+        Malawai Kebayoran Baru
+        <br />
+        Jakarta Selatan Indonesia. 12160
+        <br />
+        email : sales@tabs.co.id
+        <br />
+        Phone +6221 - 7227619
+        <br />
+        Fax +6221 - 7227621
+        <br />
+        Web <a href="www.tabs.co.id">www.tabs.co.id</a>
+        </p>
+        
+        </div>
+        <div class="col-md-6">
+            <h2 style="margin:10px 0;">Peta Lokasi</h2>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.1703636322068!2d106.79878531476929!3d-6.2412649954822355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xc6b16714ac6a248b!2sTab+Solutions!5e0!3m2!1sid!2sid!4v1446189258853"  style="border:1; width: 100%; height: 230px;"  allowfullscreen></iframe>
+        </div>
+        </div>
+        <hr />
+        <div class="row">
+        
+            <p class="text-center">Copyright &copy;2015 <a href="www.tabs.co.id">Developer Team of Tab Solutions </a></p>
+        </div>
+    </div>
+  </footer>
+  <!-- /footer -->
+
+  <!-- attach JavaScripts -->
+  <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+   <!-- end menu -->
+
+<script src="js/jquery.mobile.custom.min.js"></script>
+<script src="js/main.js"></script> <!-- Resource jQuery -->
+
+<script src="js/thumnail_grid/grid.js"></script>
+		<script>
+			$(function() {
+				Grid.init();
+			});
+		</script>
+        
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
+  <!-- /third section -->
+</body>
+</html>
