@@ -14,14 +14,14 @@ if(isset($_POST["submit_login"])){
     {
         $row_administrator = mysql_fetch_array($sql_login);
         /*$_SESSION["level"]          = $row_administrator["level"];
-        $_SESSION["kode_user"]      = $row_administrator["kode_user"];
-        $_SESSION["nama_lengkap"]   = $row_administrator["nama_lengkap"];*/
+        $_SESSION["kode_user"]      = $row_administrator["kode_user"];*/
+        $_SESSION["nama"]            = $row_administrator["nama"];
         $_SESSION["kodelogin"]       = $row_administrator["kodelogin"];
         /*$_SESSION["images"]         = $row_administrator["images"];
         $_SESSION["no_anggota"]     = $row_administrator["no_anggota"];
         $date  = date("Y-m-d H:i:s");
         mysql_query("INSERT INTO loglogin VALUES ('','$_SESSION[username]','$date','$ip')");*/
-        header("location:index.php");
+        header("location:index.php?dashboard");
     }else
     {
         header("location:login.php?failed");
