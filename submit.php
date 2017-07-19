@@ -5,23 +5,6 @@
 
     $sql = mysql_query("SELECT * FROM aplikasi WHERE kodeaplikasi='$a'");
     while($raw = mysql_fetch_array($sql)){
-        if ($a=='1') {
-            header("location:$raw[alamataplikasi]");
-        }
-        elseif ($a=='2') {
-            header("location:$raw[alamataplikasi]");
-        }
-        elseif ($a=='3') {
-            header("location:$raw[alamataplikasi]");
-        }
-        elseif ($a=='4') {
-            header("location:$raw[alamataplikasi]");
-        }
-        elseif ($a=='5') {
-            header("location:$raw[alamataplikasi]");
-        }
-        elseif ($a=='6') {
-            header("location:$raw[alamataplikasi]");
-        }
+        header("location:$raw[alamataplikasi]");
     }
 ?>
