@@ -1,0 +1,235 @@
+﻿/* ============================================================================================== 
+This copyright notice must be kept untouched in the stylesheet at all times.
+The original version of this stylesheet and the associated (x)html 
+is available at http://www.script-tutorials.com/bootstrap-one-page-template-with-parallax-effect/
+Copyright (c) Script Tutorials. All rights reserved.
+This stylesheet and the associated (x)html may be modified in any way to fit your requirements.
+================================================================================================= */
+
+/* general styles */
+html, body {
+  height: 100%;
+  width: 100%;
+  background: none;
+  font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif !important;
+}
+
+/* load page */
+.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.se-pre-con {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url(../images/preloader_4.gif) center no-repeat #fff;
+    background-position: 47% 50%;
+}
+
+/* padded section */
+.pad-section {
+  padding: 50px 0;
+}
+.pad-section2 {
+  padding: 83px 0px 9px ;
+}
+.pad-section img {
+  width: 65%;
+}
+
+/* vertical-centered text */
+.horizontalinner {
+ padding: 25% 0;
+ color: #ffffff;
+ font-family: "Montserrat",sans-serif;
+}
+.horizontalinner h1 {
+  font-size: 4.5em;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+  color: #4C9ED9;
+text-shadow: 2px 7px 6px #201C1C;
+  
+}
+.horizontalinner h3 {
+  font-size: 1.5em;
+}
+.horizontalinner .btnlearn
+{
+    border-radius: 0;
+    margin: 5px 0;
+}
+.horizontalinner .seperator{
+    padding: 0px 0;
+    width: 30%;
+    height: 4px;
+    line-height: 0;
+    text-align: center;
+    border-bottom: 2px solid #ffffff;
+    margin: 5px auto;
+}
+/* additional sections */
+#home {
+  /*background: url(../images/home.jpg) no-repeat center center fixed;*/ 
+  display: table;
+  height: 100%;
+  position: relative;
+  width: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.panel-body .desc-home{
+    line-height: 2em;
+}
+#about {
+    background: #4C9ED9;
+    color: #fff;
+}
+#about h2 {
+    font-size: 26px;
+    margin: 0px 0px 30px;
+    font-family: Lato,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+#about p {
+    font-size: 16px;
+    line-height: 28px;
+}
+#about  a{
+    color: #fff; 
+    margin:0 !important;
+}
+#services {
+  background-color: #fff;
+  color: #4C9ED9;
+}
+#services h2 , #services h1{
+    font-size: 28px;
+    margin: 0px 0px 30px;
+    color: #666682;
+    font-weight: bold;
+}
+#services h3{
+    margin: 0px 0px 30px;
+    font-family: Lato,"Helvetica Neue",Helvetica,Arial,sans-serif !important;
+    width: 99%;
+    font-size: 24px;
+}
+#services .glyphicon {
+  border: 2px solid #FFFFFF;
+  border-radius: 50%;
+  display: inline-block;
+  vertical-align: middle;
+}
+.bg-tabs{
+    border-radius: 0px !important; color: #3C332F;
+    background:#fff;
+    
+}
+.tim a:hover{
+    background: red !important;
+}
+#infotim {
+  background: url(../images/bgtim.png) no-repeat center center fixed; 
+  display: table;
+  height: 250px;
+  position: relative;
+  width: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding: 74px 0px;
+}
+.content .judul{
+    font-size: 20px;
+    font-weight: bold;
+    color: #4C9ED9;
+}
+#information {
+  background: url(../images/estate.jpg) no-repeat center center fixed; 
+  display: table;
+  height: 250px;
+  position: relative;
+  width: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding: 74px 0px;
+}
+#information .panel {
+  opacity: 0.85;
+  border-radius: 0;
+}
+
+#google_map {
+  height: 300px;
+}
+.clouds{
+    width: 90% !important;
+}
+#infofooter{
+  display: table;
+  height: 185px;
+  background: #4C9ED9;
+  width: 100%;
+  border-top:2px solid #fff;
+  margin-bottom: -16px;
+    
+}
+#infofooter hr{
+    margin-bottom: 0;
+}
+#infofooter p{
+    font-size: 14px;
+    line-height: 25px;
+    padding: 12px 0;
+}
+#infofooter .container .row .col-md-6 p , #infofooter h2{
+    margin-top: 2em;  
+}
+#infofooter p a{
+    color: #fff !important;
+}
+footer {
+  padding: 20px 0;
+  background: #306D9F;
+  color: #fff;
+}
+footer .glyphicon {
+  font-size: 60px;
+  color: #fff;
+}
+footer .glyphicon:hover {
+  color: #306d9f;
+}
+.navbar-brand{padding:5px 10px ;}
+
+/* video slide */
+
+
+
+/* #### Tablets Portrait or Landscape #### */
+ video#bgvid { 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    
+    background-size: cover; 
+}
+@media screen and (max-device-width: 800px) {
+    
+    
+}
