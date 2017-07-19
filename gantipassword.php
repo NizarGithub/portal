@@ -1,0 +1,129 @@
+<?php
+$sqluser = mysql_query("SELECT * FROM login WHERE kodelogin ='$_SESSION[kodelogin]'") or die (mysql_error());
+$rowpass = mysql_fetch_array($sqluser);
+
+if(isset($_POST["submit"])){
+    $email      = mysql_real_escape_string(strip_tags($_POST["email"]));
+    $passlama   = mysql_real_escape_string(strip_tags(md5($_POST["passlama"])));
+    $passbaru   = mysql_real_escape_string(strip_tags(md5($_POST["passbaru"])));
+    $kode       = mysql_real_escape_string(strip_tags($_POST["kode"]));
+
+    $cekuser = mysql_query("SELECT * FROM login WHERE password = '$passlama' AND kodelogin='$kode'") or die (mysql_error());
+    $count = mysql_num_rows($cekuser);
+     if($count==0){
+        header("location:index.php?password&pasX");
+    }else {
+            mysql_query("UPDATE login set password = '$passbaru' WHERE kodelogin = '$kode' ");
+            header("location:index.php?password&passB");
+    }
+}
+?>
+<!-- Pick Day -->
+<link rel="stylesheet" href="assets/pickday/css/pikaday.css" />
+<script>
+ function isNumberKeyTgl(evt)
+      {
+         var charCode = (evt.which) ? evt.which : event.keyCode
+     //    if (charCode > 31 && (charCode < 47 || charCode > 57))
+            return false;
+
+         return true;
+      }
+</script>
+
+    <!-- /. NAV SIDE  -->
+    <div id="services" class="pad-section2">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <h3 class="judul">GANTI PASSWORD</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- content -->
+    <div class="row">
+        <div class="col-xs-12">
+            <?php if(isset($_GET["pasX"])){?>
+            <div class="alert alert-danger">Password lama salah...!!!
+                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">&times;</button>
+            </div>
+            <?php }else if(isset($_GET["passB"])){ ?>
+            <div class="alert alert-success">Password telah di perbaharui...!!!
+                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">&times;</button>
+            </div>
+
+            <?php header("location:index.php?dashboard");
+             } ?>
+        </div>
+    </div>
+
+    <div class="row">
+        <form role="form"  action="" method="post" enctype="multipart/form-data" id="validate">
+
+            <div class="col-lg-12">
+                <input type="hidden" name="kode" value="<?php echo $rowpass["kodelogin"];?>" />
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3"><label>Email</label></div>
+                        <div class="col-md-8">
+                            <input class="form-control" name="email" value="<?php echo $rowpass["email"]; ?>" type="text" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3"><label>Password Lama</label></div>
+                        <div class="col-md-8">
+                            <input class="form-control" id="passlama" name="passlama" type="password" data-rule-required="true"  data-msg-required="untuk keamanan password lama wajib di isi"  />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3"><label>Password Baru</label></div>
+                        <div class="col-md-8">
+                            <input class="form-control" id="passbaru" name="passbaru" type="password" data-rule-required="true"  data-msg-required="untuk keamanan password baru wajib di isi"  />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-8">
+                        <button type="submit" name="submit" class="btn btn-large btn-success">Simpan</button>
+                        <a href="index.php?dashboard" class="btn btn-large btn-warning">Kembali</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+<script type="text/javascript" src="assets/validasi/jquery.validate.min.js"></script>
+<script src="assets/pickday/moment.js"></script>
+<script src="assets/pickday/pikaday.js"></script>
+<script>
+    var picker = new Pikaday({
+        field: document.getElementById('datepck'),
+        firstDay: 1,
+        minDate: new Date(1960, 0, 1),
+        maxDate: new Date(2020, 12, 31),
+        yearRange: [1960, 2020],
+        format: 'DD/MM/YYYY'
+    });
+    jQuery.validator.methods["date"] = function (value, element) { return true; }
+</script>
+
+<script type="text/javascript">
+    $('#validate').validate({
+          rules: {
+            field: {
+              required: true,
+              date: true
+            }
+          }
+        });
+    function goBack() {
+        window.history.back();
+    }
+</script>

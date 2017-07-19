@@ -1,32 +1,4 @@
 
-
-	<nav class="cd-nav" >
-		<ul id="cd-primary-nav" class="cd-primary-nav is-fixed" style="z-index: 1200;">
-            <li class="dropdown">
-               <a  title="Panel Pengaturan Akun" class="dropdown-toggle putih" data-toggle="dropdown" href="#">
-                   <strong style="padding: 2px 0;"><?php echo $_SESSION["nama"];?></strong> &nbsp; <i class="fa fa-caret-down"></i>
-               </a>
-               <ul class="dropdown-menu dropdown-user">
-                   <li>
-                       <a href="index.php?password"><i class="fa fa-cogs"></i> Ganti Password</a>
-                   </li>
-                   <li>
-                       <a href="#" class="logoutK"><i class="fa fa-power-off"></i> Log out</a>
-                   </li>
-               </ul>
-               <!-- /.dropdown-user -->
-           </li>
-			<!--<li><a href="profil.html">Profil</a></li>
-                <li><a href="produk.html">Produk & Layanan</a></li>
-                <li><a href="portofolio.html">Portofolio</a></li>
-                <li><a href="tim.html">Tim</a></li>
-                <li><a href="karir.html">Karir</a></li>
-                <li><a href="partner.html">Partner</a></li>
-                <li><a href="client.html">Client</a></li>-->
-		</ul> <!-- primary-nav -->
-	</nav> <!-- cd-nav -->
-    <!-- end menu -->
-
     <div id="services" class="pad-section2">
         <div class="container">
             <div class="row">
