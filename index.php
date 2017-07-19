@@ -38,38 +38,22 @@
         });
     </script>
     <style>
-
         h1 {
             margin-bottom: 0px;
             margin-top: 30px;
         }
-
         p {
             line-height: 25px;
         }
-
         .thumbs {
             display: block;
         }
-
     </style>
-    <!-- <script>
-    	//paste this code under head tag or in a seperate js file.
-    	// Wait for window load
-    	$(window).load(function() {
-    		// Animate loader off screen
-    		$(".se-pre-con").fadeOut(3000);;
-    	});
-    </script> -->
 </head>
 
 <body>
-<!--<div class="se-pre-con"></div>
-   menu -->
     <nav class="navbar navbar-fixed-top" >
     	<header class="cd-main-header">
-    		<!--<a class="cd-logo" href="index.html"><img src="images/logo-tabs-solution.jpg" alt="Logo"></a>-->
-
     		<ul class="cd-header-buttons">
     			<li><a class="cd-nav-trigger" href="#cd-primary-nav"><span></span></a></li>
     		</ul> <!-- cd-header-buttons -->
