@@ -17,10 +17,10 @@ if(isset($_POST["submit_login"])){
         $_SESSION["kode_user"]      = $row_administrator["kode_user"];*/
         $_SESSION["nama"]            = $row_administrator["nama"];
         $_SESSION["kodelogin"]       = $row_administrator["kodelogin"];
-        /*$_SESSION["images"]         = $row_administrator["images"];
-        $_SESSION["no_anggota"]     = $row_administrator["no_anggota"];
+        $_SESSION["kodebidang"]         = $row_administrator["kodebidang"];
+        $_SESSION["kodeapp"]     = $row_administrator["kodeapp"];
         $date  = date("Y-m-d H:i:s");
-        mysql_query("INSERT INTO loglogin VALUES ('','$_SESSION[username]','$date','$ip')");*/
+        // mysql_query("INSERT INTO loglogin VALUES ('','$_SESSION[username]','$date','$ip')");
         header("location:index.php?dashboard");
     }else
     {
