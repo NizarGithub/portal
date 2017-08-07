@@ -85,7 +85,7 @@
         else if (isset($_GET["submit"])){include "submit.php";}
         else if (isset($_GET["password"])){include "gantipassword.php";}
 
-        else{include "page/notfound.php";}
+        else { include "notfound.php"; }
     ?>
 
 </body>
