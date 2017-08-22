@@ -63,8 +63,37 @@
     <nav class="cd-nav" >
 		<ul id="cd-primary-nav" class="cd-primary-nav is-fixed" style="z-index: 1200;">
             <li class="dropdown">
-               <a  title="Panel Pengaturan Akun" class="dropdown-toggle" data-toggle="dropdown" href="#">
-                   <strong style="padding: 2px 0;"><?php echo $_SESSION["nama"];?></strong> &nbsp; <i class="fa fa-caret-down"></i>
+                <a  title="Panel Pengaturan Akun" class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <strong style="padding: 2px 0;">
+                       <?php
+                            if($_SESSION["jenisuser"]=="gi"){
+                                echo $_SESSION["nama"];
+                                $sql=mysql_query("SELECT master.gi.* FROM master.gi WHERE master.gi.kodegi=$_SESSION[kodegi]");
+                                $row=mysql_fetch_array($sql);
+                                echo $row["namagi"];
+                            }
+                            else if($_SESSION["jenisuser"]=="app"){
+                                $sql=mysql_query("SELECT master.app.* FROM master.app WHERE master.app.kodeapp=$_SESSION[kodeapp]");
+                                $row=mysql_fetch_array($sql); ?>Admin
+                                <?php
+                                echo $row["namaapp"];
+                            }
+                            else if($_SESSION["jenisuser"]=="apd"){
+                                $sql=mysql_query("SELECT master.apd.* FROM master.apd WHERE master.apd.kodeapp=$_SESSION[kodeapd]");
+                                $row=mysql_fetch_array($sql); ?>Admin
+                                <?php
+                                echo $row["namaapd"];
+                            }
+                            else if($_SESSION["jenisuser"]=="ki"){?>
+                                Admin Kantor Induk
+                                <?php
+                            }
+                            else{ ?>
+                                Superadmin
+                                <?php
+                            }
+                        ?>
+                    </strong> &nbsp; <i class="fa fa-caret-down"></i>
                </a>
                <ul class="dropdown-menu dropdown-user">
                    <li>

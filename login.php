@@ -13,13 +13,14 @@ if(isset($_POST["submit_login"])){
     if(mysql_num_rows($sql_login)>0)
     {
         $row_administrator = mysql_fetch_array($sql_login);
-        /*$_SESSION["level"]          = $row_administrator["level"];
-        $_SESSION["kode_user"]      = $row_administrator["kode_user"];*/
-        $_SESSION["nama"]            = $row_administrator["nama"];
-        $_SESSION["kodelogin"]       = $row_administrator["kodelogin"];
-        $_SESSION["kodebidang"]         = $row_administrator["kodebidang"];
-        $_SESSION["kodeapp"]     = $row_administrator["kodeapp"];
-        $_SESSION["email"]     = $row_administrator["email"];
+        $_SESSION["level"]          = $row_administrator["level"];
+        $_SESSION["nama"]           = $row_administrator["nama"];
+        $_SESSION["kodelogin"]      = $row_administrator["kodelogin"];
+        $_SESSION["kodegi"]         = $row_administrator["kodegi"];
+        $_SESSION["kodeapp"]        = $row_administrator["kodeapp"];
+        $_SESSION["kodeapd"]        = $row_administrator["kodeapd"];
+        $_SESSION["email"]          = $row_administrator["email"];
+        $_SESSION["jenisuser"]          = $row_administrator["jenisuser"];
         $date  = date("Y-m-d H:i:s");
         // mysql_query("INSERT INTO loglogin VALUES ('','$_SESSION[username]','$date','$ip')");
         header("location:index.php?dashboard");
