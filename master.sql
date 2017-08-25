@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 21, 2017 at 09:35 AM
+-- Generation Time: Aug 25, 2017 at 11:35 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -38,8 +38,8 @@ CREATE TABLE `apd` (
 --
 
 INSERT INTO `apd` (`kodeapd`, `namaapd`) VALUES
-(1, 'jabar'),
-(2, 'jateng');
+(1, 'APD JABAR'),
+(2, 'APD JATENG');
 
 -- --------------------------------------------------------
 
@@ -120,6 +120,7 @@ INSERT INTO `bidang` (`kodebidang`, `namabidang`) VALUES
 
 CREATE TABLE `gi` (
   `kodegi` int(5) NOT NULL,
+  `kodeapd` int(5) DEFAULT NULL,
   `kodeapp` int(5) DEFAULT NULL,
   `namagi` varchar(100) DEFAULT NULL,
   `alamat` varchar(500) DEFAULT NULL
@@ -129,53 +130,53 @@ CREATE TABLE `gi` (
 -- Dumping data for table `gi`
 --
 
-INSERT INTO `gi` (`kodegi`, `kodeapp`, `namagi`, `alamat`) VALUES
-(1, 2, '150KV BANDUNG SELATAN', NULL),
-(2, 2, '70KV BANDUNG TIMUR', NULL),
-(3, 2, '150KV BANDUNG UTARA', NULL),
-(4, 2, '70KV BENGKOK', NULL),
-(5, 2, '150KV CIANJUR', NULL),
-(6, 2, '150KV CIBEUREUM BARU', NULL),
-(7, 2, '150KV CIGERELENG', NULL),
-(8, 2, '70KV CIKALONG', NULL),
-(9, 2, '150KV CIKASUNGKA', NULL),
-(10, 2, '150KV DAGOPAKAR', NULL),
-(11, 2, '150KV LAGADAR', NULL),
-(12, 2, '70KV LAMAJAN', NULL),
-(13, 2, '70KV MAJALAYA', NULL),
-(14, 2, '150KV PADALARANGBARU', NULL),
-(15, 2, '150KV PANASIA', NULL),
-(16, 2, '30KV PLENGAN', NULL),
-(17, 2, '150KV RANCAEKEK', NULL),
-(18, 2, '150KV RANCAKASUMBA', NULL),
-(19, 2, '70KV SANTOSA', NULL),
-(20, 2, '70KV SUMEDANG', NULL),
-(21, 2, '150KV UJUNGBERUNG', NULL),
-(22, 2, '150KV WAYANGWINDU', NULL),
-(23, 2, '150KV CIBABAT', NULL),
-(24, 2, '150KV KIARACONDONG', NULL),
-(25, 2, '150KV PATUHA', NULL),
-(26, 2, '150KV CIBABAT BARU', NULL),
-(27, 2, '150KV NEW RANCAKASUMBA', NULL),
-(28, 2, '150KV BRAGA', NULL),
-(29, 2, '150KV PANASIA', NULL),
-(32, 1, 'Bogor Baru', NULL),
-(33, 1, 'Cibinong', NULL),
-(34, 1, 'Cileungsi 70 kV', NULL),
-(35, 1, 'Kedung Badak', NULL),
-(36, 1, 'Bunar', NULL),
-(37, 1, 'Kracak', NULL),
-(38, 1, 'Ciawi', NULL),
-(39, 1, 'Cibadak Baru', NULL),
-(40, 1, 'Lembur Situ', NULL),
-(41, 1, 'Pelabuhan Ratu', NULL),
-(42, 1, 'GIS Pelabuhan Ratu', NULL),
-(43, 1, 'Sentul', NULL),
-(44, 1, 'Semen Baru', NULL),
-(45, 1, 'ITP', NULL),
-(46, 1, 'ASPEK 70kV', NULL),
-(47, 1, 'Semen Baru 150kV ', NULL),
-(48, 1, 'Semen Lama 70kV', NULL);
+INSERT INTO `gi` (`kodegi`, `kodeapd`, `kodeapp`, `namagi`, `alamat`) VALUES
+(1, 1, 2, '150KV BANDUNG SELATAN', NULL),
+(2, 1, 2, '70KV BANDUNG TIMUR', NULL),
+(3, 1, 2, '150KV BANDUNG UTARA', NULL),
+(4, 1, 2, '70KV BENGKOK', NULL),
+(5, 1, 2, '150KV CIANJUR', NULL),
+(6, 1, 2, '150KV CIBEUREUM BARU', NULL),
+(7, 1, 2, '150KV CIGERELENG', NULL),
+(8, 1, 2, '70KV CIKALONG', NULL),
+(9, 1, 2, '150KV CIKASUNGKA', NULL),
+(10, 1, 2, '150KV DAGOPAKAR', NULL),
+(11, 1, 2, '150KV LAGADAR', NULL),
+(12, 1, 2, '70KV LAMAJAN', NULL),
+(13, 1, 2, '70KV MAJALAYA', NULL),
+(14, 1, 2, '150KV PADALARANGBARU', NULL),
+(15, 1, 2, '150KV PANASIA', NULL),
+(16, 1, 2, '30KV PLENGAN', NULL),
+(17, 1, 2, '150KV RANCAEKEK', NULL),
+(18, 1, 2, '150KV RANCAKASUMBA', NULL),
+(19, 1, 2, '70KV SANTOSA', NULL),
+(20, 1, 2, '70KV SUMEDANG', NULL),
+(21, 1, 2, '150KV UJUNGBERUNG', NULL),
+(22, 1, 2, '150KV WAYANGWINDU', NULL),
+(23, 1, 2, '150KV CIBABAT', NULL),
+(24, 1, 2, '150KV KIARACONDONG', NULL),
+(25, 1, 2, '150KV PATUHA', NULL),
+(26, 1, 2, '150KV CIBABAT BARU', NULL),
+(27, 1, 2, '150KV NEW RANCAKASUMBA', NULL),
+(28, 1, 2, '150KV BRAGA', NULL),
+(29, 1, 2, '150KV PANASIA', NULL),
+(32, 1, 1, 'Bogor Baru', NULL),
+(33, 1, 1, 'Cibinong', NULL),
+(34, 1, 1, 'Cileungsi 70 kV', NULL),
+(35, 1, 1, 'Kedung Badak', NULL),
+(36, 1, 1, 'Bunar', NULL),
+(37, 1, 1, 'Kracak', NULL),
+(38, 1, 1, 'Ciawi', NULL),
+(39, 1, 1, 'Cibadak Baru', NULL),
+(40, 1, 1, 'Lembur Situ', NULL),
+(41, 1, 1, 'Pelabuhan Ratu', NULL),
+(42, 1, 1, 'GIS Pelabuhan Ratu', NULL),
+(43, 1, 1, 'Sentul', NULL),
+(44, 1, 1, 'Semen Baru', NULL),
+(45, 1, 1, 'ITP', NULL),
+(46, 1, 1, 'ASPEK 70kV', NULL),
+(47, 1, 1, 'Semen Baru 150kV ', NULL),
+(48, 1, 1, 'Semen Lama 70kV', NULL);
 
 -- --------------------------------------------------------
 
@@ -203,7 +204,9 @@ CREATE TABLE `login` (
 INSERT INTO `login` (`kodelogin`, `nama`, `email`, `password`, `level`, `jenisuser`, `tgldaftar`, `kodeapd`, `kodeapp`, `kodegi`) VALUES
 (1, 'Administrator', 'admin@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'superadmin', 'administrator', NULL, NULL, 2, NULL),
 (2, 'Admin GI', 'admin.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', NULL, 1, 2, 1),
-(3, 'Admin APP', 'admin.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'app', NULL, 1, 2, NULL);
+(3, 'Admin APP', 'admin.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'app', NULL, 1, 2, NULL),
+(4, 'Admin APD', 'admin.apd@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'apd', NULL, 1, NULL, NULL),
+(5, 'Admin KI', 'admin.ki@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'ki', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -273,7 +276,18 @@ INSERT INTO `loglogin` (`kodelog`, `kodelogin`, `kodeaplikasi`, `tgllogin`) VALU
 (58, 2, 3, '2017-08-15 11:40:13'),
 (59, 3, 3, '2017-08-15 11:44:02'),
 (60, 2, 3, '2017-08-16 10:52:57'),
-(61, 3, 3, '2017-08-16 10:53:11');
+(61, 3, 3, '2017-08-16 10:53:11'),
+(62, 4, 3, '2017-08-25 08:28:52'),
+(63, 2, 3, '2017-08-25 09:32:32'),
+(64, 3, 3, '2017-08-25 09:33:12'),
+(65, 3, 3, '2017-08-25 09:50:38'),
+(66, 4, 3, '2017-08-25 10:20:27'),
+(67, 2, 3, '2017-08-25 10:31:00'),
+(68, 4, 3, '2017-08-25 11:31:22'),
+(69, 2, 3, '2017-08-25 14:50:42'),
+(70, 2, 3, '2017-08-25 14:53:49'),
+(71, 3, 3, '2017-08-25 14:54:00'),
+(72, 5, 3, '2017-08-25 16:23:03');
 
 -- --------------------------------------------------------
 
@@ -283,111 +297,117 @@ INSERT INTO `loglogin` (`kodelog`, `kodelogin`, `kodeaplikasi`, `tgllogin`) VALU
 
 CREATE TABLE `trafo` (
   `kodetrafo` int(5) NOT NULL,
+  `kodeapd` int(5) DEFAULT NULL,
   `kodeapp` int(5) DEFAULT NULL,
   `kodegi` int(5) DEFAULT NULL,
   `nomortrafo` varchar(100) DEFAULT NULL,
   `mvaterpasang` varchar(100) DEFAULT NULL,
   `mvadeklarasi` varchar(100) DEFAULT NULL,
-  `realisasimvadeklarasi` varchar(100) DEFAULT NULL
+  `realisasimvadeklarasi` varchar(100) DEFAULT NULL,
+  `statustrafo` varchar(100) DEFAULT NULL,
+  `statusapprove` int(5) DEFAULT NULL,
+  `bulanapprove` varchar(100) DEFAULT NULL,
+  `tahunapprove` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `trafo`
 --
 
-INSERT INTO `trafo` (`kodetrafo`, `kodeapp`, `kodegi`, `nomortrafo`, `mvaterpasang`, `mvadeklarasi`, `realisasimvadeklarasi`) VALUES
-(1, 2, 1, '1', '60.00', '60.00', NULL),
-(2, 2, 1, '2', '60.00', '60.00', NULL),
-(3, 2, 1, '3', '60.00', '60.00', NULL),
-(4, 2, 1, '4', '60.00', '60.00', NULL),
-(5, 2, 2, '1', '30.00', '13.80', NULL),
-(6, 2, 2, '2', '30.00', '13.80', NULL),
-(7, 2, 2, '3', '30.00', '30.00', NULL),
-(8, 2, 3, '1', '60.00', '60.00', NULL),
-(9, 2, 3, '2', '60.00', '60.00', NULL),
-(10, 2, 3, '3', '60.00', '60.00', NULL),
-(11, 2, 3, '4', '60.00', '60.00', NULL),
-(12, 2, 3, '5', '60.00', '60.00', NULL),
-(13, 2, 4, '1', '5.00', '5.00', NULL),
-(14, 2, 4, '2', '10.00', '10.00', NULL),
-(15, 2, 5, '1', '60.00', '60.00', NULL),
-(16, 2, 5, '2', '60.00', '60.00', NULL),
-(17, 2, 5, '3', '60.00', '60.00', NULL),
-(18, 2, 5, '4', '60.00', '60.00', NULL),
-(19, 2, 5, '5', '60.00', '60.00', NULL),
-(20, 2, 6, '1', '60.00', '60.00', NULL),
-(21, 2, 6, '2', '60.00', '60.00', NULL),
-(22, 2, 7, '1', '60.00', '60.00', NULL),
-(23, 2, 7, '2', '60.00', '60.00', NULL),
-(24, 2, 7, '3', '60.00', '60.00', NULL),
-(25, 2, 7, '4', '60.00', '60.00', NULL),
-(26, 2, 7, '5', '60.00', '60.00', NULL),
-(27, 2, 7, '6', '60.00', '60.00', NULL),
-(28, 2, 7, '7', '60.00', '60.00', NULL),
-(29, 2, 7, '8', '60.00', '60.00', NULL),
-(30, 2, 7, '9', '60.00', '60.00', NULL),
-(31, 2, 7, '10', '60.00', '60.00', NULL),
-(32, 2, 8, '1', NULL, NULL, NULL),
-(33, 2, 8, '2', NULL, NULL, NULL),
-(34, 2, 9, '1', '60.00', '60.00', NULL),
-(35, 2, 9, '2', '60.00', '60.00', NULL),
-(36, 2, 9, '3', '60.00', '60.00', NULL),
-(37, 2, 10, '1', '60.00', '60.00', NULL),
-(38, 2, 10, '2', '60.00', '60.00', NULL),
-(39, 2, 11, '1', '60.00', '60.00', NULL),
-(40, 2, 11, '2', '60.00', '60.00', NULL),
-(41, 2, 11, '3', '60.00', '60.00', NULL),
-(42, 2, 11, '4', '60.00', '60.00', NULL),
-(43, 2, 12, '1', '10.00', '10.00', NULL),
-(44, 2, 12, '2', '10.00', '10.00', NULL),
-(45, 2, 12, '3', '10.00', '10.00', NULL),
-(46, 2, 12, '4', '10.00', '10.00', NULL),
-(47, 2, 13, '1', '20.00', '20.00', NULL),
-(48, 2, 13, '2', '20.00', '20.00', NULL),
-(49, 2, 13, '3', '30.00', '30.00', NULL),
-(50, 2, 14, '1', '60.00', '60.00', NULL),
-(51, 2, 14, '2', '60.00', '60.00', NULL),
-(52, 2, 14, '3', '60.00', '60.00', NULL),
-(53, 2, 14, '4', '60.00', '60.00', NULL),
-(54, 2, 15, '1', '60.00', '60.00', NULL),
-(55, 2, 16, '1', NULL, NULL, NULL),
-(56, 2, 16, '2', NULL, NULL, NULL),
-(57, 2, 16, '3', NULL, NULL, NULL),
-(58, 2, 16, '4', NULL, NULL, NULL),
-(59, 2, 16, '5', NULL, NULL, NULL),
-(60, 2, 16, '6', NULL, NULL, NULL),
-(61, 2, 17, '1', '60.00', '60.00', NULL),
-(62, 2, 17, '2', '60.00', '60.00', NULL),
-(63, 2, 17, '3', '60.00', '60.00', NULL),
-(64, 2, 17, '4', '60.00', '60.00', NULL),
-(65, 2, 18, '1', '60.00', '60.00', NULL),
-(66, 2, 18, '2', '60.00', '60.00', NULL),
-(67, 2, 18, '3', '60.00', '60.00', NULL),
-(68, 2, 19, '1', '20.00', '20.00', NULL),
-(69, 2, 20, '1', '10.00', '10.00', NULL),
-(70, 2, 20, '2', '10.00', '10.00', NULL),
-(71, 2, 20, '3', '30.00', '30.00', NULL),
-(72, 2, 20, '4', '30.00', '30.00', NULL),
-(73, 2, 21, '1', '60.00', '60.00', NULL),
-(74, 2, 21, '2', '60.00', '60.00', NULL),
-(75, 2, 21, '3', '60.00', '60.00', NULL),
-(76, 2, 21, '4', '60.00', '60.00', NULL),
-(77, 2, 21, '5', '60.00', '48.40', NULL),
-(78, 2, 21, '6', '60.00', '60.00', NULL),
-(79, 2, 22, '1', '100.00', '100.00', NULL),
-(80, 2, 23, '1', '60.00', '60.00', NULL),
-(81, 2, 23, '2', '60.00', '60.00', NULL),
-(82, 2, 23, '3', '60.00', '60.00', NULL),
-(83, 2, 24, '1', '60.00', '60.00', NULL),
-(84, 2, 24, '2', '60.00', '60.00', NULL),
-(85, 2, 24, '3', '60.00', '60.00', NULL),
-(86, 2, 25, '1', '60.00', '60.00', NULL),
-(87, 2, 26, '1', '60.00', '60.00', NULL),
-(88, 2, 26, '2', '60.00', '60.00', NULL),
-(89, 2, 27, '1', '60.00', '60.00', NULL),
-(90, 2, 27, '2', '60.00', '60.00', NULL),
-(91, 2, 28, '1', '60.00', '60.00', NULL),
-(92, 2, 28, '2', '60.00', '60.00', NULL);
+INSERT INTO `trafo` (`kodetrafo`, `kodeapd`, `kodeapp`, `kodegi`, `nomortrafo`, `mvaterpasang`, `mvadeklarasi`, `realisasimvadeklarasi`, `statustrafo`, `statusapprove`, `bulanapprove`, `tahunapprove`) VALUES
+(1, 1, 2, 1, '1', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(2, 1, 2, 1, '2', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(3, 1, 2, 1, '3', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(4, 1, 2, 1, '4', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(5, 1, 2, 2, '1', '30.00', '13.80', NULL, 'aktif', NULL, NULL, NULL),
+(6, 1, 2, 2, '2', '30.00', '13.80', NULL, 'aktif', NULL, NULL, NULL),
+(7, 1, 2, 2, '3', '30.00', '30.00', NULL, 'aktif', NULL, NULL, NULL),
+(8, 1, 2, 3, '1', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(9, 1, 2, 3, '2', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(10, 1, 2, 3, '3', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(11, 1, 2, 3, '4', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(12, 1, 2, 3, '5', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(13, 1, 2, 4, '1', '5.00', '5.00', NULL, 'aktif', NULL, NULL, NULL),
+(14, 1, 2, 4, '2', '10.00', '10.00', NULL, 'aktif', NULL, NULL, NULL),
+(15, 1, 2, 5, '1', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(16, 1, 2, 5, '2', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(17, 1, 2, 5, '3', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(18, 1, 2, 5, '4', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(19, 1, 2, 5, '5', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(20, 1, 2, 6, '1', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(21, 1, 2, 6, '2', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(22, 1, 2, 7, '1', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(23, 1, 2, 7, '2', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(24, 1, 2, 7, '3', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(25, 1, 2, 7, '4', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(26, 1, 2, 7, '5', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(27, 1, 2, 7, '6', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(28, 1, 2, 7, '7', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(29, 1, 2, 7, '8', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(30, 1, 2, 7, '9', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(31, 1, 2, 7, '10', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(32, 1, 2, 8, '1', NULL, NULL, NULL, 'aktif', NULL, NULL, NULL),
+(33, 1, 2, 8, '2', NULL, NULL, NULL, 'aktif', NULL, NULL, NULL),
+(34, 1, 2, 9, '1', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(35, 1, 2, 9, '2', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(36, 1, 2, 9, '3', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(37, 1, 2, 10, '1', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(38, 1, 2, 10, '2', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(39, 1, 2, 11, '1', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(40, 1, 2, 11, '2', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(41, 1, 2, 11, '3', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(42, 1, 2, 11, '4', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(43, 1, 2, 12, '1', '10.00', '10.00', NULL, 'aktif', NULL, NULL, NULL),
+(44, 1, 2, 12, '2', '10.00', '10.00', NULL, 'aktif', NULL, NULL, NULL),
+(45, 1, 2, 12, '3', '10.00', '10.00', NULL, 'aktif', NULL, NULL, NULL),
+(46, 1, 2, 12, '4', '10.00', '10.00', NULL, 'aktif', NULL, NULL, NULL),
+(47, 1, 2, 13, '1', '20.00', '20.00', NULL, 'aktif', NULL, NULL, NULL),
+(48, 1, 2, 13, '2', '20.00', '20.00', NULL, 'aktif', NULL, NULL, NULL),
+(49, 1, 2, 13, '3', '30.00', '30.00', NULL, 'aktif', NULL, NULL, NULL),
+(50, 1, 2, 14, '1', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(51, 1, 2, 14, '2', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(52, 1, 2, 14, '3', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(53, 1, 2, 14, '4', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(54, 1, 2, 15, '1', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(55, 1, 2, 16, '1', NULL, NULL, NULL, 'aktif', NULL, NULL, NULL),
+(56, 1, 2, 16, '2', NULL, NULL, NULL, 'aktif', NULL, NULL, NULL),
+(57, 1, 2, 16, '3', NULL, NULL, NULL, 'aktif', NULL, NULL, NULL),
+(58, 1, 2, 16, '4', NULL, NULL, NULL, 'aktif', NULL, NULL, NULL),
+(59, 1, 2, 16, '5', NULL, NULL, NULL, 'aktif', NULL, NULL, NULL),
+(60, 1, 2, 16, '6', NULL, NULL, NULL, 'aktif', NULL, NULL, NULL),
+(61, 1, 2, 17, '1', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(62, 1, 2, 17, '2', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(63, 1, 2, 17, '3', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(64, 1, 2, 17, '4', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(65, 1, 2, 18, '1', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(66, 1, 2, 18, '2', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(67, 1, 2, 18, '3', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(68, 1, 2, 19, '1', '20.00', '20.00', NULL, 'aktif', NULL, NULL, NULL),
+(69, 1, 2, 20, '1', '10.00', '10.00', NULL, 'aktif', NULL, NULL, NULL),
+(70, 1, 2, 20, '2', '10.00', '10.00', NULL, 'aktif', NULL, NULL, NULL),
+(71, 1, 2, 20, '3', '30.00', '30.00', NULL, 'aktif', NULL, NULL, NULL),
+(72, 1, 2, 20, '4', '30.00', '30.00', NULL, 'aktif', NULL, NULL, NULL),
+(73, 1, 2, 21, '1', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(74, 1, 2, 21, '2', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(75, 1, 2, 21, '3', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(76, 1, 2, 21, '4', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(77, 1, 2, 21, '5', '60.00', '48.40', NULL, 'aktif', NULL, NULL, NULL),
+(78, 1, 2, 21, '6', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(79, 1, 2, 22, '1', '100.00', '100.00', NULL, 'aktif', NULL, NULL, NULL),
+(80, 1, 2, 23, '1', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(81, 1, 2, 23, '2', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(82, 1, 2, 23, '3', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(83, 1, 2, 24, '1', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(84, 1, 2, 24, '2', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(85, 1, 2, 24, '3', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(86, 1, 2, 25, '1', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(87, 1, 2, 26, '1', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(88, 1, 2, 26, '2', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(89, 1, 2, 27, '1', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(90, 1, 2, 27, '2', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(91, 1, 2, 28, '1', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(92, 1, 2, 28, '2', '60.00', '60.00', NULL, 'aktif', NULL, NULL, NULL),
+(93, 1, 2, 29, 'KTT', NULL, NULL, NULL, 'aktif', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -410,22 +430,34 @@ INSERT INTO `userakses` (`kodeakses`, `kodelogin`, `kodeaplikasi`, `status`) VAL
 (1, 1, 1, 'aktif'),
 (2, 1, 2, 'aktif'),
 (3, 1, 3, 'aktif'),
-(4, 1, 4, NULL),
-(5, 1, 5, NULL),
-(6, 1, 6, NULL),
+(4, 1, 4, 'nonaktif'),
+(5, 1, 5, 'nonaktif'),
+(6, 1, 6, 'nonaktif'),
 (7, 2, 1, 'aktif'),
-(8, 2, 2, NULL),
+(8, 2, 2, 'nonaktif'),
 (9, 2, 3, 'aktif'),
-(10, 2, 4, NULL),
-(11, 2, 5, NULL),
-(12, 2, 6, NULL),
-(13, 3, 1, NULL),
-(14, 3, 2, NULL),
+(10, 2, 4, 'nonaktif'),
+(11, 2, 5, 'nonaktif'),
+(12, 2, 6, 'nonaktif'),
+(13, 3, 1, 'nonaktif'),
+(14, 3, 2, 'nonaktif'),
 (15, 3, 3, 'aktif'),
-(16, 3, 4, NULL),
-(17, 3, 5, NULL),
-(18, 3, 6, NULL),
-(19, 3, 7, NULL);
+(16, 3, 4, 'nonaktif'),
+(17, 3, 5, 'nonaktif'),
+(18, 3, 6, 'nonaktif'),
+(19, 3, 7, 'nonaktif'),
+(20, 4, 1, 'aktif'),
+(21, 4, 2, 'aktif'),
+(22, 4, 3, 'aktif'),
+(23, 4, 4, 'nonaktif'),
+(24, 4, 5, 'nonaktif'),
+(25, 4, 6, 'nonaktif'),
+(26, 5, 1, 'aktif'),
+(27, 5, 2, 'aktif'),
+(28, 5, 3, 'aktif'),
+(29, 5, 4, 'nonaktif'),
+(30, 5, 5, 'nonaktif'),
+(31, 5, 6, 'nonaktif');
 
 --
 -- Indexes for dumped tables
@@ -518,22 +550,22 @@ ALTER TABLE `gi`
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `kodelogin` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `kodelogin` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `loglogin`
 --
 ALTER TABLE `loglogin`
-  MODIFY `kodelog` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `kodelog` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 --
 -- AUTO_INCREMENT for table `trafo`
 --
 ALTER TABLE `trafo`
-  MODIFY `kodetrafo` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `kodetrafo` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 --
 -- AUTO_INCREMENT for table `userakses`
 --
 ALTER TABLE `userakses`
-  MODIFY `kodeakses` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;COMMIT;
+  MODIFY `kodeakses` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

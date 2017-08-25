@@ -79,7 +79,7 @@
                                 echo $row["namaapp"];
                             }
                             else if($_SESSION["jenisuser"]=="apd"){
-                                $sql=mysql_query("SELECT master.apd.* FROM master.apd WHERE master.apd.kodeapp=$_SESSION[kodeapd]");
+                                $sql=mysql_query("SELECT master.apd.* FROM master.apd WHERE master.apd.kodeapd=$_SESSION[kodeapd]");
                                 $row=mysql_fetch_array($sql); ?>Admin
                                 <?php
                                 echo $row["namaapd"];
