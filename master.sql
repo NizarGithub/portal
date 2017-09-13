@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 13, 2017 at 11:03 AM
+-- Generation Time: Sep 13, 2017 at 11:52 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -62,9 +62,9 @@ INSERT INTO `aplikasi` (`kodeaplikasi`, `namaaplikasi`, `alamataplikasi`, `image
 (1, 'SIAPP', 'http://localhost/siapp/index.php?dashboard', 'thumb7.jpg'),
 (2, 'Arsip Online', 'http://localhost/arsip-online/index.php?dashboard', 'thumb7.jpg'),
 (3, 'TSA', 'http://localhost/tsa', 'thumb7.jpg'),
-(4, 'APAR', 'http://localhost/apar', 'thumb7.jpg'),
-(5, 'Kebakaran', 'http://localhost/kebakaran', 'thumb7.jpg'),
-(6, 'Anggaran', 'http://localhost/anggaran', 'thumb7.jpg');
+(4, 'APAR', 'http://localhost/monpar', 'thumb7.jpg'),
+(5, 'Fire Protection', 'http://localhost/fire_protection', 'thumb7.jpg'),
+(6, 'Anggaran', 'http://localhost/newmonarki/index.php?dashboard', 'thumb7.jpg');
 
 -- --------------------------------------------------------
 
@@ -533,7 +533,14 @@ INSERT INTO `login` (`kodelogin`, `nama`, `email`, `password`, `level`, `jenisus
 (191, 'Admin GI', 'admin180.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 7, '180'),
 (192, 'Admin GI', 'admin181.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 7, '181'),
 (193, 'Admin GI', 'admin182.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 7, '182'),
-(194, 'Admin GI', 'admin183.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 7, '183');
+(194, 'Admin GI', 'admin183.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 7, '183'),
+(195, 'Manajer APP', 'mapp1.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'manajer', 'app', '0000-00-00', 1, 1, NULL),
+(196, 'Manajer APP', 'mapp2.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'manajer', 'app', '0000-00-00', 1, 2, NULL),
+(197, 'Manajer APP', 'mapp3.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'manajer', 'app', '0000-00-00', 1, 3, NULL),
+(198, 'Manajer APP', 'mapp4.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'manajer', 'app', '0000-00-00', 1, 4, NULL),
+(199, 'Manajer APP', 'mapp5.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'manajer', 'app', '0000-00-00', 2, 5, NULL),
+(200, 'Manajer APP', 'mapp6.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'manajer', 'app', '0000-00-00', 2, 6, NULL),
+(201, 'Manajer APP', 'mapp7.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'manajer', 'app', '0000-00-00', 2, 7, NULL);
 
 -- --------------------------------------------------------
 
@@ -2349,7 +2356,49 @@ INSERT INTO `userakses` (`kodeakses`, `kodelogin`, `kodeaplikasi`, `status`) VAL
 (1161, 194, 3, 'aktif'),
 (1162, 194, 4, 'aktif'),
 (1163, 194, 5, 'aktif'),
-(1164, 194, 6, 'aktif');
+(1164, 194, 6, 'aktif'),
+(1165, 195, 1, 'aktif'),
+(1166, 195, 2, 'aktif'),
+(1167, 195, 3, 'aktif'),
+(1168, 195, 4, 'aktif'),
+(1169, 195, 5, 'aktif'),
+(1170, 195, 6, 'aktif'),
+(1171, 196, 1, 'aktif'),
+(1172, 196, 2, 'aktif'),
+(1173, 196, 3, 'aktif'),
+(1174, 196, 4, 'aktif'),
+(1175, 196, 5, 'aktif'),
+(1176, 196, 6, 'aktif'),
+(1177, 197, 1, 'aktif'),
+(1178, 197, 2, 'aktif'),
+(1179, 197, 3, 'aktif'),
+(1180, 197, 4, 'aktif'),
+(1181, 197, 5, 'aktif'),
+(1182, 197, 6, 'aktif'),
+(1183, 198, 1, 'aktif'),
+(1184, 198, 2, 'aktif'),
+(1185, 198, 3, 'aktif'),
+(1186, 198, 4, 'aktif'),
+(1187, 198, 5, 'aktif'),
+(1188, 198, 6, 'aktif'),
+(1189, 199, 1, 'aktif'),
+(1190, 199, 2, 'aktif'),
+(1191, 199, 3, 'aktif'),
+(1192, 199, 4, 'aktif'),
+(1193, 199, 5, 'aktif'),
+(1194, 199, 6, 'aktif'),
+(1195, 200, 1, 'aktif'),
+(1196, 200, 2, 'aktif'),
+(1197, 200, 3, 'aktif'),
+(1198, 200, 4, 'aktif'),
+(1199, 200, 5, 'aktif'),
+(1200, 200, 6, 'aktif'),
+(1201, 201, 1, 'aktif'),
+(1202, 201, 2, 'aktif'),
+(1203, 201, 3, 'aktif'),
+(1204, 201, 4, 'aktif'),
+(1205, 201, 5, 'aktif'),
+(1206, 201, 6, 'aktif');
 
 --
 -- Indexes for dumped tables
@@ -2445,7 +2494,7 @@ ALTER TABLE `gi`
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `kodelogin` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=195;
+  MODIFY `kodelogin` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=202;
 --
 -- AUTO_INCREMENT for table `loglogin`
 --
@@ -2460,7 +2509,7 @@ ALTER TABLE `trafo`
 -- AUTO_INCREMENT for table `userakses`
 --
 ALTER TABLE `userakses`
-  MODIFY `kodeakses` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1165;
+  MODIFY `kodeakses` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1207;
 --
 -- Constraints for dumped tables
 --
