@@ -67,9 +67,9 @@
                     <strong style="padding: 2px 0;">
                        <?php
                             if($_SESSION["jenisuser"]=="gi"){
-                                echo $_SESSION["nama"];
                                 $sql=mysql_query("SELECT master.gi.* FROM master.gi WHERE master.gi.kodegi=$_SESSION[kodegi]");
-                                $row=mysql_fetch_array($sql);
+                                $row=mysql_fetch_array($sql); ?>Admin GI 
+                                <?php
                                 echo $row["namagi"];
                             }
                             else if($_SESSION["jenisuser"]=="app"){
