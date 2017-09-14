@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 13, 2017 at 11:52 AM
+-- Generation Time: Sep 14, 2017 at 03:49 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -540,7 +540,14 @@ INSERT INTO `login` (`kodelogin`, `nama`, `email`, `password`, `level`, `jenisus
 (198, 'Manajer APP', 'mapp4.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'manajer', 'app', '0000-00-00', 1, 4, NULL),
 (199, 'Manajer APP', 'mapp5.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'manajer', 'app', '0000-00-00', 2, 5, NULL),
 (200, 'Manajer APP', 'mapp6.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'manajer', 'app', '0000-00-00', 2, 6, NULL),
-(201, 'Manajer APP', 'mapp7.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'manajer', 'app', '0000-00-00', 2, 7, NULL);
+(201, 'Manajer APP', 'mapp7.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'manajer', 'app', '0000-00-00', 2, 7, NULL),
+(202, 'Ass Manajer APP', 'asmapp1.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'asman', 'app', '0000-00-00', 1, 1, NULL),
+(203, 'Ass Manajer APP', 'asmapp2.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'asman', 'app', '0000-00-00', 1, 2, NULL),
+(204, 'Ass Manajer APP', 'asmapp3.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'asman', 'app', '0000-00-00', 1, 3, NULL),
+(205, 'Ass Manajer APP', 'asmapp4.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'asman', 'app', '0000-00-00', 1, 4, NULL),
+(206, 'Ass Manajer APP', 'asmapp5.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'asman', 'app', '0000-00-00', 2, 5, NULL),
+(207, 'Ass Manajer APP', 'asmapp6.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'asman', 'app', '0000-00-00', 2, 6, NULL),
+(208, 'Ass Manajer APP', 'asmapp7.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'asman', 'app', '0000-00-00', 2, 7, NULL);
 
 -- --------------------------------------------------------
 
@@ -2398,7 +2405,49 @@ INSERT INTO `userakses` (`kodeakses`, `kodelogin`, `kodeaplikasi`, `status`) VAL
 (1203, 201, 3, 'aktif'),
 (1204, 201, 4, 'aktif'),
 (1205, 201, 5, 'aktif'),
-(1206, 201, 6, 'aktif');
+(1206, 201, 6, 'aktif'),
+(1207, 202, 1, 'aktif'),
+(1208, 202, 2, 'aktif'),
+(1209, 202, 3, 'aktif'),
+(1210, 202, 4, 'aktif'),
+(1211, 202, 5, 'aktif'),
+(1212, 202, 6, 'aktif'),
+(1213, 203, 1, 'aktif'),
+(1214, 203, 2, 'aktif'),
+(1215, 203, 3, 'aktif'),
+(1216, 203, 4, 'aktif'),
+(1217, 203, 5, 'aktif'),
+(1218, 203, 6, 'aktif'),
+(1219, 204, 1, 'aktif'),
+(1220, 204, 2, 'aktif'),
+(1221, 204, 3, 'aktif'),
+(1222, 204, 4, 'aktif'),
+(1223, 204, 5, 'aktif'),
+(1224, 204, 6, 'aktif'),
+(1225, 205, 1, 'aktif'),
+(1226, 205, 2, 'aktif'),
+(1227, 205, 3, 'aktif'),
+(1228, 205, 4, 'aktif'),
+(1229, 205, 5, 'aktif'),
+(1230, 205, 6, 'aktif'),
+(1231, 206, 1, 'aktif'),
+(1232, 206, 2, 'aktif'),
+(1233, 206, 3, 'aktif'),
+(1234, 206, 4, 'aktif'),
+(1235, 206, 5, 'aktif'),
+(1236, 206, 6, 'aktif'),
+(1237, 207, 1, 'aktif'),
+(1238, 207, 2, 'aktif'),
+(1239, 207, 3, 'aktif'),
+(1240, 207, 4, 'aktif'),
+(1241, 207, 5, 'aktif'),
+(1242, 207, 6, 'aktif'),
+(1243, 208, 1, 'aktif'),
+(1244, 208, 2, 'aktif'),
+(1245, 208, 3, 'aktif'),
+(1246, 208, 4, 'aktif'),
+(1247, 208, 5, 'aktif'),
+(1248, 208, 6, 'aktif');
 
 --
 -- Indexes for dumped tables
@@ -2494,7 +2543,7 @@ ALTER TABLE `gi`
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `kodelogin` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=202;
+  MODIFY `kodelogin` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=209;
 --
 -- AUTO_INCREMENT for table `loglogin`
 --
@@ -2509,7 +2558,7 @@ ALTER TABLE `trafo`
 -- AUTO_INCREMENT for table `userakses`
 --
 ALTER TABLE `userakses`
-  MODIFY `kodeakses` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1207;
+  MODIFY `kodeakses` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1249;
 --
 -- Constraints for dumped tables
 --
