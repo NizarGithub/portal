@@ -68,15 +68,25 @@
                        <?php
                             if($_SESSION["jenisuser"]=="gi"){
                                 $sql=mysql_query("SELECT master.gi.* FROM master.gi WHERE master.gi.kodegi=$_SESSION[kodegi]");
-                                $row=mysql_fetch_array($sql); ?>Admin GI 
+                                $row=mysql_fetch_array($sql); ?>Admin GI
                                 <?php
                                 echo $row["namagi"];
                             }
                             else if($_SESSION["jenisuser"]=="app"){
                                 $sql=mysql_query("SELECT master.app.* FROM master.app WHERE master.app.kodeapp=$_SESSION[kodeapp]");
-                                $row=mysql_fetch_array($sql); ?>Admin
-                                <?php
-                                echo $row["namaapp"];
+                                $row=mysql_fetch_array($sql);
+                                if($_SESSION["level"]=="manajer"){
+                                    ?>Manajer <?php
+                                    echo $row["namaapp"];
+                                }
+                                else if($_SESSION["level"]=="asman"){
+                                    ?>Assman <?php
+                                    echo $row["namaapp"];
+                                }
+                                else{
+                                    ?>Admin <?php
+                                    echo $row["namaapp"];
+                                }
                             }
                             else if($_SESSION["jenisuser"]=="apd"){
                                 $sql=mysql_query("SELECT master.apd.* FROM master.apd WHERE master.apd.kodeapd=$_SESSION[kodeapd]");
