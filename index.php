@@ -3,10 +3,15 @@
     session_start();
     date_default_timezone_set("Asia/Jakarta");
     require_once ('config/koneksi.php');
+    if( ! isset($_SESSION["nama"])) header("location:form-login");
+    include    "headadmin.php";
+    include     "config/utility.php";
 ?>
 <!DOCTYPE html>
 <html lang="en" >
 <head>
+    <?php echo headadmin(); ?>
+
     <meta charset="utf-8" />
     <meta name="author" content="Script Tutorials" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -105,7 +110,7 @@
                         ?>
                     </strong> &nbsp; <i class="fa fa-caret-down"></i>
                </a>
-               <ul class="dropdown-menu dropdown-user">
+               <ul class="dropdown-menu dropdown-user" style="background:rgba(92, 93, 105, 0.95);">
                    <li>
                        <a href="index.php?password"><i class="fa fa-cogs"></i> Ganti Password</a>
                    </li>
@@ -127,5 +132,17 @@
         else { include "notfound.php"; }
     ?>
 
+
+    <!-- METISMENU SCRIPTS -->
+    <script src="assets/js/jquery.metisMenu.js"></script>
+     <!-- MORRIS CHART SCRIPTS -->
+     <script src="assets/js/morris/raphael-2.1.0.min.js"></script>
+    <script src="assets/js/morris/morris.js"></script>
+      <!-- konfirmasi -->
+    <script src="assets/js/custom.js"></script>
+    <!-- confirm -->
+
+    <script src="assets/confirmdell/jquery.confirm/jquery.confirm.js"></script>
+    <script src="assets/confirmdell/js/script2.js"></script>
 </body>
 </html>

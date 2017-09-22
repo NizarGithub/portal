@@ -30,106 +30,76 @@ if(isset($_POST["submit_login"])){
     }
 }
 ?>
-<!DOCTYPE html>
-<html>
+<!DOCTYPE HTML>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portal Aplikasi</title>
-    <link href="assets/css/bootstrap.css" rel="stylesheet" />
-    <link href="assets/css/font-awesome.css" rel="stylesheet" />
-    <link href="assets/css/custom.css" rel="stylesheet" />
-
-    <style>
-    .error{
-        padding: 10px 0 0 10px;
-    }
-    </style>
+	<meta http-equiv="content-type" content="text/html" />
+	<meta name="author" content="lolkittens" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>PORTAL </title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="assets/css/stylelogin.css" />
+    <link rel="shortcut icon" href="images/icon.png">
 </head>
-<body class="bgbody">
+
+<body>
     <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-md-offset-4 login-panel ">
-                <?php if(isset($_GET["failed"])){?>
-                         <div class="alert alert-danger alert-dismissable">
-                            <button aria-hidden="true" data-dismiss="alert" class="close" type="button">&times;</button>
-                            Harap Koreksi Email/Password Anda
-                         </div>
-                        <?php } else if(isset($_GET["noakses"])){?>
-                        <div class="alert alert-warning alert-dismissable">
-                            <button aria-hidden="true" data-dismiss="alert" class="close" type="button">&times;</button>
-                            mohon maaf anda belum login
-                         </div>
-                        <?php } ?>
-                <div class="panel panel-default btn-block">
-                    <div class="panel-heading ">
-                        <h3 class="panel-title text-center">Portal Aplikasi</h3>
-                    </div>
-                    <div class="panel-body pb">
-                        <form role="form" action="" method="post" id="validate-me-plz">
-                            <fieldset>
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                        <input class="form-control" id="focusedInput" placeholder="Email" name="email" type="text" autofocus data-rule-required="true" data-msg-required="Mohon masukkan email"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                        <input class="form-control" placeholder="Password" name="password" type="password" data-rule-required="true" data-msg-required="Mohon masukkan password" />
-                                    </div>
-                                </div>
-                                <input value="login" name="submit_login" type="submit" class="btn btn-lg btn-success btn-block" />
-                                <a class="pull-right" href="#" data-toggle="modal" data-target="#myModal">Lupa password ?</a>
-
-
-                            </fieldset>
-                        </form>
-                    </div>
-                </div>
-            </div>
+        <div class="card card-container">
+        <div class="cltop">
+            <img class="top-logo img-responsive" src="images/top.png" />
         </div>
-    </div>
-    <script src="assets/js/jquery-1.10.2.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="assets/js/sb-admin.js"></script>
-    <!-- validate -->
-<script type="text/javascript" src="assets/validasi/jquery.validate.min.js"></script>
 
-<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content" style="border-radius: 0;">
-      <div class="modal-header bg-primary">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Lupa Password</h4>
-      </div>
-      <div class="modal-body">
-      <p>Silahkan masukkan email anda untuk mendapatkan mereset password anda</p>
-        <form role="form" action="sukses.php" method="post" >
-            <fieldset>
-                <div class="form-group">
-                    <div class="input-group">
-                        <span class="input-group-addon" style="border-radius:0"><i class="fa fa-envelope-o"></i></span>
-                        <input class="form-control" placeholder="email" name="email" type="email" required />
-                    </div>
+        <div class="cl-content text-center login-title">
+            <img id="profile-img" class="img-responsive" src="images/logo.png" />
+            <p id="profile-name" class="profile-name-card"></p>
+           </div>
+            <form class="form-signin" method="POST">
+                <span id="reauth-email" class="reauth-email"></span>
+                <input autocomplete="off" name="email" type="text" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
+                <input autocomplete="off" name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                <button name="submit_login" class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Masuk</button>
+                <div class="cltop" >
+                    <img class="bottom-logo img-responsive" src="images/bottom.png" />
                 </div>
+            </form><!-- /form -->
 
-                <input value="Kirim" name="submit_login" type="submit" class="btn btn-lg btn-success pull-right" />
-            </fieldset>
-        </form>
-      </div>
-      <!-- <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>-->
-    </div>
 
-  </div>
-</div>
+
+        </div><!-- /card-container close-alert -->
+        <div class="col-md-3" style="margin-right: 50px;"></div>
+        <div class="col-md-5 center-block">
+        <?php if(isset($_GET["failed"])){?>
+            <div class="alert alert-danger alert-dismissable ">
+            <button aria-hidden="true" data-dismiss="alert" class="close " type="button">&times;</button>
+            Password Salah
+            </div>
+        <?php }else if(isset($_GET["nilaiCaptchasalah"])){ ?>
+            <div class="alert alert-danger alert-dismissable ">
+            <button aria-hidden="true" data-dismiss="alert" class="close" type="button">&times;</button>
+            Capctha Salah
+            </div>
+        <?php }else if(isset($_GET["blokiruser"])){ ?>
+            <div class="alert alert-danger alert-dismissable close-alert">
+            <button aria-hidden="true" data-dismiss="alert" class="close " type="button">&times;</button>
+            Mohon maaf akun anda, Kami Blokir Sementara<br />
+            Harap hubungi admin jika ingin mengaktifkan kembali
+            </div>
+        <?php } else if(isset($_GET["login-aktif"])){ ?>
+            <div class="alert alert-danger alert-dismissable close-alert">
+            <button aria-hidden="true" data-dismiss="alert" class="close " type="button">&times;</button>
+            Mohon maaf akun anda, Sudah Sedang Aktif
+            </div>
+        <?php } ?>
+        </div>
+    </div><!-- /container -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script>
+    $(".close-alert").fadeTo(3000, 500).slideUp(2000, function(){
+                $("#close-alert").alert('close');
+            });
+    </script>
+
+
 </body>
 </html>
 <?php
