@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 22, 2017 at 08:53 AM
+-- Generation Time: Sep 22, 2017 at 12:28 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -59,12 +59,12 @@ CREATE TABLE `aplikasi` (
 --
 
 INSERT INTO `aplikasi` (`kodeaplikasi`, `namaaplikasi`, `alamataplikasi`, `images`) VALUES
-(1, 'SIAPP', '/siapp/index.php?dashboard', 'thumb7.jpg'),
-(2, 'Arsip Online', '/arsip-online/index.php?dashboard', 'thumb7.jpg'),
-(3, 'TSA', '/tsa/index.php?dashboard', 'tsa.jpeg'),
-(4, 'APAR', '/monpar', 'thumb7.jpg'),
-(5, 'Fire Protection', '/fire_protection', 'thumb7.jpg'),
-(6, 'Anggaran', '/newmonarki/index.php?dashboard', 'thumb7.jpg');
+(1, 'SIAPP', '/siapp/index.php?dashboard', 'siapp.jpg'),
+(2, 'Arsip Online', '/arsip-online/index.php?dashboard', 'arsiponline.jpg'),
+(3, 'TSA', '/tsa/index.php?dashboard', 'tsa.jpg'),
+(4, 'APAR', '/monpar/index.php?dashboard', 'monpar.jpg'),
+(5, 'Fire Protection', '/fire_protection/index.php?dashboard', 'fireprotection.jpg'),
+(6, 'Anggaran', '/newmonarki/index.php?dashboard', 'monarki.jpg');
 
 -- --------------------------------------------------------
 
@@ -768,7 +768,16 @@ INSERT INTO `loglogin` (`kodelog`, `kodelogin`, `kodeaplikasi`, `tgllogin`) VALU
 (186, 5, 1, '2017-09-20 16:25:11'),
 (187, 2, 1, '2017-09-22 08:01:41'),
 (188, 5, 1, '2017-09-22 11:41:09'),
-(189, 21, 1, '2017-09-22 11:44:01');
+(189, 21, 1, '2017-09-22 11:44:01'),
+(190, 2, 1, '2017-09-22 13:56:23'),
+(191, 2, 1, '2017-09-22 14:08:44'),
+(192, 12, 3, '2017-09-22 14:54:58'),
+(193, 12, 3, '2017-09-22 15:03:41'),
+(194, 5, 3, '2017-09-22 15:24:33'),
+(195, 2, 3, '2017-09-22 15:27:16'),
+(196, 2, 1, '2017-09-22 15:52:59'),
+(197, 2, 1, '2017-09-22 17:21:55'),
+(198, 12, 3, '2017-09-22 17:24:44');
 
 -- --------------------------------------------------------
 
@@ -2639,7 +2648,7 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT for table `loglogin`
 --
 ALTER TABLE `loglogin`
-  MODIFY `kodelog` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=190;
+  MODIFY `kodelog` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=199;
 --
 -- AUTO_INCREMENT for table `trafo`
 --
