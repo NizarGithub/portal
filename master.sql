@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 20, 2017 at 06:08 AM
+-- Generation Time: Sep 22, 2017 at 08:53 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -549,7 +549,28 @@ INSERT INTO `login` (`kodelogin`, `nama`, `email`, `password`, `level`, `jenisus
 (205, 'Ass Manajer APP', 'asmapp4.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'asman', 'app', '0000-00-00', 1, 4, NULL, NULL, NULL),
 (206, 'Ass Manajer APP', 'asmapp5.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'asman', 'app', '0000-00-00', 2, 5, NULL, NULL, NULL),
 (207, 'Ass Manajer APP', 'asmapp6.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'asman', 'app', '0000-00-00', 2, 6, NULL, NULL, NULL),
-(208, 'Ass Manajer APP', 'asmapp7.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'asman', 'app', '0000-00-00', 2, 7, NULL, NULL, NULL);
+(208, 'Ass Manajer APP', 'asmapp7.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'asman', 'app', '0000-00-00', 2, 7, NULL, NULL, NULL),
+(209, 'Admin GI', 'admin184.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 1, 184, NULL, NULL),
+(210, 'Admin GI', 'admin185.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 1, 185, NULL, NULL),
+(211, 'Admin GI', 'admin186.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 1, 186, NULL, NULL),
+(212, 'Admin GI', 'admin187.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 2, 187, NULL, NULL),
+(213, 'Admin GI', 'admin188.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 2, 188, NULL, NULL),
+(214, 'Admin GI', 'admin189.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 2, 189, NULL, NULL),
+(215, 'Admin GI', 'admin190.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 2, 190, NULL, NULL),
+(216, 'Admin GI', 'admin191.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 2, 191, NULL, NULL),
+(217, 'Admin GI', 'admin192.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 2, 192, NULL, NULL),
+(218, 'Admin GI', 'admin193.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 2, 193, NULL, NULL),
+(219, 'Admin GI', 'admin194.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 194, NULL, NULL),
+(220, 'Admin GI', 'admin195.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 195, NULL, NULL),
+(221, 'Admin GI', 'admin196.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 196, NULL, NULL),
+(222, 'Admin GI', 'admin197.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 197, NULL, NULL),
+(223, 'Admin GI', 'admin198.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 198, NULL, NULL),
+(224, 'Admin GI', 'admin199.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 5, 199, NULL, NULL),
+(225, 'Admin GI', 'admin200.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 6, 200, NULL, NULL),
+(226, 'Admin GI', 'admin201.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 7, 201, NULL, NULL),
+(227, 'Admin GI', 'admin202.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 7, 202, NULL, NULL),
+(228, 'Admin GI', 'admin203.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 203, NULL, NULL),
+(229, 'Admin GI', 'admin204.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 4, 204, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -735,7 +756,19 @@ INSERT INTO `loglogin` (`kodelog`, `kodelogin`, `kodeaplikasi`, `tgllogin`) VALU
 (174, 10, 3, '2017-09-19 16:14:16'),
 (175, 11, 3, '2017-09-19 16:14:41'),
 (176, 2, 3, '2017-09-20 08:34:53'),
-(177, 5, 3, '2017-09-20 08:58:52');
+(177, 5, 3, '2017-09-20 08:58:52'),
+(178, 5, 3, '2017-09-20 11:21:10'),
+(179, 5, 3, '2017-09-20 11:37:00'),
+(180, 5, 1, '2017-09-20 13:32:59'),
+(181, 12, 3, '2017-09-20 14:03:27'),
+(182, 5, 1, '2017-09-20 14:34:10'),
+(183, 2, 1, '2017-09-20 14:38:07'),
+(184, 12, 3, '2017-09-20 14:44:42'),
+(185, 5, 3, '2017-09-20 16:23:19'),
+(186, 5, 1, '2017-09-20 16:25:11'),
+(187, 2, 1, '2017-09-22 08:01:41'),
+(188, 5, 1, '2017-09-22 11:41:09'),
+(189, 21, 1, '2017-09-22 11:44:01');
 
 -- --------------------------------------------------------
 
@@ -2601,12 +2634,12 @@ ALTER TABLE `gi`
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `kodelogin` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=209;
+  MODIFY `kodelogin` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=230;
 --
 -- AUTO_INCREMENT for table `loglogin`
 --
 ALTER TABLE `loglogin`
-  MODIFY `kodelog` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=178;
+  MODIFY `kodelog` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=190;
 --
 -- AUTO_INCREMENT for table `trafo`
 --
