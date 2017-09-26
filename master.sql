@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 22, 2017 at 12:28 PM
+-- Generation Time: Sep 26, 2017 at 07:04 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -777,7 +777,25 @@ INSERT INTO `loglogin` (`kodelog`, `kodelogin`, `kodeaplikasi`, `tgllogin`) VALU
 (195, 2, 3, '2017-09-22 15:27:16'),
 (196, 2, 1, '2017-09-22 15:52:59'),
 (197, 2, 1, '2017-09-22 17:21:55'),
-(198, 12, 3, '2017-09-22 17:24:44');
+(198, 12, 3, '2017-09-22 17:24:44'),
+(199, 12, 3, '2017-09-22 17:36:05'),
+(200, 12, 1, '2017-09-22 17:47:35'),
+(201, 2, 1, '2017-09-22 19:05:21'),
+(202, 5, 3, '2017-09-25 13:17:53'),
+(203, 30, 3, '2017-09-25 14:26:06'),
+(204, 49, 3, '2017-09-25 14:37:51'),
+(205, 6, 3, '2017-09-25 14:48:25'),
+(206, 3, 3, '2017-09-25 14:57:38'),
+(207, 6, 3, '2017-09-25 15:01:12'),
+(208, 2, 3, '2017-09-25 15:15:16'),
+(209, 6, 3, '2017-09-25 15:21:28'),
+(210, 49, 3, '2017-09-25 16:24:55'),
+(211, 6, 3, '2017-09-25 16:43:27'),
+(212, 3, 3, '2017-09-25 16:48:59'),
+(213, 3, 3, '2017-09-25 17:35:22'),
+(214, 2, 3, '2017-09-26 08:05:49'),
+(215, 6, 1, '2017-09-26 08:12:33'),
+(216, 6, 1, '2017-09-26 08:13:18');
 
 -- --------------------------------------------------------
 
@@ -799,14 +817,14 @@ CREATE TABLE `trafo` (
   `statusapprove` int(5) DEFAULT NULL,
   `bulanapprove` varchar(100) DEFAULT NULL,
   `tahunapprove` varchar(100) DEFAULT NULL,
-  `keterangan` varchar(300) DEFAULT NULL
+  `alasan` varchar(300) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `trafo`
 --
 
-INSERT INTO `trafo` (`kodetrafo`, `kodeapd`, `kodeapp`, `kodegi`, `nomortrafo`, `mvaterpasang`, `mvadeklarasi`, `realisasimvadeklarasi`, `tanggalinput`, `statustrafo`, `statusapprove`, `bulanapprove`, `tahunapprove`, `keterangan`) VALUES
+INSERT INTO `trafo` (`kodetrafo`, `kodeapd`, `kodeapp`, `kodegi`, `nomortrafo`, `mvaterpasang`, `mvadeklarasi`, `realisasimvadeklarasi`, `tanggalinput`, `statustrafo`, `statusapprove`, `bulanapprove`, `tahunapprove`, `alasan`) VALUES
 (1, 1, 1, 1, '1', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
 (2, 1, 1, 1, '2', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
 (3, 1, 1, 1, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
@@ -922,7 +940,7 @@ INSERT INTO `trafo` (`kodetrafo`, `kodeapd`, `kodeapp`, `kodegi`, `nomortrafo`, 
 (113, 1, 2, 37, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
 (114, 1, 2, 37, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
 (115, 1, 2, 37, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(116, 1, 2, 38, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
+(116, 1, 2, 38, '1', '60', '60', '60', '0000-00-00', 'aktif', 2, '9', '2017', NULL),
 (117, 1, 2, 39, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
 (118, 1, 2, 39, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
 (119, 1, 2, 40, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
@@ -2648,7 +2666,7 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT for table `loglogin`
 --
 ALTER TABLE `loglogin`
-  MODIFY `kodelog` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=199;
+  MODIFY `kodelog` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=217;
 --
 -- AUTO_INCREMENT for table `trafo`
 --
