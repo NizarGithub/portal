@@ -1,329 +1,319 @@
--- phpMyAdmin SQL Dump
--- version 4.7.0
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Sep 26, 2017 at 07:04 AM
--- Server version: 10.1.25-MariaDB
--- PHP Version: 5.6.31
+/*
+Navicat MySQL Data Transfer
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
+Source Server         : DB
+Source Server Version : 50505
+Source Host           : localhost:3306
+Source Database       : master
 
+Target Server Type    : MYSQL
+Target Server Version : 50505
+File Encoding         : 65001
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+Date: 2017-10-02 14:46:44
+*/
 
---
--- Database: `master`
---
+SET FOREIGN_KEY_CHECKS=0;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `apd`
---
-
+-- ----------------------------
+-- Table structure for `apd`
+-- ----------------------------
+DROP TABLE IF EXISTS `apd`;
 CREATE TABLE `apd` (
-  `kodeapd` int(5) NOT NULL,
-  `namaapd` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `kodeapd` int(5) NOT NULL AUTO_INCREMENT,
+  `namaapd` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`kodeapd`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `apd`
---
+-- ----------------------------
+-- Records of apd
+-- ----------------------------
+INSERT INTO `apd` VALUES ('1', 'APD JABAR');
+INSERT INTO `apd` VALUES ('2', 'APD JATENG');
 
-INSERT INTO `apd` (`kodeapd`, `namaapd`) VALUES
-(1, 'APD JABAR'),
-(2, 'APD JATENG');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `aplikasi`
---
-
+-- ----------------------------
+-- Table structure for `aplikasi`
+-- ----------------------------
+DROP TABLE IF EXISTS `aplikasi`;
 CREATE TABLE `aplikasi` (
-  `kodeaplikasi` int(5) NOT NULL,
+  `kodeaplikasi` int(5) NOT NULL AUTO_INCREMENT,
   `namaaplikasi` varchar(100) DEFAULT NULL,
   `alamataplikasi` varchar(100) DEFAULT NULL,
-  `images` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `images` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`kodeaplikasi`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `aplikasi`
---
+-- ----------------------------
+-- Records of aplikasi
+-- ----------------------------
+INSERT INTO `aplikasi` VALUES ('1', 'SIAPP', '/siapp/index.php?dashboard', 'siapp.jpg');
+INSERT INTO `aplikasi` VALUES ('2', 'Arsip Online', '/arsip-online/index.php?dashboard', 'arsiponline.jpg');
+INSERT INTO `aplikasi` VALUES ('3', 'TSA', '/tsa/index.php?dashboard', 'tsa.jpg');
+INSERT INTO `aplikasi` VALUES ('4', 'APAR', '/monpar/index.php?dashboard', 'monpar.jpg');
+INSERT INTO `aplikasi` VALUES ('5', 'Fire Protection', '/fire_protection/index.php?dashboard', 'fireprotection.jpg');
+INSERT INTO `aplikasi` VALUES ('6', 'Anggaran', '/newmonarki/index.php?dashboard', 'monarki.jpg');
+INSERT INTO `aplikasi` VALUES ('7', 'Administrator', '/administrator/index.php?dashboard', null);
 
-INSERT INTO `aplikasi` (`kodeaplikasi`, `namaaplikasi`, `alamataplikasi`, `images`) VALUES
-(1, 'SIAPP', '/siapp/index.php?dashboard', 'siapp.jpg'),
-(2, 'Arsip Online', '/arsip-online/index.php?dashboard', 'arsiponline.jpg'),
-(3, 'TSA', '/tsa/index.php?dashboard', 'tsa.jpg'),
-(4, 'APAR', '/monpar/index.php?dashboard', 'monpar.jpg'),
-(5, 'Fire Protection', '/fire_protection/index.php?dashboard', 'fireprotection.jpg'),
-(6, 'Anggaran', '/newmonarki/index.php?dashboard', 'monarki.jpg');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `app`
---
-
+-- ----------------------------
+-- Table structure for `app`
+-- ----------------------------
+DROP TABLE IF EXISTS `app`;
 CREATE TABLE `app` (
-  `kodeapp` int(5) NOT NULL,
+  `kodeapp` int(5) NOT NULL AUTO_INCREMENT,
   `kodeapd` int(5) DEFAULT NULL,
   `namaapp` varchar(100) DEFAULT NULL,
-  `lokasi` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `lokasi` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`kodeapp`),
+  KEY `kodeapd` (`kodeapd`),
+  CONSTRAINT `kodeapd` FOREIGN KEY (`kodeapd`) REFERENCES `apd` (`kodeapd`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `app`
---
+-- ----------------------------
+-- Records of app
+-- ----------------------------
+INSERT INTO `app` VALUES ('1', '1', 'APP Bogor', 'Bogor');
+INSERT INTO `app` VALUES ('2', '1', 'APP Bandung', 'Bandung');
+INSERT INTO `app` VALUES ('3', '1', 'APP Karawang', 'Karawang');
+INSERT INTO `app` VALUES ('4', '1', 'APP Cirebon', 'Cirebon');
+INSERT INTO `app` VALUES ('5', '2', 'APP Purwokerto', 'Purwokerto');
+INSERT INTO `app` VALUES ('6', '2', 'APP Salatiga', 'Salatiga');
+INSERT INTO `app` VALUES ('7', '2', 'APP Semarang', 'Semarang');
 
-INSERT INTO `app` (`kodeapp`, `kodeapd`, `namaapp`, `lokasi`) VALUES
-(1, 1, 'APP Bogor', 'Bogor'),
-(2, 1, 'APP Bandung', 'Bandung'),
-(3, 1, 'APP Karawang', 'Karawang'),
-(4, 1, 'APP Cirebon', 'Cirebon'),
-(5, 2, 'APP Purwokerto', 'Purwokerto'),
-(6, 2, 'APP Salatiga', 'Salatiga'),
-(7, 2, 'APP Semarang', 'Semarang');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `bidang`
---
-
+-- ----------------------------
+-- Table structure for `bidang`
+-- ----------------------------
+DROP TABLE IF EXISTS `bidang`;
 CREATE TABLE `bidang` (
-  `kodebidang` int(5) NOT NULL,
-  `namabidang` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `kodebidang` int(5) NOT NULL AUTO_INCREMENT,
+  `namabidang` varchar(100) DEFAULT NULL,
+  `idbidang` varchar(5) DEFAULT NULL,
+  PRIMARY KEY (`kodebidang`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `bidang`
---
+-- ----------------------------
+-- Records of bidang
+-- ----------------------------
+INSERT INTO `bidang` VALUES ('1', 'GENERAL MANAGER', '01');
+INSERT INTO `bidang` VALUES ('2', 'BIDANG PERENCANAAN', '02');
+INSERT INTO `bidang` VALUES ('3', 'BIDANG KSA', '03');
+INSERT INTO `bidang` VALUES ('4', 'BIDANG KONTRUKSI', '04');
+INSERT INTO `bidang` VALUES ('5', 'BIDANG PEMELIHARAAN', '05');
+INSERT INTO `bidang` VALUES ('6', 'APP BOGOR', '06');
+INSERT INTO `bidang` VALUES ('7', 'APP KARAWANG', '07');
+INSERT INTO `bidang` VALUES ('8', 'APP BANDUNG', '08');
+INSERT INTO `bidang` VALUES ('9', 'APP CIREBON', '09');
+INSERT INTO `bidang` VALUES ('10', 'APP PURWOKERTO', '10');
+INSERT INTO `bidang` VALUES ('11', 'APP SALATIGA', '11');
+INSERT INTO `bidang` VALUES ('12', 'APP SEMARANG', '12');
 
-INSERT INTO `bidang` (`kodebidang`, `namabidang`) VALUES
-(1, 'BIDANG PERENCANAAN'),
-(2, 'BIDANG KSA'),
-(3, 'BIDANG KONTRUKSI'),
-(4, 'BIDANG PEMELIHARAAN');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `gi`
---
-
+-- ----------------------------
+-- Table structure for `gi`
+-- ----------------------------
+DROP TABLE IF EXISTS `gi`;
 CREATE TABLE `gi` (
-  `kodegi` int(5) NOT NULL,
+  `kodegi` int(5) NOT NULL AUTO_INCREMENT,
   `kodeapd` int(5) DEFAULT NULL,
   `kodeapp` int(5) DEFAULT NULL,
   `namagi` varchar(100) DEFAULT NULL,
-  `alamat` varchar(500) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `alamat` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`kodegi`),
+  KEY `kodeapp` (`kodeapp`),
+  CONSTRAINT `kodeapp` FOREIGN KEY (`kodeapp`) REFERENCES `app` (`kodeapp`)
+) ENGINE=InnoDB AUTO_INCREMENT=184 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `gi`
---
+-- ----------------------------
+-- Records of gi
+-- ----------------------------
+INSERT INTO `gi` VALUES ('1', '1', '1', 'Bogor Baru', '');
+INSERT INTO `gi` VALUES ('2', '1', '1', 'Cibinong', '');
+INSERT INTO `gi` VALUES ('3', '1', '1', 'Cileungsi 70 kV', '');
+INSERT INTO `gi` VALUES ('4', '1', '1', 'Kedung Badak', '');
+INSERT INTO `gi` VALUES ('5', '1', '1', 'Bunar', '');
+INSERT INTO `gi` VALUES ('6', '1', '1', 'Kracak', '');
+INSERT INTO `gi` VALUES ('7', '1', '1', 'Ciawi', '');
+INSERT INTO `gi` VALUES ('8', '1', '1', 'Cibadak Baru', '');
+INSERT INTO `gi` VALUES ('9', '1', '1', 'Lembur Situ', '');
+INSERT INTO `gi` VALUES ('10', '1', '1', 'Pelabuhan Ratu', '');
+INSERT INTO `gi` VALUES ('11', '1', '1', 'GIS Pelabuhan Ratu', '');
+INSERT INTO `gi` VALUES ('12', '1', '1', 'Sentul', '');
+INSERT INTO `gi` VALUES ('13', '1', '1', 'Semen Baru', '');
+INSERT INTO `gi` VALUES ('14', '1', '1', 'ITP', '');
+INSERT INTO `gi` VALUES ('15', '1', '1', 'ASPEK 70kV', '');
+INSERT INTO `gi` VALUES ('16', '1', '1', 'Semen Baru 150kV ', '');
+INSERT INTO `gi` VALUES ('17', '1', '1', 'Semen Lama 70kV', '');
+INSERT INTO `gi` VALUES ('18', '1', '1', 'Semen Jawa 150kV', '');
+INSERT INTO `gi` VALUES ('19', '1', '2', 'GI 150KV BANDUNG SELATAN', '');
+INSERT INTO `gi` VALUES ('20', '1', '2', 'GI 150KV BANDUNG UTARA', '');
+INSERT INTO `gi` VALUES ('21', '1', '2', 'GI 70KV BENGKOK', '');
+INSERT INTO `gi` VALUES ('22', '1', '2', 'GI 150KV CIANJUR', '');
+INSERT INTO `gi` VALUES ('23', '1', '2', 'GI 150KV CIBEUREUM BARU', '');
+INSERT INTO `gi` VALUES ('24', '1', '2', 'GI 150KV CIGERELENG', '');
+INSERT INTO `gi` VALUES ('25', '1', '2', 'GI 150KV CIKASUNGKA', '');
+INSERT INTO `gi` VALUES ('26', '1', '2', 'GI 150KV DAGOPAKAR', '');
+INSERT INTO `gi` VALUES ('27', '1', '2', 'GI 150KV LAGADAR', '');
+INSERT INTO `gi` VALUES ('28', '1', '2', 'GI 70KV MAJALAYA', '');
+INSERT INTO `gi` VALUES ('29', '1', '2', 'GI 150KV PADALARANGBARU', '');
+INSERT INTO `gi` VALUES ('30', '1', '2', 'GI 150KV PANASIA', '');
+INSERT INTO `gi` VALUES ('31', '1', '2', 'GI 150KV RANCAEKEK', '');
+INSERT INTO `gi` VALUES ('32', '1', '2', 'GI 150KV RANCAKASUMBA', '');
+INSERT INTO `gi` VALUES ('33', '1', '2', 'GI 70KV SANTOSA', '');
+INSERT INTO `gi` VALUES ('34', '1', '2', 'GI 70KV SUMEDANG', '');
+INSERT INTO `gi` VALUES ('35', '1', '2', 'GI 150KV UJUNGBERUNG', '');
+INSERT INTO `gi` VALUES ('36', '1', '2', 'GIS 150KV CIBABAT', '');
+INSERT INTO `gi` VALUES ('37', '1', '2', 'GIS 150KV KIARACONDONG', '');
+INSERT INTO `gi` VALUES ('38', '1', '2', 'GI 150KV PATUHA', '');
+INSERT INTO `gi` VALUES ('39', '1', '2', 'GIS 150KV CIBABAT BARU', '');
+INSERT INTO `gi` VALUES ('40', '1', '2', 'GI 150KV NEW RANCAKASUMBA', '');
+INSERT INTO `gi` VALUES ('41', '1', '2', 'GIS 150KV BRAGA', '');
+INSERT INTO `gi` VALUES ('42', '1', '3', 'Cibatu', '');
+INSERT INTO `gi` VALUES ('43', '1', '3', 'Suzuki', '');
+INSERT INTO `gi` VALUES ('44', '1', '3', 'Dawuan', '');
+INSERT INTO `gi` VALUES ('45', '1', '3', 'Kosambi Baru', '');
+INSERT INTO `gi` VALUES ('46', '1', '3', 'Kutamekar', '');
+INSERT INTO `gi` VALUES ('47', '1', '3', 'Kiarapayung', '');
+INSERT INTO `gi` VALUES ('48', '1', '3', 'Mekarsari', '');
+INSERT INTO `gi` VALUES ('49', '1', '3', 'Maligi', '');
+INSERT INTO `gi` VALUES ('50', '1', '3', 'Indoliberty', '');
+INSERT INTO `gi` VALUES ('51', '1', '3', 'Pinayungan', '');
+INSERT INTO `gi` VALUES ('52', '1', '3', 'Pindodeli', '');
+INSERT INTO `gi` VALUES ('53', '1', '3', 'Parungmulya', '');
+INSERT INTO `gi` VALUES ('54', '1', '3', 'Peruri', '');
+INSERT INTO `gi` VALUES ('55', '1', '3', 'Rengasdengklok', '');
+INSERT INTO `gi` VALUES ('56', '1', '3', 'Sukamandi', '');
+INSERT INTO `gi` VALUES ('57', '1', '3', 'Tegalherang', '');
+INSERT INTO `gi` VALUES ('58', '1', '3', 'Telukjambe', '');
+INSERT INTO `gi` VALUES ('59', '1', '3', 'Cikarang', '');
+INSERT INTO `gi` VALUES ('60', '1', '3', 'Fajar Surya Wisesa', '');
+INSERT INTO `gi` VALUES ('61', '1', '3', 'Gandamekar', '');
+INSERT INTO `gi` VALUES ('62', '1', '3', 'Jababeka', '');
+INSERT INTO `gi` VALUES ('63', '1', '3', 'Poncol Baru', '');
+INSERT INTO `gi` VALUES ('64', '1', '3', 'Tambun', '');
+INSERT INTO `gi` VALUES ('65', '1', '3', 'Toyogiri', '');
+INSERT INTO `gi` VALUES ('66', '1', '3', 'Hankook', '');
+INSERT INTO `gi` VALUES ('67', '1', '3', 'Jui Shin', '');
+INSERT INTO `gi` VALUES ('68', '1', '3', 'Cileungsi', '');
+INSERT INTO `gi` VALUES ('69', '1', '3', 'Rajapaksi', '');
+INSERT INTO `gi` VALUES ('70', '1', '3', 'Cirata Baru', '');
+INSERT INTO `gi` VALUES ('71', '1', '3', 'Cikumpay', '');
+INSERT INTO `gi` VALUES ('72', '1', '3', 'Ciganea', '');
+INSERT INTO `gi` VALUES ('73', '1', '3', 'Indobharat', '');
+INSERT INTO `gi` VALUES ('74', '1', '3', 'Indorama Polymer', '');
+INSERT INTO `gi` VALUES ('75', '1', '3', 'Indorama Polychem', '');
+INSERT INTO `gi` VALUES ('76', '1', '3', 'Indaci', '');
+INSERT INTO `gi` VALUES ('77', '1', '3', 'Pabuaran', '');
+INSERT INTO `gi` VALUES ('78', '1', '3', 'Purwakarta', '');
+INSERT INTO `gi` VALUES ('79', '1', '3', 'South Pasific', '');
+INSERT INTO `gi` VALUES ('80', '1', '3', 'Tata JABAR', '');
+INSERT INTO `gi` VALUES ('81', '1', '3', 'Subang', '');
+INSERT INTO `gi` VALUES ('82', '1', '4', 'Arjawinangun', '');
+INSERT INTO `gi` VALUES ('83', '1', '4', 'Babakan', '');
+INSERT INTO `gi` VALUES ('84', '1', '4', 'Cangkring', '');
+INSERT INTO `gi` VALUES ('85', '1', '4', 'Hargeulis', '');
+INSERT INTO `gi` VALUES ('86', '1', '4', 'Indramayu', '');
+INSERT INTO `gi` VALUES ('87', '1', '4', 'Jatibarang', '');
+INSERT INTO `gi` VALUES ('88', '1', '4', 'Kadipaten', '');
+INSERT INTO `gi` VALUES ('89', '1', '4', 'Kuningan', '');
+INSERT INTO `gi` VALUES ('90', '1', '4', 'Mandirancan', '');
+INSERT INTO `gi` VALUES ('91', '1', '4', 'Parakan', '');
+INSERT INTO `gi` VALUES ('92', '1', '4', 'Semen Palimanan', '');
+INSERT INTO `gi` VALUES ('93', '1', '4', 'Sunyaragi', '');
+INSERT INTO `gi` VALUES ('94', '1', '4', 'PLTU Indramayu', '');
+INSERT INTO `gi` VALUES ('95', '1', '4', 'Banjar', '');
+INSERT INTO `gi` VALUES ('96', '1', '4', 'Ciamis', '');
+INSERT INTO `gi` VALUES ('97', '1', '4', 'Garut', '');
+INSERT INTO `gi` VALUES ('98', '1', '4', 'Kamojang', '');
+INSERT INTO `gi` VALUES ('99', '1', '4', 'Malangbong', '');
+INSERT INTO `gi` VALUES ('100', '1', '4', 'Pangandaran', '');
+INSERT INTO `gi` VALUES ('101', '1', '4', 'Pameungpeuk', '');
+INSERT INTO `gi` VALUES ('102', '1', '4', 'Sumadra', '');
+INSERT INTO `gi` VALUES ('103', '1', '4', 'Tasikmalaya', '');
+INSERT INTO `gi` VALUES ('104', '1', '4', 'Tasik_Baru', '');
+INSERT INTO `gi` VALUES ('105', '1', '4', 'Cikedung', '');
+INSERT INTO `gi` VALUES ('106', '1', '4', 'KarangNunggal', '');
+INSERT INTO `gi` VALUES ('107', '2', '5', 'KTT Holcim', '');
+INSERT INTO `gi` VALUES ('108', '2', '5', 'PLTU Cilacap', '');
+INSERT INTO `gi` VALUES ('109', '2', '5', 'Kalibakal', '');
+INSERT INTO `gi` VALUES ('110', '2', '5', 'Purbalingga', '');
+INSERT INTO `gi` VALUES ('111', '2', '5', 'Mrica', '');
+INSERT INTO `gi` VALUES ('112', '2', '5', 'Wonosobo', '');
+INSERT INTO `gi` VALUES ('113', '2', '5', 'Dieng', '');
+INSERT INTO `gi` VALUES ('114', '2', '5', 'Gombong', '');
+INSERT INTO `gi` VALUES ('115', '2', '5', 'Kebumen', '');
+INSERT INTO `gi` VALUES ('116', '2', '5', 'Rawalo', '');
+INSERT INTO `gi` VALUES ('117', '2', '5', 'Lomanis', '');
+INSERT INTO `gi` VALUES ('118', '2', '5', 'Semen Nusantara', '');
+INSERT INTO `gi` VALUES ('119', '2', '5', 'Majenang', '');
+INSERT INTO `gi` VALUES ('120', '2', '5', 'Bumiayu', '');
+INSERT INTO `gi` VALUES ('121', '2', '5', 'Balapulang', '');
+INSERT INTO `gi` VALUES ('122', '2', '5', 'Brebes', '');
+INSERT INTO `gi` VALUES ('123', '2', '5', 'Kebasen', '');
+INSERT INTO `gi` VALUES ('124', '2', '5', 'Pemalang', '');
+INSERT INTO `gi` VALUES ('125', '2', '5', 'Pekalongan', '');
+INSERT INTO `gi` VALUES ('126', '2', '5', 'Batang', '');
+INSERT INTO `gi` VALUES ('127', '2', '5', 'Kesugihan', '');
+INSERT INTO `gi` VALUES ('128', '2', '6', 'Bawen', '');
+INSERT INTO `gi` VALUES ('129', '2', '6', 'Bringin', '');
+INSERT INTO `gi` VALUES ('130', '2', '6', 'Jelok', '');
+INSERT INTO `gi` VALUES ('131', '2', '6', 'Mojosongo', '');
+INSERT INTO `gi` VALUES ('132', '2', '6', 'Banyudono', '');
+INSERT INTO `gi` VALUES ('133', '2', '6', 'Jajar', '');
+INSERT INTO `gi` VALUES ('134', '2', '6', 'Mangkunegaran', '');
+INSERT INTO `gi` VALUES ('135', '2', '6', 'Palur', '');
+INSERT INTO `gi` VALUES ('136', '2', '6', 'Solobaru', '');
+INSERT INTO `gi` VALUES ('137', '2', '6', 'Sragen', '');
+INSERT INTO `gi` VALUES ('138', '2', '6', 'Wonogiri', '');
+INSERT INTO `gi` VALUES ('139', '2', '6', 'Masaran', '');
+INSERT INTO `gi` VALUES ('140', '2', '6', 'Wonosari', '');
+INSERT INTO `gi` VALUES ('141', '2', '6', 'Pedan', '');
+INSERT INTO `gi` VALUES ('142', '2', '6', 'Gondangrejo', '');
+INSERT INTO `gi` VALUES ('143', '2', '6', 'Nguntoronadi', '');
+INSERT INTO `gi` VALUES ('144', '2', '6', 'Klaten', '');
+INSERT INTO `gi` VALUES ('145', '2', '6', 'Sanggrahan', '');
+INSERT INTO `gi` VALUES ('146', '2', '6', 'Secang', '');
+INSERT INTO `gi` VALUES ('147', '2', '6', 'Temanggung', '');
+INSERT INTO `gi` VALUES ('148', '2', '6', 'Purworejo', '');
+INSERT INTO `gi` VALUES ('149', '2', '6', 'Bantul', '');
+INSERT INTO `gi` VALUES ('150', '2', '6', 'Gejayan', '');
+INSERT INTO `gi` VALUES ('151', '2', '6', 'Godean', '');
+INSERT INTO `gi` VALUES ('152', '2', '6', 'Kentungan', '');
+INSERT INTO `gi` VALUES ('153', '2', '6', 'Medari', '');
+INSERT INTO `gi` VALUES ('154', '2', '6', 'Semanu', '');
+INSERT INTO `gi` VALUES ('155', '2', '6', 'Wates', '');
+INSERT INTO `gi` VALUES ('156', '2', '6', 'Wirobrajan', '');
+INSERT INTO `gi` VALUES ('157', '2', '6', 'Wadaslintang', '');
+INSERT INTO `gi` VALUES ('158', '2', '7', 'BLORA', '');
+INSERT INTO `gi` VALUES ('159', '2', '7', 'BSB', '');
+INSERT INTO `gi` VALUES ('160', '2', '7', 'CEPU', '');
+INSERT INTO `gi` VALUES ('161', '2', '7', 'JEKULO', '');
+INSERT INTO `gi` VALUES ('162', '2', '7', 'JEPARA', '');
+INSERT INTO `gi` VALUES ('163', '2', '7', 'KALIWUNGU', '');
+INSERT INTO `gi` VALUES ('164', '2', '7', 'KEDUNGOMBO', '');
+INSERT INTO `gi` VALUES ('165', '2', '7', 'KRAPYAK', '');
+INSERT INTO `gi` VALUES ('166', '2', '7', 'KUDUS', '');
+INSERT INTO `gi` VALUES ('167', '2', '7', 'MRANGGEN (150kV)', '');
+INSERT INTO `gi` VALUES ('168', '2', '7', 'PANDEANLAMPER', '');
+INSERT INTO `gi` VALUES ('169', '2', '7', 'PATI', '');
+INSERT INTO `gi` VALUES ('170', '2', '7', 'PURWODADI', '');
+INSERT INTO `gi` VALUES ('171', '2', '7', 'REMBANG', '');
+INSERT INTO `gi` VALUES ('172', '2', '7', 'SAYUNG', '');
+INSERT INTO `gi` VALUES ('173', '2', '7', 'SRONDOL', '');
+INSERT INTO `gi` VALUES ('174', '2', '7', 'TAMBAKLOROK', '');
+INSERT INTO `gi` VALUES ('175', '2', '7', 'TANJUNGJATI', '');
+INSERT INTO `gi` VALUES ('176', '2', '7', 'UNGARAN', '');
+INSERT INTO `gi` VALUES ('177', '2', '7', 'WELERI', '');
+INSERT INTO `gi` VALUES ('178', '2', '7', 'KALISARI', '');
+INSERT INTO `gi` VALUES ('179', '2', '7', 'PUDAKPAYUNG', '');
+INSERT INTO `gi` VALUES ('180', '2', '7', 'RANDUGARUT', '');
+INSERT INTO `gi` VALUES ('181', '2', '7', 'SIMPANGLIMA', '');
+INSERT INTO `gi` VALUES ('182', '2', '7', 'POLYSINDO', '');
+INSERT INTO `gi` VALUES ('183', '2', '7', 'SEMEN INDONESIA', '');
 
-INSERT INTO `gi` (`kodegi`, `kodeapd`, `kodeapp`, `namagi`, `alamat`) VALUES
-(1, 1, 1, 'Bogor Baru', ''),
-(2, 1, 1, 'Cibinong', ''),
-(3, 1, 1, 'Cileungsi 70 kV', ''),
-(4, 1, 1, 'Kedung Badak', ''),
-(5, 1, 1, 'Bunar', ''),
-(6, 1, 1, 'Kracak', ''),
-(7, 1, 1, 'Ciawi', ''),
-(8, 1, 1, 'Cibadak Baru', ''),
-(9, 1, 1, 'Lembur Situ', ''),
-(10, 1, 1, 'Pelabuhan Ratu', ''),
-(11, 1, 1, 'GIS Pelabuhan Ratu', ''),
-(12, 1, 1, 'Sentul', ''),
-(13, 1, 1, 'Semen Baru', ''),
-(14, 1, 1, 'ITP', ''),
-(15, 1, 1, 'ASPEK 70kV', ''),
-(16, 1, 1, 'Semen Baru 150kV ', ''),
-(17, 1, 1, 'Semen Lama 70kV', ''),
-(18, 1, 1, 'Semen Jawa 150kV', ''),
-(19, 1, 2, 'GI 150KV BANDUNG SELATAN', ''),
-(20, 1, 2, 'GI 150KV BANDUNG UTARA', ''),
-(21, 1, 2, 'GI 70KV BENGKOK', ''),
-(22, 1, 2, 'GI 150KV CIANJUR', ''),
-(23, 1, 2, 'GI 150KV CIBEUREUM BARU', ''),
-(24, 1, 2, 'GI 150KV CIGERELENG', ''),
-(25, 1, 2, 'GI 150KV CIKASUNGKA', ''),
-(26, 1, 2, 'GI 150KV DAGOPAKAR', ''),
-(27, 1, 2, 'GI 150KV LAGADAR', ''),
-(28, 1, 2, 'GI 70KV MAJALAYA', ''),
-(29, 1, 2, 'GI 150KV PADALARANGBARU', ''),
-(30, 1, 2, 'GI 150KV PANASIA', ''),
-(31, 1, 2, 'GI 150KV RANCAEKEK', ''),
-(32, 1, 2, 'GI 150KV RANCAKASUMBA', ''),
-(33, 1, 2, 'GI 70KV SANTOSA', ''),
-(34, 1, 2, 'GI 70KV SUMEDANG', ''),
-(35, 1, 2, 'GI 150KV UJUNGBERUNG', ''),
-(36, 1, 2, 'GIS 150KV CIBABAT', ''),
-(37, 1, 2, 'GIS 150KV KIARACONDONG', ''),
-(38, 1, 2, 'GI 150KV PATUHA', ''),
-(39, 1, 2, 'GIS 150KV CIBABAT BARU', ''),
-(40, 1, 2, 'GI 150KV NEW RANCAKASUMBA', ''),
-(41, 1, 2, 'GIS 150KV BRAGA', ''),
-(42, 1, 3, 'Cibatu', ''),
-(43, 1, 3, 'Suzuki', ''),
-(44, 1, 3, 'Dawuan', ''),
-(45, 1, 3, 'Kosambi Baru', ''),
-(46, 1, 3, 'Kutamekar', ''),
-(47, 1, 3, 'Kiarapayung', ''),
-(48, 1, 3, 'Mekarsari', ''),
-(49, 1, 3, 'Maligi', ''),
-(50, 1, 3, 'Indoliberty', ''),
-(51, 1, 3, 'Pinayungan', ''),
-(52, 1, 3, 'Pindodeli', ''),
-(53, 1, 3, 'Parungmulya', ''),
-(54, 1, 3, 'Peruri', ''),
-(55, 1, 3, 'Rengasdengklok', ''),
-(56, 1, 3, 'Sukamandi', ''),
-(57, 1, 3, 'Tegalherang', ''),
-(58, 1, 3, 'Telukjambe', ''),
-(59, 1, 3, 'Cikarang', ''),
-(60, 1, 3, 'Fajar Surya Wisesa', ''),
-(61, 1, 3, 'Gandamekar', ''),
-(62, 1, 3, 'Jababeka', ''),
-(63, 1, 3, 'Poncol Baru', ''),
-(64, 1, 3, 'Tambun', ''),
-(65, 1, 3, 'Toyogiri', ''),
-(66, 1, 3, 'Hankook', ''),
-(67, 1, 3, 'Jui Shin', ''),
-(68, 1, 3, 'Cileungsi', ''),
-(69, 1, 3, 'Rajapaksi', ''),
-(70, 1, 3, 'Cirata Baru', ''),
-(71, 1, 3, 'Cikumpay', ''),
-(72, 1, 3, 'Ciganea', ''),
-(73, 1, 3, 'Indobharat', ''),
-(74, 1, 3, 'Indorama Polymer', ''),
-(75, 1, 3, 'Indorama Polychem', ''),
-(76, 1, 3, 'Indaci', ''),
-(77, 1, 3, 'Pabuaran', ''),
-(78, 1, 3, 'Purwakarta', ''),
-(79, 1, 3, 'South Pasific', ''),
-(80, 1, 3, 'Tata JABAR', ''),
-(81, 1, 3, 'Subang', ''),
-(82, 1, 4, 'Arjawinangun', ''),
-(83, 1, 4, 'Babakan', ''),
-(84, 1, 4, 'Cangkring', ''),
-(85, 1, 4, 'Hargeulis', ''),
-(86, 1, 4, 'Indramayu', ''),
-(87, 1, 4, 'Jatibarang', ''),
-(88, 1, 4, 'Kadipaten', ''),
-(89, 1, 4, 'Kuningan', ''),
-(90, 1, 4, 'Mandirancan', ''),
-(91, 1, 4, 'Parakan', ''),
-(92, 1, 4, 'Semen Palimanan', ''),
-(93, 1, 4, 'Sunyaragi', ''),
-(94, 1, 4, 'PLTU Indramayu', ''),
-(95, 1, 4, 'Banjar', ''),
-(96, 1, 4, 'Ciamis', ''),
-(97, 1, 4, 'Garut', ''),
-(98, 1, 4, 'Kamojang', ''),
-(99, 1, 4, 'Malangbong', ''),
-(100, 1, 4, 'Pangandaran', ''),
-(101, 1, 4, 'Pameungpeuk', ''),
-(102, 1, 4, 'Sumadra', ''),
-(103, 1, 4, 'Tasikmalaya', ''),
-(104, 1, 4, 'Tasik_Baru', ''),
-(105, 1, 4, 'Cikedung', ''),
-(106, 1, 4, 'KarangNunggal', ''),
-(107, 2, 5, 'KTT Holcim', ''),
-(108, 2, 5, 'PLTU Cilacap', ''),
-(109, 2, 5, 'Kalibakal', ''),
-(110, 2, 5, 'Purbalingga', ''),
-(111, 2, 5, 'Mrica', ''),
-(112, 2, 5, 'Wonosobo', ''),
-(113, 2, 5, 'Dieng', ''),
-(114, 2, 5, 'Gombong', ''),
-(115, 2, 5, 'Kebumen', ''),
-(116, 2, 5, 'Rawalo', ''),
-(117, 2, 5, 'Lomanis', ''),
-(118, 2, 5, 'Semen Nusantara', ''),
-(119, 2, 5, 'Majenang', ''),
-(120, 2, 5, 'Bumiayu', ''),
-(121, 2, 5, 'Balapulang', ''),
-(122, 2, 5, 'Brebes', ''),
-(123, 2, 5, 'Kebasen', ''),
-(124, 2, 5, 'Pemalang', ''),
-(125, 2, 5, 'Pekalongan', ''),
-(126, 2, 5, 'Batang', ''),
-(127, 2, 5, 'Kesugihan', ''),
-(128, 2, 6, 'Bawen', ''),
-(129, 2, 6, 'Bringin', ''),
-(130, 2, 6, 'Jelok', ''),
-(131, 2, 6, 'Mojosongo', ''),
-(132, 2, 6, 'Banyudono', ''),
-(133, 2, 6, 'Jajar', ''),
-(134, 2, 6, 'Mangkunegaran', ''),
-(135, 2, 6, 'Palur', ''),
-(136, 2, 6, 'Solobaru', ''),
-(137, 2, 6, 'Sragen', ''),
-(138, 2, 6, 'Wonogiri', ''),
-(139, 2, 6, 'Masaran', ''),
-(140, 2, 6, 'Wonosari', ''),
-(141, 2, 6, 'Pedan', ''),
-(142, 2, 6, 'Gondangrejo', ''),
-(143, 2, 6, 'Nguntoronadi', ''),
-(144, 2, 6, 'Klaten', ''),
-(145, 2, 6, 'Sanggrahan', ''),
-(146, 2, 6, 'Secang', ''),
-(147, 2, 6, 'Temanggung', ''),
-(148, 2, 6, 'Purworejo', ''),
-(149, 2, 6, 'Bantul', ''),
-(150, 2, 6, 'Gejayan', ''),
-(151, 2, 6, 'Godean', ''),
-(152, 2, 6, 'Kentungan', ''),
-(153, 2, 6, 'Medari', ''),
-(154, 2, 6, 'Semanu', ''),
-(155, 2, 6, 'Wates', ''),
-(156, 2, 6, 'Wirobrajan', ''),
-(157, 2, 6, 'Wadaslintang', ''),
-(158, 2, 7, 'BLORA', ''),
-(159, 2, 7, 'BSB', ''),
-(160, 2, 7, 'CEPU', ''),
-(161, 2, 7, 'JEKULO', ''),
-(162, 2, 7, 'JEPARA', ''),
-(163, 2, 7, 'KALIWUNGU', ''),
-(164, 2, 7, 'KEDUNGOMBO', ''),
-(165, 2, 7, 'KRAPYAK', ''),
-(166, 2, 7, 'KUDUS', ''),
-(167, 2, 7, 'MRANGGEN (150kV)', ''),
-(168, 2, 7, 'PANDEANLAMPER', ''),
-(169, 2, 7, 'PATI', ''),
-(170, 2, 7, 'PURWODADI', ''),
-(171, 2, 7, 'REMBANG', ''),
-(172, 2, 7, 'SAYUNG', ''),
-(173, 2, 7, 'SRONDOL', ''),
-(174, 2, 7, 'TAMBAKLOROK', ''),
-(175, 2, 7, 'TANJUNGJATI', ''),
-(176, 2, 7, 'UNGARAN', ''),
-(177, 2, 7, 'WELERI', ''),
-(178, 2, 7, 'KALISARI', ''),
-(179, 2, 7, 'PUDAKPAYUNG', ''),
-(180, 2, 7, 'RANDUGARUT', ''),
-(181, 2, 7, 'SIMPANGLIMA', ''),
-(182, 2, 7, 'POLYSINDO', ''),
-(183, 2, 7, 'SEMEN INDONESIA', '');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `login`
---
-
+-- ----------------------------
+-- Table structure for `login`
+-- ----------------------------
+DROP TABLE IF EXISTS `login`;
 CREATE TABLE `login` (
-  `kodelogin` int(5) NOT NULL,
+  `kodelogin` int(5) NOT NULL AUTO_INCREMENT,
   `nama` varchar(100) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
   `password` varchar(100) DEFAULT NULL,
@@ -334,2372 +324,2269 @@ CREATE TABLE `login` (
   `kodeapp` int(5) DEFAULT NULL,
   `kodegi` int(5) DEFAULT NULL,
   `kodebidang` int(5) DEFAULT NULL,
-  `images` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `images` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`kodelogin`)
+) ENGINE=InnoDB AUTO_INCREMENT=231 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `login`
---
+-- ----------------------------
+-- Records of login
+-- ----------------------------
+INSERT INTO `login` VALUES ('1', 'Administrator', 'admin@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'superadmin', 'administrator', '0000-00-00', null, null, null, null, null);
+INSERT INTO `login` VALUES ('2', 'Admin KI', 'admin.ki@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'ki', '0000-00-00', null, null, null, null, null);
+INSERT INTO `login` VALUES ('3', 'Admin APD', 'jabar@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'apd', '0000-00-00', '1', null, null, null, null);
+INSERT INTO `login` VALUES ('4', 'Admin APD', 'jateng@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'apd', '0000-00-00', '2', null, null, null, null);
+INSERT INTO `login` VALUES ('5', 'Admin APP', 'bogor@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'app', '0000-00-00', '1', '1', null, null, '');
+INSERT INTO `login` VALUES ('6', 'Admin APP', 'bandung@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'app', '0000-00-00', '1', '2', null, null, null);
+INSERT INTO `login` VALUES ('7', 'Admin APP', 'karawang@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'app', '0000-00-00', '1', '3', null, null, null);
+INSERT INTO `login` VALUES ('8', 'Admin APP', 'cirebon@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'app', '0000-00-00', '1', '4', null, null, null);
+INSERT INTO `login` VALUES ('9', 'Admin APP', 'purwokerto@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'app', '0000-00-00', '2', '5', null, null, null);
+INSERT INTO `login` VALUES ('10', 'Admin APP', 'salatiga@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'app', '0000-00-00', '2', '6', null, null, null);
+INSERT INTO `login` VALUES ('11', 'Admin APP', 'semarang@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'app', '0000-00-00', '2', '7', null, null, null);
+INSERT INTO `login` VALUES ('12', 'Admin GI', 'admin1.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '1', '1', null, '');
+INSERT INTO `login` VALUES ('13', 'Admin GI', 'admin2.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '1', '2', null, null);
+INSERT INTO `login` VALUES ('14', 'Admin GI', 'admin3.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '1', '3', null, null);
+INSERT INTO `login` VALUES ('15', 'Admin GI', 'admin4.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '1', '4', null, null);
+INSERT INTO `login` VALUES ('16', 'Admin GI', 'admin5.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '1', '5', null, null);
+INSERT INTO `login` VALUES ('17', 'Admin GI', 'admin6.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '1', '6', null, null);
+INSERT INTO `login` VALUES ('18', 'Admin GI', 'admin7.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '1', '7', null, null);
+INSERT INTO `login` VALUES ('19', 'Admin GI', 'admin8.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '1', '8', null, null);
+INSERT INTO `login` VALUES ('20', 'Admin GI', 'admin9.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '1', '9', null, null);
+INSERT INTO `login` VALUES ('21', 'Admin GI', 'admin10.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '1', '10', null, null);
+INSERT INTO `login` VALUES ('22', 'Admin GI', 'admin11.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '1', '11', null, null);
+INSERT INTO `login` VALUES ('23', 'Admin GI', 'admin12.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '1', '12', null, null);
+INSERT INTO `login` VALUES ('24', 'Admin GI', 'admin13.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '1', '13', null, null);
+INSERT INTO `login` VALUES ('25', 'Admin GI', 'admin14.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '1', '14', null, null);
+INSERT INTO `login` VALUES ('26', 'Admin GI', 'admin15.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '1', '15', null, null);
+INSERT INTO `login` VALUES ('27', 'Admin GI', 'admin16.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '1', '16', null, null);
+INSERT INTO `login` VALUES ('28', 'Admin GI', 'admin17.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '1', '17', null, null);
+INSERT INTO `login` VALUES ('29', 'Admin GI', 'admin18.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '1', '18', null, null);
+INSERT INTO `login` VALUES ('30', 'Admin GI', 'admin19.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '2', '19', null, null);
+INSERT INTO `login` VALUES ('31', 'Admin GI', 'admin20.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '2', '20', null, null);
+INSERT INTO `login` VALUES ('32', 'Admin GI', 'admin21.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '2', '21', null, null);
+INSERT INTO `login` VALUES ('33', 'Admin GI', 'admin22.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '2', '22', null, null);
+INSERT INTO `login` VALUES ('34', 'Admin GI', 'admin23.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '2', '23', null, null);
+INSERT INTO `login` VALUES ('35', 'Admin GI', 'admin24.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '2', '24', null, null);
+INSERT INTO `login` VALUES ('36', 'Admin GI', 'admin25.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '2', '25', null, null);
+INSERT INTO `login` VALUES ('37', 'Admin GI', 'admin26.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '2', '26', null, null);
+INSERT INTO `login` VALUES ('38', 'Admin GI', 'admin27.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '2', '27', null, null);
+INSERT INTO `login` VALUES ('39', 'Admin GI', 'admin28.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '2', '28', null, null);
+INSERT INTO `login` VALUES ('40', 'Admin GI', 'admin29.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '2', '29', null, null);
+INSERT INTO `login` VALUES ('41', 'Admin GI', 'admin30.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '2', '30', null, null);
+INSERT INTO `login` VALUES ('42', 'Admin GI', 'admin31.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '2', '31', null, null);
+INSERT INTO `login` VALUES ('43', 'Admin GI', 'admin32.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '2', '32', null, null);
+INSERT INTO `login` VALUES ('44', 'Admin GI', 'admin33.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '2', '33', null, null);
+INSERT INTO `login` VALUES ('45', 'Admin GI', 'admin34.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '2', '34', null, null);
+INSERT INTO `login` VALUES ('46', 'Admin GI', 'admin35.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '2', '35', null, null);
+INSERT INTO `login` VALUES ('47', 'Admin GI', 'admin36.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '2', '36', null, null);
+INSERT INTO `login` VALUES ('48', 'Admin GI', 'admin37.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '2', '37', null, null);
+INSERT INTO `login` VALUES ('49', 'Admin GI', 'admin38.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '2', '38', null, null);
+INSERT INTO `login` VALUES ('50', 'Admin GI', 'admin39.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '2', '39', null, null);
+INSERT INTO `login` VALUES ('51', 'Admin GI', 'admin40.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '2', '40', null, null);
+INSERT INTO `login` VALUES ('52', 'Admin GI', 'admin41.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '2', '41', null, null);
+INSERT INTO `login` VALUES ('53', 'Admin GI', 'admin42.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '42', null, null);
+INSERT INTO `login` VALUES ('54', 'Admin GI', 'admin43.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '43', null, null);
+INSERT INTO `login` VALUES ('55', 'Admin GI', 'admin44.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '44', null, null);
+INSERT INTO `login` VALUES ('56', 'Admin GI', 'admin45.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '45', null, null);
+INSERT INTO `login` VALUES ('57', 'Admin GI', 'admin46.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '46', null, null);
+INSERT INTO `login` VALUES ('58', 'Admin GI', 'admin47.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '47', null, null);
+INSERT INTO `login` VALUES ('59', 'Admin GI', 'admin48.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '48', null, null);
+INSERT INTO `login` VALUES ('60', 'Admin GI', 'admin49.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '49', null, null);
+INSERT INTO `login` VALUES ('61', 'Admin GI', 'admin50.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '50', null, null);
+INSERT INTO `login` VALUES ('62', 'Admin GI', 'admin51.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '51', null, null);
+INSERT INTO `login` VALUES ('63', 'Admin GI', 'admin52.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '52', null, null);
+INSERT INTO `login` VALUES ('64', 'Admin GI', 'admin53.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '53', null, null);
+INSERT INTO `login` VALUES ('65', 'Admin GI', 'admin54.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '54', null, null);
+INSERT INTO `login` VALUES ('66', 'Admin GI', 'admin55.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '55', null, null);
+INSERT INTO `login` VALUES ('67', 'Admin GI', 'admin56.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '56', null, null);
+INSERT INTO `login` VALUES ('68', 'Admin GI', 'admin57.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '57', null, null);
+INSERT INTO `login` VALUES ('69', 'Admin GI', 'admin58.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '58', null, null);
+INSERT INTO `login` VALUES ('70', 'Admin GI', 'admin59.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '59', null, null);
+INSERT INTO `login` VALUES ('71', 'Admin GI', 'admin60.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '60', null, null);
+INSERT INTO `login` VALUES ('72', 'Admin GI', 'admin61.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '61', null, null);
+INSERT INTO `login` VALUES ('73', 'Admin GI', 'admin62.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '62', null, null);
+INSERT INTO `login` VALUES ('74', 'Admin GI', 'admin63.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '63', null, null);
+INSERT INTO `login` VALUES ('75', 'Admin GI', 'admin64.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '64', null, null);
+INSERT INTO `login` VALUES ('76', 'Admin GI', 'admin65.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '65', null, null);
+INSERT INTO `login` VALUES ('77', 'Admin GI', 'admin66.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '66', null, null);
+INSERT INTO `login` VALUES ('78', 'Admin GI', 'admin67.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '67', null, null);
+INSERT INTO `login` VALUES ('79', 'Admin GI', 'admin68.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '68', null, null);
+INSERT INTO `login` VALUES ('80', 'Admin GI', 'admin69.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '69', null, null);
+INSERT INTO `login` VALUES ('81', 'Admin GI', 'admin70.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '70', null, null);
+INSERT INTO `login` VALUES ('82', 'Admin GI', 'admin71.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '71', null, null);
+INSERT INTO `login` VALUES ('83', 'Admin GI', 'admin72.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '72', null, null);
+INSERT INTO `login` VALUES ('84', 'Admin GI', 'admin73.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '73', null, null);
+INSERT INTO `login` VALUES ('85', 'Admin GI', 'admin74.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '74', null, null);
+INSERT INTO `login` VALUES ('86', 'Admin GI', 'admin75.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '75', null, null);
+INSERT INTO `login` VALUES ('87', 'Admin GI', 'admin76.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '76', null, null);
+INSERT INTO `login` VALUES ('88', 'Admin GI', 'admin77.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '77', null, null);
+INSERT INTO `login` VALUES ('89', 'Admin GI', 'admin78.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '78', null, null);
+INSERT INTO `login` VALUES ('90', 'Admin GI', 'admin79.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '79', null, null);
+INSERT INTO `login` VALUES ('91', 'Admin GI', 'admin80.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '80', null, null);
+INSERT INTO `login` VALUES ('92', 'Admin GI', 'admin81.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '81', null, null);
+INSERT INTO `login` VALUES ('93', 'Admin GI', 'admin82.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '4', '82', null, null);
+INSERT INTO `login` VALUES ('94', 'Admin GI', 'admin83.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '4', '83', null, null);
+INSERT INTO `login` VALUES ('95', 'Admin GI', 'admin84.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '4', '84', null, null);
+INSERT INTO `login` VALUES ('96', 'Admin GI', 'admin85.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '4', '85', null, null);
+INSERT INTO `login` VALUES ('97', 'Admin GI', 'admin86.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '4', '86', null, null);
+INSERT INTO `login` VALUES ('98', 'Admin GI', 'admin87.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '4', '87', null, null);
+INSERT INTO `login` VALUES ('99', 'Admin GI', 'admin88.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '4', '88', null, null);
+INSERT INTO `login` VALUES ('100', 'Admin GI', 'admin89.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '4', '89', null, null);
+INSERT INTO `login` VALUES ('101', 'Admin GI', 'admin90.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '4', '90', null, null);
+INSERT INTO `login` VALUES ('102', 'Admin GI', 'admin91.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '4', '91', null, null);
+INSERT INTO `login` VALUES ('103', 'Admin GI', 'admin92.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '4', '92', null, null);
+INSERT INTO `login` VALUES ('104', 'Admin GI', 'admin93.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '4', '93', null, null);
+INSERT INTO `login` VALUES ('105', 'Admin GI', 'admin94.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '4', '94', null, null);
+INSERT INTO `login` VALUES ('106', 'Admin GI', 'admin95.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '4', '95', null, null);
+INSERT INTO `login` VALUES ('107', 'Admin GI', 'admin96.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '4', '96', null, null);
+INSERT INTO `login` VALUES ('108', 'Admin GI', 'admin97.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '4', '97', null, null);
+INSERT INTO `login` VALUES ('109', 'Admin GI', 'admin98.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '4', '98', null, null);
+INSERT INTO `login` VALUES ('110', 'Admin GI', 'admin99.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '4', '99', null, null);
+INSERT INTO `login` VALUES ('111', 'Admin GI', 'admin100.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '4', '100', null, null);
+INSERT INTO `login` VALUES ('112', 'Admin GI', 'admin101.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '4', '101', null, null);
+INSERT INTO `login` VALUES ('113', 'Admin GI', 'admin102.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '4', '102', null, null);
+INSERT INTO `login` VALUES ('114', 'Admin GI', 'admin103.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '4', '103', null, null);
+INSERT INTO `login` VALUES ('115', 'Admin GI', 'admin104.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '4', '104', null, null);
+INSERT INTO `login` VALUES ('116', 'Admin GI', 'admin105.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '4', '105', null, null);
+INSERT INTO `login` VALUES ('117', 'Admin GI', 'admin106.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '4', '106', null, null);
+INSERT INTO `login` VALUES ('118', 'Admin GI', 'admin107.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '5', '107', null, null);
+INSERT INTO `login` VALUES ('119', 'Admin GI', 'admin108.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '5', '108', null, null);
+INSERT INTO `login` VALUES ('120', 'Admin GI', 'admin109.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '5', '109', null, null);
+INSERT INTO `login` VALUES ('121', 'Admin GI', 'admin110.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '5', '110', null, null);
+INSERT INTO `login` VALUES ('122', 'Admin GI', 'admin111.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '5', '111', null, null);
+INSERT INTO `login` VALUES ('123', 'Admin GI', 'admin112.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '5', '112', null, null);
+INSERT INTO `login` VALUES ('124', 'Admin GI', 'admin113.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '5', '113', null, null);
+INSERT INTO `login` VALUES ('125', 'Admin GI', 'admin114.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '5', '114', null, null);
+INSERT INTO `login` VALUES ('126', 'Admin GI', 'admin115.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '5', '115', null, null);
+INSERT INTO `login` VALUES ('127', 'Admin GI', 'admin116.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '5', '116', null, null);
+INSERT INTO `login` VALUES ('128', 'Admin GI', 'admin117.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '5', '117', null, null);
+INSERT INTO `login` VALUES ('129', 'Admin GI', 'admin118.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '5', '118', null, null);
+INSERT INTO `login` VALUES ('130', 'Admin GI', 'admin119.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '5', '119', null, null);
+INSERT INTO `login` VALUES ('131', 'Admin GI', 'admin120.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '5', '120', null, null);
+INSERT INTO `login` VALUES ('132', 'Admin GI', 'admin121.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '5', '121', null, null);
+INSERT INTO `login` VALUES ('133', 'Admin GI', 'admin122.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '5', '122', null, null);
+INSERT INTO `login` VALUES ('134', 'Admin GI', 'admin123.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '5', '123', null, null);
+INSERT INTO `login` VALUES ('135', 'Admin GI', 'admin124.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '5', '124', null, null);
+INSERT INTO `login` VALUES ('136', 'Admin GI', 'admin125.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '5', '125', null, null);
+INSERT INTO `login` VALUES ('137', 'Admin GI', 'admin126.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '5', '126', null, null);
+INSERT INTO `login` VALUES ('138', 'Admin GI', 'admin127.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '5', '127', null, null);
+INSERT INTO `login` VALUES ('139', 'Admin GI', 'admin128.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '6', '128', null, null);
+INSERT INTO `login` VALUES ('140', 'Admin GI', 'admin129.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '6', '129', null, null);
+INSERT INTO `login` VALUES ('141', 'Admin GI', 'admin130.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '6', '130', null, null);
+INSERT INTO `login` VALUES ('142', 'Admin GI', 'admin131.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '6', '131', null, null);
+INSERT INTO `login` VALUES ('143', 'Admin GI', 'admin132.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '6', '132', null, null);
+INSERT INTO `login` VALUES ('144', 'Admin GI', 'admin133.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '6', '133', null, null);
+INSERT INTO `login` VALUES ('145', 'Admin GI', 'admin134.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '6', '134', null, null);
+INSERT INTO `login` VALUES ('146', 'Admin GI', 'admin135.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '6', '135', null, null);
+INSERT INTO `login` VALUES ('147', 'Admin GI', 'admin136.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '6', '136', null, null);
+INSERT INTO `login` VALUES ('148', 'Admin GI', 'admin137.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '6', '137', null, null);
+INSERT INTO `login` VALUES ('149', 'Admin GI', 'admin138.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '6', '138', null, null);
+INSERT INTO `login` VALUES ('150', 'Admin GI', 'admin139.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '6', '139', null, null);
+INSERT INTO `login` VALUES ('151', 'Admin GI', 'admin140.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '6', '140', null, null);
+INSERT INTO `login` VALUES ('152', 'Admin GI', 'admin141.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '6', '141', null, null);
+INSERT INTO `login` VALUES ('153', 'Admin GI', 'admin142.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '6', '142', null, null);
+INSERT INTO `login` VALUES ('154', 'Admin GI', 'admin143.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '6', '143', null, null);
+INSERT INTO `login` VALUES ('155', 'Admin GI', 'admin144.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '6', '144', null, null);
+INSERT INTO `login` VALUES ('156', 'Admin GI', 'admin145.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '6', '145', null, null);
+INSERT INTO `login` VALUES ('157', 'Admin GI', 'admin146.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '6', '146', null, null);
+INSERT INTO `login` VALUES ('158', 'Admin GI', 'admin147.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '6', '147', null, null);
+INSERT INTO `login` VALUES ('159', 'Admin GI', 'admin148.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '6', '148', null, null);
+INSERT INTO `login` VALUES ('160', 'Admin GI', 'admin149.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '6', '149', null, null);
+INSERT INTO `login` VALUES ('161', 'Admin GI', 'admin150.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '6', '150', null, null);
+INSERT INTO `login` VALUES ('162', 'Admin GI', 'admin151.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '6', '151', null, null);
+INSERT INTO `login` VALUES ('163', 'Admin GI', 'admin152.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '6', '152', null, null);
+INSERT INTO `login` VALUES ('164', 'Admin GI', 'admin153.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '6', '153', null, null);
+INSERT INTO `login` VALUES ('165', 'Admin GI', 'admin154.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '6', '154', null, null);
+INSERT INTO `login` VALUES ('166', 'Admin GI', 'admin155.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '6', '155', null, null);
+INSERT INTO `login` VALUES ('167', 'Admin GI', 'admin156.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '6', '156', null, null);
+INSERT INTO `login` VALUES ('168', 'Admin GI', 'admin157.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '6', '157', null, null);
+INSERT INTO `login` VALUES ('169', 'Admin GI', 'admin158.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '7', '158', null, null);
+INSERT INTO `login` VALUES ('170', 'Admin GI', 'admin159.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '7', '159', null, null);
+INSERT INTO `login` VALUES ('171', 'Admin GI', 'admin160.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '7', '160', null, null);
+INSERT INTO `login` VALUES ('172', 'Admin GI', 'admin161.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '7', '161', null, null);
+INSERT INTO `login` VALUES ('173', 'Admin GI', 'admin162.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '7', '162', null, null);
+INSERT INTO `login` VALUES ('174', 'Admin GI', 'admin163.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '7', '163', null, null);
+INSERT INTO `login` VALUES ('175', 'Admin GI', 'admin164.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '7', '164', null, null);
+INSERT INTO `login` VALUES ('176', 'Admin GI', 'admin165.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '7', '165', null, null);
+INSERT INTO `login` VALUES ('177', 'Admin GI', 'admin166.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '7', '166', null, null);
+INSERT INTO `login` VALUES ('178', 'Admin GI', 'admin167.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '7', '167', null, null);
+INSERT INTO `login` VALUES ('179', 'Admin GI', 'admin168.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '7', '168', null, null);
+INSERT INTO `login` VALUES ('180', 'Admin GI', 'admin169.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '7', '169', null, null);
+INSERT INTO `login` VALUES ('181', 'Admin GI', 'admin170.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '7', '170', null, null);
+INSERT INTO `login` VALUES ('182', 'Admin GI', 'admin171.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '7', '171', null, null);
+INSERT INTO `login` VALUES ('183', 'Admin GI', 'admin172.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '7', '172', null, null);
+INSERT INTO `login` VALUES ('184', 'Admin GI', 'admin173.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '7', '173', null, null);
+INSERT INTO `login` VALUES ('185', 'Admin GI', 'admin174.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '7', '174', null, null);
+INSERT INTO `login` VALUES ('186', 'Admin GI', 'admin175.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '7', '175', null, null);
+INSERT INTO `login` VALUES ('187', 'Admin GI', 'admin176.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '7', '176', null, null);
+INSERT INTO `login` VALUES ('188', 'Admin GI', 'admin177.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '7', '177', null, null);
+INSERT INTO `login` VALUES ('189', 'Admin GI', 'admin178.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '7', '178', null, null);
+INSERT INTO `login` VALUES ('190', 'Admin GI', 'admin179.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '7', '179', null, null);
+INSERT INTO `login` VALUES ('191', 'Admin GI', 'admin180.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '7', '180', null, null);
+INSERT INTO `login` VALUES ('192', 'Admin GI', 'admin181.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '7', '181', null, null);
+INSERT INTO `login` VALUES ('193', 'Admin GI', 'admin182.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '7', '182', null, null);
+INSERT INTO `login` VALUES ('194', 'Admin GI', 'admin183.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '7', '183', null, null);
+INSERT INTO `login` VALUES ('195', 'Manajer APP', 'mapp1.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'manajer', 'app', '0000-00-00', '1', '1', null, null, null);
+INSERT INTO `login` VALUES ('196', 'Manajer APP', 'mapp2.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'manajer', 'app', '0000-00-00', '1', '2', null, null, null);
+INSERT INTO `login` VALUES ('197', 'Manajer APP', 'mapp3.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'manajer', 'app', '0000-00-00', '1', '3', null, null, null);
+INSERT INTO `login` VALUES ('198', 'Manajer APP', 'mapp4.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'manajer', 'app', '0000-00-00', '1', '4', null, null, null);
+INSERT INTO `login` VALUES ('199', 'Manajer APP', 'mapp5.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'manajer', 'app', '0000-00-00', '2', '5', null, null, null);
+INSERT INTO `login` VALUES ('200', 'Manajer APP', 'mapp6.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'manajer', 'app', '0000-00-00', '2', '6', null, null, null);
+INSERT INTO `login` VALUES ('201', 'Manajer APP', 'mapp7.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'manajer', 'app', '0000-00-00', '2', '7', null, null, null);
+INSERT INTO `login` VALUES ('202', 'Ass Manajer APP', 'asmapp1.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'asman', 'app', '0000-00-00', '1', '1', null, null, null);
+INSERT INTO `login` VALUES ('203', 'Ass Manajer APP', 'asmapp2.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'asman', 'app', '0000-00-00', '1', '2', null, null, null);
+INSERT INTO `login` VALUES ('204', 'Ass Manajer APP', 'asmapp3.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'asman', 'app', '0000-00-00', '1', '3', null, null, null);
+INSERT INTO `login` VALUES ('205', 'Ass Manajer APP', 'asmapp4.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'asman', 'app', '0000-00-00', '1', '4', null, null, null);
+INSERT INTO `login` VALUES ('206', 'Ass Manajer APP', 'asmapp5.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'asman', 'app', '0000-00-00', '2', '5', null, null, null);
+INSERT INTO `login` VALUES ('207', 'Ass Manajer APP', 'asmapp6.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'asman', 'app', '0000-00-00', '2', '6', null, null, null);
+INSERT INTO `login` VALUES ('208', 'Ass Manajer APP', 'asmapp7.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'asman', 'app', '0000-00-00', '2', '7', null, null, null);
+INSERT INTO `login` VALUES ('209', 'Admin GI', 'admin184.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '1', '184', null, null);
+INSERT INTO `login` VALUES ('210', 'Admin GI', 'admin185.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '1', '185', null, null);
+INSERT INTO `login` VALUES ('211', 'Admin GI', 'admin186.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '1', '186', null, null);
+INSERT INTO `login` VALUES ('212', 'Admin GI', 'admin187.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '2', '187', null, null);
+INSERT INTO `login` VALUES ('213', 'Admin GI', 'admin188.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '2', '188', null, null);
+INSERT INTO `login` VALUES ('214', 'Admin GI', 'admin189.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '2', '189', null, null);
+INSERT INTO `login` VALUES ('215', 'Admin GI', 'admin190.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '2', '190', null, null);
+INSERT INTO `login` VALUES ('216', 'Admin GI', 'admin191.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '2', '191', null, null);
+INSERT INTO `login` VALUES ('217', 'Admin GI', 'admin192.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '2', '192', null, null);
+INSERT INTO `login` VALUES ('218', 'Admin GI', 'admin193.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '2', '193', null, null);
+INSERT INTO `login` VALUES ('219', 'Admin GI', 'admin194.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '194', null, null);
+INSERT INTO `login` VALUES ('220', 'Admin GI', 'admin195.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '195', null, null);
+INSERT INTO `login` VALUES ('221', 'Admin GI', 'admin196.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '196', null, null);
+INSERT INTO `login` VALUES ('222', 'Admin GI', 'admin197.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '197', null, null);
+INSERT INTO `login` VALUES ('223', 'Admin GI', 'admin198.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '198', null, null);
+INSERT INTO `login` VALUES ('224', 'Admin GI', 'admin199.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '5', '199', null, null);
+INSERT INTO `login` VALUES ('225', 'Admin GI', 'admin200.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '6', '200', null, null);
+INSERT INTO `login` VALUES ('226', 'Admin GI', 'admin201.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '7', '201', null, null);
+INSERT INTO `login` VALUES ('227', 'Admin GI', 'admin202.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '2', '7', '202', null, null);
+INSERT INTO `login` VALUES ('228', 'Admin GI', 'admin203.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '3', '203', null, null);
+INSERT INTO `login` VALUES ('229', 'Admin GI', 'admin204.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', '1', '4', '204', null, null);
+INSERT INTO `login` VALUES ('230', 'Bidang Kontruksi', 'admin.bk-ki@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user ki', 'app', null, null, '99', null, '4', null);
 
-INSERT INTO `login` (`kodelogin`, `nama`, `email`, `password`, `level`, `jenisuser`, `tgldaftar`, `kodeapd`, `kodeapp`, `kodegi`, `kodebidang`, `images`) VALUES
-(1, 'Administrator', 'admin@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'superadmin', 'administrator', '0000-00-00', NULL, NULL, NULL, NULL, NULL),
-(2, 'Admin KI', 'admin.ki@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'ki', '0000-00-00', NULL, NULL, NULL, NULL, NULL),
-(3, 'Admin APD', 'admin1.apd@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'apd', '0000-00-00', 1, NULL, NULL, NULL, NULL),
-(4, 'Admin APD', 'admin2.apd@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'apd', '0000-00-00', 2, NULL, NULL, NULL, NULL),
-(5, 'Admin APP', 'admin1.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'app', '0000-00-00', 1, 1, NULL, NULL, ''),
-(6, 'Admin APP', 'admin2.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'app', '0000-00-00', 1, 2, NULL, NULL, NULL),
-(7, 'Admin APP', 'admin3.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'app', '0000-00-00', 1, 3, NULL, NULL, NULL),
-(8, 'Admin APP', 'admin4.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'app', '0000-00-00', 1, 4, NULL, NULL, NULL),
-(9, 'Admin APP', 'admin5.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'app', '0000-00-00', 2, 5, NULL, NULL, NULL),
-(10, 'Admin APP', 'admin6.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'app', '0000-00-00', 2, 6, NULL, NULL, NULL),
-(11, 'Admin APP', 'admin7.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'app', '0000-00-00', 2, 7, NULL, NULL, NULL),
-(12, 'Admin GI', 'admin1.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 1, 1, NULL, ''),
-(13, 'Admin GI', 'admin2.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 1, 2, NULL, NULL),
-(14, 'Admin GI', 'admin3.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 1, 3, NULL, NULL),
-(15, 'Admin GI', 'admin4.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 1, 4, NULL, NULL),
-(16, 'Admin GI', 'admin5.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 1, 5, NULL, NULL),
-(17, 'Admin GI', 'admin6.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 1, 6, NULL, NULL),
-(18, 'Admin GI', 'admin7.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 1, 7, NULL, NULL),
-(19, 'Admin GI', 'admin8.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 1, 8, NULL, NULL),
-(20, 'Admin GI', 'admin9.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 1, 9, NULL, NULL),
-(21, 'Admin GI', 'admin10.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 1, 10, NULL, NULL),
-(22, 'Admin GI', 'admin11.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 1, 11, NULL, NULL),
-(23, 'Admin GI', 'admin12.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 1, 12, NULL, NULL),
-(24, 'Admin GI', 'admin13.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 1, 13, NULL, NULL),
-(25, 'Admin GI', 'admin14.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 1, 14, NULL, NULL),
-(26, 'Admin GI', 'admin15.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 1, 15, NULL, NULL),
-(27, 'Admin GI', 'admin16.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 1, 16, NULL, NULL),
-(28, 'Admin GI', 'admin17.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 1, 17, NULL, NULL),
-(29, 'Admin GI', 'admin18.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 1, 18, NULL, NULL),
-(30, 'Admin GI', 'admin19.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 2, 19, NULL, NULL),
-(31, 'Admin GI', 'admin20.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 2, 20, NULL, NULL),
-(32, 'Admin GI', 'admin21.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 2, 21, NULL, NULL),
-(33, 'Admin GI', 'admin22.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 2, 22, NULL, NULL),
-(34, 'Admin GI', 'admin23.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 2, 23, NULL, NULL),
-(35, 'Admin GI', 'admin24.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 2, 24, NULL, NULL),
-(36, 'Admin GI', 'admin25.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 2, 25, NULL, NULL),
-(37, 'Admin GI', 'admin26.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 2, 26, NULL, NULL),
-(38, 'Admin GI', 'admin27.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 2, 27, NULL, NULL),
-(39, 'Admin GI', 'admin28.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 2, 28, NULL, NULL),
-(40, 'Admin GI', 'admin29.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 2, 29, NULL, NULL),
-(41, 'Admin GI', 'admin30.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 2, 30, NULL, NULL),
-(42, 'Admin GI', 'admin31.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 2, 31, NULL, NULL),
-(43, 'Admin GI', 'admin32.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 2, 32, NULL, NULL),
-(44, 'Admin GI', 'admin33.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 2, 33, NULL, NULL),
-(45, 'Admin GI', 'admin34.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 2, 34, NULL, NULL),
-(46, 'Admin GI', 'admin35.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 2, 35, NULL, NULL),
-(47, 'Admin GI', 'admin36.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 2, 36, NULL, NULL),
-(48, 'Admin GI', 'admin37.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 2, 37, NULL, NULL),
-(49, 'Admin GI', 'admin38.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 2, 38, NULL, NULL),
-(50, 'Admin GI', 'admin39.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 2, 39, NULL, NULL),
-(51, 'Admin GI', 'admin40.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 2, 40, NULL, NULL),
-(52, 'Admin GI', 'admin41.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 2, 41, NULL, NULL),
-(53, 'Admin GI', 'admin42.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 42, NULL, NULL),
-(54, 'Admin GI', 'admin43.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 43, NULL, NULL),
-(55, 'Admin GI', 'admin44.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 44, NULL, NULL),
-(56, 'Admin GI', 'admin45.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 45, NULL, NULL),
-(57, 'Admin GI', 'admin46.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 46, NULL, NULL),
-(58, 'Admin GI', 'admin47.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 47, NULL, NULL),
-(59, 'Admin GI', 'admin48.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 48, NULL, NULL),
-(60, 'Admin GI', 'admin49.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 49, NULL, NULL),
-(61, 'Admin GI', 'admin50.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 50, NULL, NULL),
-(62, 'Admin GI', 'admin51.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 51, NULL, NULL),
-(63, 'Admin GI', 'admin52.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 52, NULL, NULL),
-(64, 'Admin GI', 'admin53.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 53, NULL, NULL),
-(65, 'Admin GI', 'admin54.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 54, NULL, NULL),
-(66, 'Admin GI', 'admin55.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 55, NULL, NULL),
-(67, 'Admin GI', 'admin56.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 56, NULL, NULL),
-(68, 'Admin GI', 'admin57.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 57, NULL, NULL),
-(69, 'Admin GI', 'admin58.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 58, NULL, NULL),
-(70, 'Admin GI', 'admin59.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 59, NULL, NULL),
-(71, 'Admin GI', 'admin60.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 60, NULL, NULL),
-(72, 'Admin GI', 'admin61.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 61, NULL, NULL),
-(73, 'Admin GI', 'admin62.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 62, NULL, NULL),
-(74, 'Admin GI', 'admin63.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 63, NULL, NULL),
-(75, 'Admin GI', 'admin64.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 64, NULL, NULL),
-(76, 'Admin GI', 'admin65.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 65, NULL, NULL),
-(77, 'Admin GI', 'admin66.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 66, NULL, NULL),
-(78, 'Admin GI', 'admin67.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 67, NULL, NULL),
-(79, 'Admin GI', 'admin68.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 68, NULL, NULL),
-(80, 'Admin GI', 'admin69.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 69, NULL, NULL),
-(81, 'Admin GI', 'admin70.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 70, NULL, NULL),
-(82, 'Admin GI', 'admin71.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 71, NULL, NULL),
-(83, 'Admin GI', 'admin72.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 72, NULL, NULL),
-(84, 'Admin GI', 'admin73.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 73, NULL, NULL),
-(85, 'Admin GI', 'admin74.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 74, NULL, NULL),
-(86, 'Admin GI', 'admin75.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 75, NULL, NULL),
-(87, 'Admin GI', 'admin76.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 76, NULL, NULL),
-(88, 'Admin GI', 'admin77.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 77, NULL, NULL),
-(89, 'Admin GI', 'admin78.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 78, NULL, NULL),
-(90, 'Admin GI', 'admin79.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 79, NULL, NULL),
-(91, 'Admin GI', 'admin80.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 80, NULL, NULL),
-(92, 'Admin GI', 'admin81.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 81, NULL, NULL),
-(93, 'Admin GI', 'admin82.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 4, 82, NULL, NULL),
-(94, 'Admin GI', 'admin83.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 4, 83, NULL, NULL),
-(95, 'Admin GI', 'admin84.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 4, 84, NULL, NULL),
-(96, 'Admin GI', 'admin85.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 4, 85, NULL, NULL),
-(97, 'Admin GI', 'admin86.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 4, 86, NULL, NULL),
-(98, 'Admin GI', 'admin87.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 4, 87, NULL, NULL),
-(99, 'Admin GI', 'admin88.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 4, 88, NULL, NULL),
-(100, 'Admin GI', 'admin89.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 4, 89, NULL, NULL),
-(101, 'Admin GI', 'admin90.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 4, 90, NULL, NULL),
-(102, 'Admin GI', 'admin91.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 4, 91, NULL, NULL),
-(103, 'Admin GI', 'admin92.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 4, 92, NULL, NULL),
-(104, 'Admin GI', 'admin93.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 4, 93, NULL, NULL),
-(105, 'Admin GI', 'admin94.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 4, 94, NULL, NULL),
-(106, 'Admin GI', 'admin95.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 4, 95, NULL, NULL),
-(107, 'Admin GI', 'admin96.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 4, 96, NULL, NULL),
-(108, 'Admin GI', 'admin97.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 4, 97, NULL, NULL),
-(109, 'Admin GI', 'admin98.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 4, 98, NULL, NULL),
-(110, 'Admin GI', 'admin99.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 4, 99, NULL, NULL),
-(111, 'Admin GI', 'admin100.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 4, 100, NULL, NULL),
-(112, 'Admin GI', 'admin101.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 4, 101, NULL, NULL),
-(113, 'Admin GI', 'admin102.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 4, 102, NULL, NULL),
-(114, 'Admin GI', 'admin103.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 4, 103, NULL, NULL),
-(115, 'Admin GI', 'admin104.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 4, 104, NULL, NULL),
-(116, 'Admin GI', 'admin105.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 4, 105, NULL, NULL),
-(117, 'Admin GI', 'admin106.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 4, 106, NULL, NULL),
-(118, 'Admin GI', 'admin107.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 5, 107, NULL, NULL),
-(119, 'Admin GI', 'admin108.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 5, 108, NULL, NULL),
-(120, 'Admin GI', 'admin109.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 5, 109, NULL, NULL),
-(121, 'Admin GI', 'admin110.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 5, 110, NULL, NULL),
-(122, 'Admin GI', 'admin111.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 5, 111, NULL, NULL),
-(123, 'Admin GI', 'admin112.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 5, 112, NULL, NULL),
-(124, 'Admin GI', 'admin113.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 5, 113, NULL, NULL),
-(125, 'Admin GI', 'admin114.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 5, 114, NULL, NULL),
-(126, 'Admin GI', 'admin115.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 5, 115, NULL, NULL),
-(127, 'Admin GI', 'admin116.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 5, 116, NULL, NULL),
-(128, 'Admin GI', 'admin117.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 5, 117, NULL, NULL),
-(129, 'Admin GI', 'admin118.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 5, 118, NULL, NULL),
-(130, 'Admin GI', 'admin119.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 5, 119, NULL, NULL),
-(131, 'Admin GI', 'admin120.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 5, 120, NULL, NULL),
-(132, 'Admin GI', 'admin121.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 5, 121, NULL, NULL),
-(133, 'Admin GI', 'admin122.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 5, 122, NULL, NULL),
-(134, 'Admin GI', 'admin123.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 5, 123, NULL, NULL),
-(135, 'Admin GI', 'admin124.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 5, 124, NULL, NULL),
-(136, 'Admin GI', 'admin125.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 5, 125, NULL, NULL),
-(137, 'Admin GI', 'admin126.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 5, 126, NULL, NULL),
-(138, 'Admin GI', 'admin127.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 5, 127, NULL, NULL),
-(139, 'Admin GI', 'admin128.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 6, 128, NULL, NULL),
-(140, 'Admin GI', 'admin129.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 6, 129, NULL, NULL),
-(141, 'Admin GI', 'admin130.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 6, 130, NULL, NULL),
-(142, 'Admin GI', 'admin131.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 6, 131, NULL, NULL),
-(143, 'Admin GI', 'admin132.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 6, 132, NULL, NULL),
-(144, 'Admin GI', 'admin133.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 6, 133, NULL, NULL),
-(145, 'Admin GI', 'admin134.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 6, 134, NULL, NULL),
-(146, 'Admin GI', 'admin135.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 6, 135, NULL, NULL),
-(147, 'Admin GI', 'admin136.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 6, 136, NULL, NULL),
-(148, 'Admin GI', 'admin137.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 6, 137, NULL, NULL),
-(149, 'Admin GI', 'admin138.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 6, 138, NULL, NULL),
-(150, 'Admin GI', 'admin139.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 6, 139, NULL, NULL),
-(151, 'Admin GI', 'admin140.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 6, 140, NULL, NULL),
-(152, 'Admin GI', 'admin141.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 6, 141, NULL, NULL),
-(153, 'Admin GI', 'admin142.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 6, 142, NULL, NULL),
-(154, 'Admin GI', 'admin143.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 6, 143, NULL, NULL),
-(155, 'Admin GI', 'admin144.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 6, 144, NULL, NULL),
-(156, 'Admin GI', 'admin145.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 6, 145, NULL, NULL),
-(157, 'Admin GI', 'admin146.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 6, 146, NULL, NULL),
-(158, 'Admin GI', 'admin147.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 6, 147, NULL, NULL),
-(159, 'Admin GI', 'admin148.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 6, 148, NULL, NULL),
-(160, 'Admin GI', 'admin149.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 6, 149, NULL, NULL),
-(161, 'Admin GI', 'admin150.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 6, 150, NULL, NULL),
-(162, 'Admin GI', 'admin151.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 6, 151, NULL, NULL),
-(163, 'Admin GI', 'admin152.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 6, 152, NULL, NULL),
-(164, 'Admin GI', 'admin153.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 6, 153, NULL, NULL),
-(165, 'Admin GI', 'admin154.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 6, 154, NULL, NULL),
-(166, 'Admin GI', 'admin155.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 6, 155, NULL, NULL),
-(167, 'Admin GI', 'admin156.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 6, 156, NULL, NULL),
-(168, 'Admin GI', 'admin157.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 6, 157, NULL, NULL),
-(169, 'Admin GI', 'admin158.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 7, 158, NULL, NULL),
-(170, 'Admin GI', 'admin159.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 7, 159, NULL, NULL),
-(171, 'Admin GI', 'admin160.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 7, 160, NULL, NULL),
-(172, 'Admin GI', 'admin161.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 7, 161, NULL, NULL),
-(173, 'Admin GI', 'admin162.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 7, 162, NULL, NULL),
-(174, 'Admin GI', 'admin163.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 7, 163, NULL, NULL),
-(175, 'Admin GI', 'admin164.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 7, 164, NULL, NULL),
-(176, 'Admin GI', 'admin165.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 7, 165, NULL, NULL),
-(177, 'Admin GI', 'admin166.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 7, 166, NULL, NULL),
-(178, 'Admin GI', 'admin167.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 7, 167, NULL, NULL),
-(179, 'Admin GI', 'admin168.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 7, 168, NULL, NULL),
-(180, 'Admin GI', 'admin169.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 7, 169, NULL, NULL),
-(181, 'Admin GI', 'admin170.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 7, 170, NULL, NULL),
-(182, 'Admin GI', 'admin171.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 7, 171, NULL, NULL),
-(183, 'Admin GI', 'admin172.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 7, 172, NULL, NULL),
-(184, 'Admin GI', 'admin173.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 7, 173, NULL, NULL),
-(185, 'Admin GI', 'admin174.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 7, 174, NULL, NULL),
-(186, 'Admin GI', 'admin175.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 7, 175, NULL, NULL),
-(187, 'Admin GI', 'admin176.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 7, 176, NULL, NULL),
-(188, 'Admin GI', 'admin177.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 7, 177, NULL, NULL),
-(189, 'Admin GI', 'admin178.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 7, 178, NULL, NULL),
-(190, 'Admin GI', 'admin179.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 7, 179, NULL, NULL),
-(191, 'Admin GI', 'admin180.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 7, 180, NULL, NULL),
-(192, 'Admin GI', 'admin181.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 7, 181, NULL, NULL),
-(193, 'Admin GI', 'admin182.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 7, 182, NULL, NULL),
-(194, 'Admin GI', 'admin183.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 7, 183, NULL, NULL),
-(195, 'Manajer APP', 'mapp1.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'manajer', 'app', '0000-00-00', 1, 1, NULL, NULL, NULL),
-(196, 'Manajer APP', 'mapp2.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'manajer', 'app', '0000-00-00', 1, 2, NULL, NULL, NULL),
-(197, 'Manajer APP', 'mapp3.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'manajer', 'app', '0000-00-00', 1, 3, NULL, NULL, NULL),
-(198, 'Manajer APP', 'mapp4.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'manajer', 'app', '0000-00-00', 1, 4, NULL, NULL, NULL),
-(199, 'Manajer APP', 'mapp5.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'manajer', 'app', '0000-00-00', 2, 5, NULL, NULL, NULL),
-(200, 'Manajer APP', 'mapp6.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'manajer', 'app', '0000-00-00', 2, 6, NULL, NULL, NULL),
-(201, 'Manajer APP', 'mapp7.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'manajer', 'app', '0000-00-00', 2, 7, NULL, NULL, NULL),
-(202, 'Ass Manajer APP', 'asmapp1.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'asman', 'app', '0000-00-00', 1, 1, NULL, NULL, NULL),
-(203, 'Ass Manajer APP', 'asmapp2.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'asman', 'app', '0000-00-00', 1, 2, NULL, NULL, NULL),
-(204, 'Ass Manajer APP', 'asmapp3.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'asman', 'app', '0000-00-00', 1, 3, NULL, NULL, NULL),
-(205, 'Ass Manajer APP', 'asmapp4.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'asman', 'app', '0000-00-00', 1, 4, NULL, NULL, NULL),
-(206, 'Ass Manajer APP', 'asmapp5.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'asman', 'app', '0000-00-00', 2, 5, NULL, NULL, NULL),
-(207, 'Ass Manajer APP', 'asmapp6.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'asman', 'app', '0000-00-00', 2, 6, NULL, NULL, NULL),
-(208, 'Ass Manajer APP', 'asmapp7.app@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'asman', 'app', '0000-00-00', 2, 7, NULL, NULL, NULL),
-(209, 'Admin GI', 'admin184.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 1, 184, NULL, NULL),
-(210, 'Admin GI', 'admin185.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 1, 185, NULL, NULL),
-(211, 'Admin GI', 'admin186.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 1, 186, NULL, NULL),
-(212, 'Admin GI', 'admin187.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 2, 187, NULL, NULL),
-(213, 'Admin GI', 'admin188.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 2, 188, NULL, NULL),
-(214, 'Admin GI', 'admin189.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 2, 189, NULL, NULL),
-(215, 'Admin GI', 'admin190.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 2, 190, NULL, NULL),
-(216, 'Admin GI', 'admin191.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 2, 191, NULL, NULL),
-(217, 'Admin GI', 'admin192.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 2, 192, NULL, NULL),
-(218, 'Admin GI', 'admin193.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 2, 193, NULL, NULL),
-(219, 'Admin GI', 'admin194.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 194, NULL, NULL),
-(220, 'Admin GI', 'admin195.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 195, NULL, NULL),
-(221, 'Admin GI', 'admin196.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 196, NULL, NULL),
-(222, 'Admin GI', 'admin197.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 197, NULL, NULL),
-(223, 'Admin GI', 'admin198.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 198, NULL, NULL),
-(224, 'Admin GI', 'admin199.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 5, 199, NULL, NULL),
-(225, 'Admin GI', 'admin200.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 6, 200, NULL, NULL),
-(226, 'Admin GI', 'admin201.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 7, 201, NULL, NULL),
-(227, 'Admin GI', 'admin202.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 7, 202, NULL, NULL),
-(228, 'Admin GI', 'admin203.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 203, NULL, NULL),
-(229, 'Admin GI', 'admin204.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 4, 204, NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `loglogin`
---
-
+-- ----------------------------
+-- Table structure for `loglogin`
+-- ----------------------------
+DROP TABLE IF EXISTS `loglogin`;
 CREATE TABLE `loglogin` (
-  `kodelog` int(5) NOT NULL,
+  `kodelog` int(5) NOT NULL AUTO_INCREMENT,
   `kodelogin` int(5) DEFAULT NULL,
   `kodeaplikasi` int(5) DEFAULT NULL,
-  `tgllogin` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `tgllogin` datetime DEFAULT NULL,
+  PRIMARY KEY (`kodelog`)
+) ENGINE=InnoDB AUTO_INCREMENT=254 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `loglogin`
---
+-- ----------------------------
+-- Records of loglogin
+-- ----------------------------
+INSERT INTO `loglogin` VALUES ('11', '1', '1', '2017-07-18 15:17:25');
+INSERT INTO `loglogin` VALUES ('12', '1', '1', '2017-07-18 15:19:45');
+INSERT INTO `loglogin` VALUES ('13', '1', '2', '2017-07-18 15:20:00');
+INSERT INTO `loglogin` VALUES ('14', '1', '1', '2017-07-19 09:34:42');
+INSERT INTO `loglogin` VALUES ('15', '2', '1', '2017-07-19 09:45:00');
+INSERT INTO `loglogin` VALUES ('16', '2', '1', '2017-07-19 09:45:04');
+INSERT INTO `loglogin` VALUES ('17', '2', '1', '2017-07-19 10:00:40');
+INSERT INTO `loglogin` VALUES ('18', '1', '0', '0000-00-00 00:00:00');
+INSERT INTO `loglogin` VALUES ('19', '1', '0', '0000-00-00 00:00:00');
+INSERT INTO `loglogin` VALUES ('20', '1', '1', '2017-07-19 16:34:16');
+INSERT INTO `loglogin` VALUES ('21', '1', '2', '2017-07-19 17:28:13');
+INSERT INTO `loglogin` VALUES ('22', '1', '1', '2017-07-19 17:28:18');
+INSERT INTO `loglogin` VALUES ('23', '1', '2', '2017-07-19 17:28:23');
+INSERT INTO `loglogin` VALUES ('24', '1', '2', '2017-07-19 17:29:01');
+INSERT INTO `loglogin` VALUES ('25', '1', '3', '2017-07-31 10:51:08');
+INSERT INTO `loglogin` VALUES ('26', '1', '3', '2017-08-01 09:29:43');
+INSERT INTO `loglogin` VALUES ('27', '1', '3', '2017-08-01 09:30:23');
+INSERT INTO `loglogin` VALUES ('28', '1', '3', '2017-08-01 09:30:48');
+INSERT INTO `loglogin` VALUES ('29', '1', '3', '2017-08-07 12:00:19');
+INSERT INTO `loglogin` VALUES ('30', '1', '3', '2017-08-07 14:17:29');
+INSERT INTO `loglogin` VALUES ('31', '1', '3', '2017-08-07 14:20:48');
+INSERT INTO `loglogin` VALUES ('32', '1', '3', '2017-08-07 14:34:54');
+INSERT INTO `loglogin` VALUES ('33', '1', '3', '2017-08-07 15:03:21');
+INSERT INTO `loglogin` VALUES ('34', '1', '3', '2017-08-07 16:18:24');
+INSERT INTO `loglogin` VALUES ('35', '1', '3', '2017-08-07 17:15:50');
+INSERT INTO `loglogin` VALUES ('36', '1', '3', '2017-08-08 09:08:33');
+INSERT INTO `loglogin` VALUES ('37', '1', '3', '2017-08-08 10:08:32');
+INSERT INTO `loglogin` VALUES ('38', '1', '3', '2017-08-08 12:00:25');
+INSERT INTO `loglogin` VALUES ('39', '1', '3', '2017-08-08 13:17:59');
+INSERT INTO `loglogin` VALUES ('40', '1', '3', '2017-08-09 14:21:42');
+INSERT INTO `loglogin` VALUES ('41', '2', '3', '2017-08-11 14:59:04');
+INSERT INTO `loglogin` VALUES ('42', '2', '3', '2017-08-11 15:49:17');
+INSERT INTO `loglogin` VALUES ('43', '3', '3', '2017-08-14 08:54:21');
+INSERT INTO `loglogin` VALUES ('44', '3', '3', '2017-08-14 09:01:49');
+INSERT INTO `loglogin` VALUES ('45', '3', '3', '2017-08-14 09:03:30');
+INSERT INTO `loglogin` VALUES ('46', '2', '3', '2017-08-14 09:11:28');
+INSERT INTO `loglogin` VALUES ('47', '2', '3', '2017-08-14 09:13:11');
+INSERT INTO `loglogin` VALUES ('48', '3', '3', '2017-08-14 09:20:50');
+INSERT INTO `loglogin` VALUES ('49', '2', '3', '2017-08-14 09:21:39');
+INSERT INTO `loglogin` VALUES ('50', '2', '3', '2017-08-14 10:01:28');
+INSERT INTO `loglogin` VALUES ('51', '3', '3', '2017-08-14 10:01:55');
+INSERT INTO `loglogin` VALUES ('52', '2', '3', '2017-08-14 10:17:15');
+INSERT INTO `loglogin` VALUES ('53', '2', '3', '2017-08-14 10:29:46');
+INSERT INTO `loglogin` VALUES ('54', '3', '3', '2017-08-14 10:30:37');
+INSERT INTO `loglogin` VALUES ('55', '2', '3', '2017-08-15 08:38:48');
+INSERT INTO `loglogin` VALUES ('56', '3', '3', '2017-08-15 09:55:07');
+INSERT INTO `loglogin` VALUES ('57', '3', '3', '2017-08-15 09:56:43');
+INSERT INTO `loglogin` VALUES ('58', '2', '3', '2017-08-15 11:40:13');
+INSERT INTO `loglogin` VALUES ('59', '3', '3', '2017-08-15 11:44:02');
+INSERT INTO `loglogin` VALUES ('60', '2', '3', '2017-08-16 10:52:57');
+INSERT INTO `loglogin` VALUES ('61', '3', '3', '2017-08-16 10:53:11');
+INSERT INTO `loglogin` VALUES ('62', '4', '3', '2017-08-25 08:28:52');
+INSERT INTO `loglogin` VALUES ('63', '2', '3', '2017-08-25 09:32:32');
+INSERT INTO `loglogin` VALUES ('64', '3', '3', '2017-08-25 09:33:12');
+INSERT INTO `loglogin` VALUES ('65', '3', '3', '2017-08-25 09:50:38');
+INSERT INTO `loglogin` VALUES ('66', '4', '3', '2017-08-25 10:20:27');
+INSERT INTO `loglogin` VALUES ('67', '2', '3', '2017-08-25 10:31:00');
+INSERT INTO `loglogin` VALUES ('68', '4', '3', '2017-08-25 11:31:22');
+INSERT INTO `loglogin` VALUES ('69', '2', '3', '2017-08-25 14:50:42');
+INSERT INTO `loglogin` VALUES ('70', '2', '3', '2017-08-25 14:53:49');
+INSERT INTO `loglogin` VALUES ('71', '3', '3', '2017-08-25 14:54:00');
+INSERT INTO `loglogin` VALUES ('72', '5', '3', '2017-08-25 16:23:03');
+INSERT INTO `loglogin` VALUES ('73', '3', '3', '2017-08-29 10:14:29');
+INSERT INTO `loglogin` VALUES ('74', '2', '3', '2017-08-29 11:00:08');
+INSERT INTO `loglogin` VALUES ('75', '3', '3', '2017-08-29 11:25:50');
+INSERT INTO `loglogin` VALUES ('76', '4', '3', '2017-08-29 11:37:05');
+INSERT INTO `loglogin` VALUES ('77', '3', '3', '2017-08-29 11:37:41');
+INSERT INTO `loglogin` VALUES ('78', '4', '3', '2017-08-29 11:38:06');
+INSERT INTO `loglogin` VALUES ('79', '3', '3', '2017-08-29 14:09:52');
+INSERT INTO `loglogin` VALUES ('80', '2', '3', '2017-08-29 15:55:07');
+INSERT INTO `loglogin` VALUES ('81', '2', '3', '2017-08-29 16:21:59');
+INSERT INTO `loglogin` VALUES ('82', '2', '3', '2017-08-29 17:06:58');
+INSERT INTO `loglogin` VALUES ('83', '3', '3', '2017-08-30 08:33:00');
+INSERT INTO `loglogin` VALUES ('84', '4', '3', '2017-08-30 08:33:27');
+INSERT INTO `loglogin` VALUES ('85', '2', '3', '2017-08-30 08:52:22');
+INSERT INTO `loglogin` VALUES ('86', '2', '3', '2017-08-30 10:12:36');
+INSERT INTO `loglogin` VALUES ('87', '3', '3', '2017-08-30 10:20:58');
+INSERT INTO `loglogin` VALUES ('88', '5', '3', '2017-08-30 10:55:34');
+INSERT INTO `loglogin` VALUES ('89', '3', '3', '2017-08-30 11:30:05');
+INSERT INTO `loglogin` VALUES ('90', '4', '3', '2017-08-30 15:10:04');
+INSERT INTO `loglogin` VALUES ('91', '3', '3', '2017-08-30 15:12:06');
+INSERT INTO `loglogin` VALUES ('92', '2', '3', '2017-08-30 16:25:18');
+INSERT INTO `loglogin` VALUES ('93', '3', '3', '2017-08-31 10:26:11');
+INSERT INTO `loglogin` VALUES ('94', '4', '3', '2017-09-05 08:53:24');
+INSERT INTO `loglogin` VALUES ('95', '3', '3', '2017-09-05 09:07:55');
+INSERT INTO `loglogin` VALUES ('96', '2', '3', '2017-09-05 09:54:51');
+INSERT INTO `loglogin` VALUES ('97', '3', '3', '2017-09-05 11:39:23');
+INSERT INTO `loglogin` VALUES ('98', '5', '3', '2017-09-05 11:56:29');
+INSERT INTO `loglogin` VALUES ('99', '3', '3', '2017-09-08 14:54:53');
+INSERT INTO `loglogin` VALUES ('100', '2', '3', '2017-09-11 14:25:29');
+INSERT INTO `loglogin` VALUES ('101', '3', '3', '2017-09-11 15:05:30');
+INSERT INTO `loglogin` VALUES ('102', '4', '3', '2017-09-11 15:40:15');
+INSERT INTO `loglogin` VALUES ('103', '5', '3', '2017-09-11 15:40:34');
+INSERT INTO `loglogin` VALUES ('104', '4', '3', '2017-09-11 16:11:29');
+INSERT INTO `loglogin` VALUES ('105', '3', '3', '2017-09-11 16:24:21');
+INSERT INTO `loglogin` VALUES ('106', '5', '3', '2017-09-11 16:24:52');
+INSERT INTO `loglogin` VALUES ('107', '4', '3', '2017-09-11 16:27:21');
+INSERT INTO `loglogin` VALUES ('108', '3', '3', '2017-09-11 16:27:34');
+INSERT INTO `loglogin` VALUES ('109', '4', '3', '2017-09-11 21:41:39');
+INSERT INTO `loglogin` VALUES ('110', '3', '3', '2017-09-11 21:52:56');
+INSERT INTO `loglogin` VALUES ('111', '2', '3', '2017-09-11 22:41:08');
+INSERT INTO `loglogin` VALUES ('112', '2', '3', '2017-09-11 23:34:48');
+INSERT INTO `loglogin` VALUES ('113', '3', '3', '2017-09-12 08:48:13');
+INSERT INTO `loglogin` VALUES ('114', '3', '3', '2017-09-12 10:41:08');
+INSERT INTO `loglogin` VALUES ('115', '4', '3', '2017-09-12 11:49:46');
+INSERT INTO `loglogin` VALUES ('116', '5', '3', '2017-09-12 11:50:27');
+INSERT INTO `loglogin` VALUES ('117', '5', '3', '2017-09-12 11:52:03');
+INSERT INTO `loglogin` VALUES ('118', '3', '3', '2017-09-12 12:01:51');
+INSERT INTO `loglogin` VALUES ('119', '5', '3', '2017-09-12 12:05:23');
+INSERT INTO `loglogin` VALUES ('120', '3', '3', '2017-09-12 12:07:15');
+INSERT INTO `loglogin` VALUES ('121', '3', '3', '2017-09-12 14:11:13');
+INSERT INTO `loglogin` VALUES ('122', '33', '3', '2017-09-13 15:56:25');
+INSERT INTO `loglogin` VALUES ('123', '6', '3', '2017-09-14 10:36:52');
+INSERT INTO `loglogin` VALUES ('124', '2', '3', '2017-09-14 10:50:49');
+INSERT INTO `loglogin` VALUES ('125', '12', '3', '2017-09-14 11:11:22');
+INSERT INTO `loglogin` VALUES ('126', '6', '3', '2017-09-14 11:15:34');
+INSERT INTO `loglogin` VALUES ('127', '2', '3', '2017-09-14 11:19:08');
+INSERT INTO `loglogin` VALUES ('128', '10', '3', '2017-09-14 13:09:38');
+INSERT INTO `loglogin` VALUES ('129', '2', '3', '2017-09-14 13:10:34');
+INSERT INTO `loglogin` VALUES ('130', '6', '3', '2017-09-14 13:36:36');
+INSERT INTO `loglogin` VALUES ('131', '2', '3', '2017-09-14 13:37:06');
+INSERT INTO `loglogin` VALUES ('132', '6', '3', '2017-09-14 13:55:23');
+INSERT INTO `loglogin` VALUES ('133', '2', '3', '2017-09-14 14:17:27');
+INSERT INTO `loglogin` VALUES ('134', '10', '3', '2017-09-14 15:28:01');
+INSERT INTO `loglogin` VALUES ('135', '2', '3', '2017-09-14 15:28:49');
+INSERT INTO `loglogin` VALUES ('136', '12', '3', '2017-09-15 09:02:08');
+INSERT INTO `loglogin` VALUES ('137', '5', '3', '2017-09-15 09:03:20');
+INSERT INTO `loglogin` VALUES ('138', '5', '3', '2017-09-15 13:45:49');
+INSERT INTO `loglogin` VALUES ('139', '3', '3', '2017-09-15 14:05:56');
+INSERT INTO `loglogin` VALUES ('140', '2', '3', '2017-09-15 14:25:01');
+INSERT INTO `loglogin` VALUES ('141', '5', '3', '2017-09-18 10:50:09');
+INSERT INTO `loglogin` VALUES ('142', '3', '3', '2017-09-18 10:51:03');
+INSERT INTO `loglogin` VALUES ('143', '2', '3', '2017-09-18 13:02:15');
+INSERT INTO `loglogin` VALUES ('144', '3', '3', '2017-09-18 13:17:24');
+INSERT INTO `loglogin` VALUES ('145', '5', '3', '2017-09-18 13:19:17');
+INSERT INTO `loglogin` VALUES ('146', '5', '3', '2017-09-18 13:25:40');
+INSERT INTO `loglogin` VALUES ('147', '5', '3', '2017-09-18 13:26:59');
+INSERT INTO `loglogin` VALUES ('148', '12', '3', '2017-09-18 13:31:27');
+INSERT INTO `loglogin` VALUES ('149', '6', '3', '2017-09-18 13:38:42');
+INSERT INTO `loglogin` VALUES ('150', '12', '3', '2017-09-18 13:58:28');
+INSERT INTO `loglogin` VALUES ('151', '12', '3', '2017-09-18 14:05:06');
+INSERT INTO `loglogin` VALUES ('152', '5', '3', '2017-09-18 14:06:32');
+INSERT INTO `loglogin` VALUES ('153', '5', '3', '2017-09-18 17:14:04');
+INSERT INTO `loglogin` VALUES ('154', '5', '3', '2017-09-18 17:16:16');
+INSERT INTO `loglogin` VALUES ('155', '6', '3', '2017-09-18 17:16:49');
+INSERT INTO `loglogin` VALUES ('156', '2', '3', '2017-09-18 17:32:43');
+INSERT INTO `loglogin` VALUES ('157', '2', '3', '2017-09-19 08:51:08');
+INSERT INTO `loglogin` VALUES ('158', '7', '3', '2017-09-19 09:10:52');
+INSERT INTO `loglogin` VALUES ('159', '8', '3', '2017-09-19 09:22:44');
+INSERT INTO `loglogin` VALUES ('160', '12', '3', '2017-09-19 09:48:25');
+INSERT INTO `loglogin` VALUES ('161', '12', '3', '2017-09-19 09:49:14');
+INSERT INTO `loglogin` VALUES ('162', '5', '3', '2017-09-19 10:01:48');
+INSERT INTO `loglogin` VALUES ('163', '6', '3', '2017-09-19 10:07:23');
+INSERT INTO `loglogin` VALUES ('164', '7', '3', '2017-09-19 10:08:25');
+INSERT INTO `loglogin` VALUES ('165', '8', '3', '2017-09-19 10:09:53');
+INSERT INTO `loglogin` VALUES ('166', '9', '3', '2017-09-19 10:11:14');
+INSERT INTO `loglogin` VALUES ('167', '10', '3', '2017-09-19 10:12:11');
+INSERT INTO `loglogin` VALUES ('168', '11', '3', '2017-09-19 10:13:42');
+INSERT INTO `loglogin` VALUES ('169', '5', '3', '2017-09-19 16:08:57');
+INSERT INTO `loglogin` VALUES ('170', '6', '3', '2017-09-19 16:10:55');
+INSERT INTO `loglogin` VALUES ('171', '7', '3', '2017-09-19 16:11:43');
+INSERT INTO `loglogin` VALUES ('172', '8', '3', '2017-09-19 16:12:40');
+INSERT INTO `loglogin` VALUES ('173', '9', '3', '2017-09-19 16:13:34');
+INSERT INTO `loglogin` VALUES ('174', '10', '3', '2017-09-19 16:14:16');
+INSERT INTO `loglogin` VALUES ('175', '11', '3', '2017-09-19 16:14:41');
+INSERT INTO `loglogin` VALUES ('176', '2', '3', '2017-09-20 08:34:53');
+INSERT INTO `loglogin` VALUES ('177', '5', '3', '2017-09-20 08:58:52');
+INSERT INTO `loglogin` VALUES ('178', '5', '3', '2017-09-20 11:21:10');
+INSERT INTO `loglogin` VALUES ('179', '5', '3', '2017-09-20 11:37:00');
+INSERT INTO `loglogin` VALUES ('180', '5', '1', '2017-09-20 13:32:59');
+INSERT INTO `loglogin` VALUES ('181', '12', '3', '2017-09-20 14:03:27');
+INSERT INTO `loglogin` VALUES ('182', '5', '1', '2017-09-20 14:34:10');
+INSERT INTO `loglogin` VALUES ('183', '2', '1', '2017-09-20 14:38:07');
+INSERT INTO `loglogin` VALUES ('184', '12', '3', '2017-09-20 14:44:42');
+INSERT INTO `loglogin` VALUES ('185', '5', '3', '2017-09-20 16:23:19');
+INSERT INTO `loglogin` VALUES ('186', '5', '1', '2017-09-20 16:25:11');
+INSERT INTO `loglogin` VALUES ('187', '2', '1', '2017-09-22 08:01:41');
+INSERT INTO `loglogin` VALUES ('188', '5', '1', '2017-09-22 11:41:09');
+INSERT INTO `loglogin` VALUES ('189', '21', '1', '2017-09-22 11:44:01');
+INSERT INTO `loglogin` VALUES ('190', '2', '1', '2017-09-22 13:56:23');
+INSERT INTO `loglogin` VALUES ('191', '2', '1', '2017-09-22 14:08:44');
+INSERT INTO `loglogin` VALUES ('192', '12', '3', '2017-09-22 14:54:58');
+INSERT INTO `loglogin` VALUES ('193', '12', '3', '2017-09-22 15:03:41');
+INSERT INTO `loglogin` VALUES ('194', '5', '3', '2017-09-22 15:24:33');
+INSERT INTO `loglogin` VALUES ('195', '2', '3', '2017-09-22 15:27:16');
+INSERT INTO `loglogin` VALUES ('196', '2', '1', '2017-09-22 15:52:59');
+INSERT INTO `loglogin` VALUES ('197', '2', '1', '2017-09-22 17:21:55');
+INSERT INTO `loglogin` VALUES ('198', '12', '3', '2017-09-22 17:24:44');
+INSERT INTO `loglogin` VALUES ('199', '12', '3', '2017-09-22 17:36:05');
+INSERT INTO `loglogin` VALUES ('200', '12', '1', '2017-09-22 17:47:35');
+INSERT INTO `loglogin` VALUES ('201', '2', '1', '2017-09-22 19:05:21');
+INSERT INTO `loglogin` VALUES ('202', '5', '3', '2017-09-25 13:17:53');
+INSERT INTO `loglogin` VALUES ('203', '30', '3', '2017-09-25 14:26:06');
+INSERT INTO `loglogin` VALUES ('204', '49', '3', '2017-09-25 14:37:51');
+INSERT INTO `loglogin` VALUES ('205', '6', '3', '2017-09-25 14:48:25');
+INSERT INTO `loglogin` VALUES ('206', '3', '3', '2017-09-25 14:57:38');
+INSERT INTO `loglogin` VALUES ('207', '6', '3', '2017-09-25 15:01:12');
+INSERT INTO `loglogin` VALUES ('208', '2', '3', '2017-09-25 15:15:16');
+INSERT INTO `loglogin` VALUES ('209', '6', '3', '2017-09-25 15:21:28');
+INSERT INTO `loglogin` VALUES ('210', '49', '3', '2017-09-25 16:24:55');
+INSERT INTO `loglogin` VALUES ('211', '6', '3', '2017-09-25 16:43:27');
+INSERT INTO `loglogin` VALUES ('212', '3', '3', '2017-09-25 16:48:59');
+INSERT INTO `loglogin` VALUES ('213', '3', '3', '2017-09-25 17:35:22');
+INSERT INTO `loglogin` VALUES ('214', '2', '3', '2017-09-26 08:05:49');
+INSERT INTO `loglogin` VALUES ('215', '6', '1', '2017-09-26 08:12:33');
+INSERT INTO `loglogin` VALUES ('216', '6', '1', '2017-09-26 08:13:18');
+INSERT INTO `loglogin` VALUES ('217', '6', '3', '2017-09-26 13:30:29');
+INSERT INTO `loglogin` VALUES ('218', '2', '3', '2017-09-27 08:16:09');
+INSERT INTO `loglogin` VALUES ('219', '6', '1', '2017-09-27 08:44:05');
+INSERT INTO `loglogin` VALUES ('220', '6', '3', '2017-09-27 10:09:51');
+INSERT INTO `loglogin` VALUES ('221', '6', '3', '2017-09-28 10:08:27');
+INSERT INTO `loglogin` VALUES ('222', '1', '7', '2017-09-28 11:11:28');
+INSERT INTO `loglogin` VALUES ('223', '6', '3', '2017-09-28 11:15:44');
+INSERT INTO `loglogin` VALUES ('224', '1', '7', '2017-09-28 12:36:34');
+INSERT INTO `loglogin` VALUES ('225', '1', '7', '2017-09-28 13:33:30');
+INSERT INTO `loglogin` VALUES ('226', '1', '7', '2017-09-28 13:47:30');
+INSERT INTO `loglogin` VALUES ('227', '6', '3', '2017-09-28 15:34:29');
+INSERT INTO `loglogin` VALUES ('228', '2', '1', '2017-09-29 08:15:00');
+INSERT INTO `loglogin` VALUES ('229', '2', '3', '2017-09-29 08:36:59');
+INSERT INTO `loglogin` VALUES ('230', '12', '3', '2017-09-29 08:39:10');
+INSERT INTO `loglogin` VALUES ('231', '6', '3', '2017-09-29 08:42:11');
+INSERT INTO `loglogin` VALUES ('232', '3', '3', '2017-09-29 08:47:09');
+INSERT INTO `loglogin` VALUES ('233', '2', '3', '2017-09-29 09:05:58');
+INSERT INTO `loglogin` VALUES ('234', '6', '3', '2017-09-29 09:34:04');
+INSERT INTO `loglogin` VALUES ('235', '3', '3', '2017-09-29 10:14:37');
+INSERT INTO `loglogin` VALUES ('236', '2', '3', '2017-09-29 10:18:46');
+INSERT INTO `loglogin` VALUES ('237', '12', '3', '2017-09-29 11:03:25');
+INSERT INTO `loglogin` VALUES ('238', '5', '3', '2017-09-29 11:10:46');
+INSERT INTO `loglogin` VALUES ('239', '3', '3', '2017-09-29 11:25:33');
+INSERT INTO `loglogin` VALUES ('240', '2', '3', '2017-09-29 11:37:53');
+INSERT INTO `loglogin` VALUES ('241', '12', '3', '2017-09-29 13:47:14');
+INSERT INTO `loglogin` VALUES ('242', '5', '3', '2017-10-02 10:08:54');
+INSERT INTO `loglogin` VALUES ('243', '6', '3', '2017-10-02 13:18:32');
+INSERT INTO `loglogin` VALUES ('244', '7', '3', '2017-10-02 13:19:03');
+INSERT INTO `loglogin` VALUES ('245', '8', '3', '2017-10-02 13:19:28');
+INSERT INTO `loglogin` VALUES ('246', '9', '3', '2017-10-02 13:19:54');
+INSERT INTO `loglogin` VALUES ('247', '10', '3', '2017-10-02 13:20:16');
+INSERT INTO `loglogin` VALUES ('248', '11', '3', '2017-10-02 13:20:37');
+INSERT INTO `loglogin` VALUES ('249', '5', '3', '2017-10-02 13:20:57');
+INSERT INTO `loglogin` VALUES ('250', '5', '3', '2017-10-02 14:25:04');
+INSERT INTO `loglogin` VALUES ('251', '3', '3', '2017-10-02 14:38:28');
+INSERT INTO `loglogin` VALUES ('252', '2', '3', '2017-10-02 14:41:28');
+INSERT INTO `loglogin` VALUES ('253', '5', '3', '2017-10-02 14:45:15');
 
-INSERT INTO `loglogin` (`kodelog`, `kodelogin`, `kodeaplikasi`, `tgllogin`) VALUES
-(11, 1, 1, '2017-07-18 15:17:25'),
-(12, 1, 1, '2017-07-18 15:19:45'),
-(13, 1, 2, '2017-07-18 15:20:00'),
-(14, 1, 1, '2017-07-19 09:34:42'),
-(15, 2, 1, '2017-07-19 09:45:00'),
-(16, 2, 1, '2017-07-19 09:45:04'),
-(17, 2, 1, '2017-07-19 10:00:40'),
-(18, 1, 0, '0000-00-00 00:00:00'),
-(19, 1, 0, '0000-00-00 00:00:00'),
-(20, 1, 1, '2017-07-19 16:34:16'),
-(21, 1, 2, '2017-07-19 17:28:13'),
-(22, 1, 1, '2017-07-19 17:28:18'),
-(23, 1, 2, '2017-07-19 17:28:23'),
-(24, 1, 2, '2017-07-19 17:29:01'),
-(25, 1, 3, '2017-07-31 10:51:08'),
-(26, 1, 3, '2017-08-01 09:29:43'),
-(27, 1, 3, '2017-08-01 09:30:23'),
-(28, 1, 3, '2017-08-01 09:30:48'),
-(29, 1, 3, '2017-08-07 12:00:19'),
-(30, 1, 3, '2017-08-07 14:17:29'),
-(31, 1, 3, '2017-08-07 14:20:48'),
-(32, 1, 3, '2017-08-07 14:34:54'),
-(33, 1, 3, '2017-08-07 15:03:21'),
-(34, 1, 3, '2017-08-07 16:18:24'),
-(35, 1, 3, '2017-08-07 17:15:50'),
-(36, 1, 3, '2017-08-08 09:08:33'),
-(37, 1, 3, '2017-08-08 10:08:32'),
-(38, 1, 3, '2017-08-08 12:00:25'),
-(39, 1, 3, '2017-08-08 13:17:59'),
-(40, 1, 3, '2017-08-09 14:21:42'),
-(41, 2, 3, '2017-08-11 14:59:04'),
-(42, 2, 3, '2017-08-11 15:49:17'),
-(43, 3, 3, '2017-08-14 08:54:21'),
-(44, 3, 3, '2017-08-14 09:01:49'),
-(45, 3, 3, '2017-08-14 09:03:30'),
-(46, 2, 3, '2017-08-14 09:11:28'),
-(47, 2, 3, '2017-08-14 09:13:11'),
-(48, 3, 3, '2017-08-14 09:20:50'),
-(49, 2, 3, '2017-08-14 09:21:39'),
-(50, 2, 3, '2017-08-14 10:01:28'),
-(51, 3, 3, '2017-08-14 10:01:55'),
-(52, 2, 3, '2017-08-14 10:17:15'),
-(53, 2, 3, '2017-08-14 10:29:46'),
-(54, 3, 3, '2017-08-14 10:30:37'),
-(55, 2, 3, '2017-08-15 08:38:48'),
-(56, 3, 3, '2017-08-15 09:55:07'),
-(57, 3, 3, '2017-08-15 09:56:43'),
-(58, 2, 3, '2017-08-15 11:40:13'),
-(59, 3, 3, '2017-08-15 11:44:02'),
-(60, 2, 3, '2017-08-16 10:52:57'),
-(61, 3, 3, '2017-08-16 10:53:11'),
-(62, 4, 3, '2017-08-25 08:28:52'),
-(63, 2, 3, '2017-08-25 09:32:32'),
-(64, 3, 3, '2017-08-25 09:33:12'),
-(65, 3, 3, '2017-08-25 09:50:38'),
-(66, 4, 3, '2017-08-25 10:20:27'),
-(67, 2, 3, '2017-08-25 10:31:00'),
-(68, 4, 3, '2017-08-25 11:31:22'),
-(69, 2, 3, '2017-08-25 14:50:42'),
-(70, 2, 3, '2017-08-25 14:53:49'),
-(71, 3, 3, '2017-08-25 14:54:00'),
-(72, 5, 3, '2017-08-25 16:23:03'),
-(73, 3, 3, '2017-08-29 10:14:29'),
-(74, 2, 3, '2017-08-29 11:00:08'),
-(75, 3, 3, '2017-08-29 11:25:50'),
-(76, 4, 3, '2017-08-29 11:37:05'),
-(77, 3, 3, '2017-08-29 11:37:41'),
-(78, 4, 3, '2017-08-29 11:38:06'),
-(79, 3, 3, '2017-08-29 14:09:52'),
-(80, 2, 3, '2017-08-29 15:55:07'),
-(81, 2, 3, '2017-08-29 16:21:59'),
-(82, 2, 3, '2017-08-29 17:06:58'),
-(83, 3, 3, '2017-08-30 08:33:00'),
-(84, 4, 3, '2017-08-30 08:33:27'),
-(85, 2, 3, '2017-08-30 08:52:22'),
-(86, 2, 3, '2017-08-30 10:12:36'),
-(87, 3, 3, '2017-08-30 10:20:58'),
-(88, 5, 3, '2017-08-30 10:55:34'),
-(89, 3, 3, '2017-08-30 11:30:05'),
-(90, 4, 3, '2017-08-30 15:10:04'),
-(91, 3, 3, '2017-08-30 15:12:06'),
-(92, 2, 3, '2017-08-30 16:25:18'),
-(93, 3, 3, '2017-08-31 10:26:11'),
-(94, 4, 3, '2017-09-05 08:53:24'),
-(95, 3, 3, '2017-09-05 09:07:55'),
-(96, 2, 3, '2017-09-05 09:54:51'),
-(97, 3, 3, '2017-09-05 11:39:23'),
-(98, 5, 3, '2017-09-05 11:56:29'),
-(99, 3, 3, '2017-09-08 14:54:53'),
-(100, 2, 3, '2017-09-11 14:25:29'),
-(101, 3, 3, '2017-09-11 15:05:30'),
-(102, 4, 3, '2017-09-11 15:40:15'),
-(103, 5, 3, '2017-09-11 15:40:34'),
-(104, 4, 3, '2017-09-11 16:11:29'),
-(105, 3, 3, '2017-09-11 16:24:21'),
-(106, 5, 3, '2017-09-11 16:24:52'),
-(107, 4, 3, '2017-09-11 16:27:21'),
-(108, 3, 3, '2017-09-11 16:27:34'),
-(109, 4, 3, '2017-09-11 21:41:39'),
-(110, 3, 3, '2017-09-11 21:52:56'),
-(111, 2, 3, '2017-09-11 22:41:08'),
-(112, 2, 3, '2017-09-11 23:34:48'),
-(113, 3, 3, '2017-09-12 08:48:13'),
-(114, 3, 3, '2017-09-12 10:41:08'),
-(115, 4, 3, '2017-09-12 11:49:46'),
-(116, 5, 3, '2017-09-12 11:50:27'),
-(117, 5, 3, '2017-09-12 11:52:03'),
-(118, 3, 3, '2017-09-12 12:01:51'),
-(119, 5, 3, '2017-09-12 12:05:23'),
-(120, 3, 3, '2017-09-12 12:07:15'),
-(121, 3, 3, '2017-09-12 14:11:13'),
-(122, 33, 3, '2017-09-13 15:56:25'),
-(123, 6, 3, '2017-09-14 10:36:52'),
-(124, 2, 3, '2017-09-14 10:50:49'),
-(125, 12, 3, '2017-09-14 11:11:22'),
-(126, 6, 3, '2017-09-14 11:15:34'),
-(127, 2, 3, '2017-09-14 11:19:08'),
-(128, 10, 3, '2017-09-14 13:09:38'),
-(129, 2, 3, '2017-09-14 13:10:34'),
-(130, 6, 3, '2017-09-14 13:36:36'),
-(131, 2, 3, '2017-09-14 13:37:06'),
-(132, 6, 3, '2017-09-14 13:55:23'),
-(133, 2, 3, '2017-09-14 14:17:27'),
-(134, 10, 3, '2017-09-14 15:28:01'),
-(135, 2, 3, '2017-09-14 15:28:49'),
-(136, 12, 3, '2017-09-15 09:02:08'),
-(137, 5, 3, '2017-09-15 09:03:20'),
-(138, 5, 3, '2017-09-15 13:45:49'),
-(139, 3, 3, '2017-09-15 14:05:56'),
-(140, 2, 3, '2017-09-15 14:25:01'),
-(141, 5, 3, '2017-09-18 10:50:09'),
-(142, 3, 3, '2017-09-18 10:51:03'),
-(143, 2, 3, '2017-09-18 13:02:15'),
-(144, 3, 3, '2017-09-18 13:17:24'),
-(145, 5, 3, '2017-09-18 13:19:17'),
-(146, 5, 3, '2017-09-18 13:25:40'),
-(147, 5, 3, '2017-09-18 13:26:59'),
-(148, 12, 3, '2017-09-18 13:31:27'),
-(149, 6, 3, '2017-09-18 13:38:42'),
-(150, 12, 3, '2017-09-18 13:58:28'),
-(151, 12, 3, '2017-09-18 14:05:06'),
-(152, 5, 3, '2017-09-18 14:06:32'),
-(153, 5, 3, '2017-09-18 17:14:04'),
-(154, 5, 3, '2017-09-18 17:16:16'),
-(155, 6, 3, '2017-09-18 17:16:49'),
-(156, 2, 3, '2017-09-18 17:32:43'),
-(157, 2, 3, '2017-09-19 08:51:08'),
-(158, 7, 3, '2017-09-19 09:10:52'),
-(159, 8, 3, '2017-09-19 09:22:44'),
-(160, 12, 3, '2017-09-19 09:48:25'),
-(161, 12, 3, '2017-09-19 09:49:14'),
-(162, 5, 3, '2017-09-19 10:01:48'),
-(163, 6, 3, '2017-09-19 10:07:23'),
-(164, 7, 3, '2017-09-19 10:08:25'),
-(165, 8, 3, '2017-09-19 10:09:53'),
-(166, 9, 3, '2017-09-19 10:11:14'),
-(167, 10, 3, '2017-09-19 10:12:11'),
-(168, 11, 3, '2017-09-19 10:13:42'),
-(169, 5, 3, '2017-09-19 16:08:57'),
-(170, 6, 3, '2017-09-19 16:10:55'),
-(171, 7, 3, '2017-09-19 16:11:43'),
-(172, 8, 3, '2017-09-19 16:12:40'),
-(173, 9, 3, '2017-09-19 16:13:34'),
-(174, 10, 3, '2017-09-19 16:14:16'),
-(175, 11, 3, '2017-09-19 16:14:41'),
-(176, 2, 3, '2017-09-20 08:34:53'),
-(177, 5, 3, '2017-09-20 08:58:52'),
-(178, 5, 3, '2017-09-20 11:21:10'),
-(179, 5, 3, '2017-09-20 11:37:00'),
-(180, 5, 1, '2017-09-20 13:32:59'),
-(181, 12, 3, '2017-09-20 14:03:27'),
-(182, 5, 1, '2017-09-20 14:34:10'),
-(183, 2, 1, '2017-09-20 14:38:07'),
-(184, 12, 3, '2017-09-20 14:44:42'),
-(185, 5, 3, '2017-09-20 16:23:19'),
-(186, 5, 1, '2017-09-20 16:25:11'),
-(187, 2, 1, '2017-09-22 08:01:41'),
-(188, 5, 1, '2017-09-22 11:41:09'),
-(189, 21, 1, '2017-09-22 11:44:01'),
-(190, 2, 1, '2017-09-22 13:56:23'),
-(191, 2, 1, '2017-09-22 14:08:44'),
-(192, 12, 3, '2017-09-22 14:54:58'),
-(193, 12, 3, '2017-09-22 15:03:41'),
-(194, 5, 3, '2017-09-22 15:24:33'),
-(195, 2, 3, '2017-09-22 15:27:16'),
-(196, 2, 1, '2017-09-22 15:52:59'),
-(197, 2, 1, '2017-09-22 17:21:55'),
-(198, 12, 3, '2017-09-22 17:24:44'),
-(199, 12, 3, '2017-09-22 17:36:05'),
-(200, 12, 1, '2017-09-22 17:47:35'),
-(201, 2, 1, '2017-09-22 19:05:21'),
-(202, 5, 3, '2017-09-25 13:17:53'),
-(203, 30, 3, '2017-09-25 14:26:06'),
-(204, 49, 3, '2017-09-25 14:37:51'),
-(205, 6, 3, '2017-09-25 14:48:25'),
-(206, 3, 3, '2017-09-25 14:57:38'),
-(207, 6, 3, '2017-09-25 15:01:12'),
-(208, 2, 3, '2017-09-25 15:15:16'),
-(209, 6, 3, '2017-09-25 15:21:28'),
-(210, 49, 3, '2017-09-25 16:24:55'),
-(211, 6, 3, '2017-09-25 16:43:27'),
-(212, 3, 3, '2017-09-25 16:48:59'),
-(213, 3, 3, '2017-09-25 17:35:22'),
-(214, 2, 3, '2017-09-26 08:05:49'),
-(215, 6, 1, '2017-09-26 08:12:33'),
-(216, 6, 1, '2017-09-26 08:13:18');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `trafo`
---
-
+-- ----------------------------
+-- Table structure for `trafo`
+-- ----------------------------
+DROP TABLE IF EXISTS `trafo`;
 CREATE TABLE `trafo` (
-  `kodetrafo` int(5) NOT NULL,
+  `kodetrafo` int(5) NOT NULL AUTO_INCREMENT,
   `kodeapd` int(5) DEFAULT NULL,
   `kodeapp` int(5) DEFAULT NULL,
   `kodegi` int(5) DEFAULT NULL,
   `nomortrafo` varchar(100) DEFAULT NULL,
   `mvaterpasang` varchar(100) DEFAULT NULL,
-  `mvadeklarasi` varchar(100) DEFAULT NULL,
-  `realisasimvadeklarasi` varchar(100) DEFAULT NULL,
   `tanggalinput` date DEFAULT NULL,
-  `statustrafo` varchar(100) DEFAULT NULL,
   `statusapprove` int(5) DEFAULT NULL,
   `bulanapprove` varchar(100) DEFAULT NULL,
   `tahunapprove` varchar(100) DEFAULT NULL,
-  `alasan` varchar(300) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `alasan` varchar(300) DEFAULT NULL,
+  PRIMARY KEY (`kodetrafo`),
+  KEY `kodegi` (`kodegi`),
+  CONSTRAINT `kodegi` FOREIGN KEY (`kodegi`) REFERENCES `gi` (`kodegi`)
+) ENGINE=InnoDB AUTO_INCREMENT=475 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `trafo`
---
+-- ----------------------------
+-- Records of trafo
+-- ----------------------------
+INSERT INTO `trafo` VALUES ('1', '1', '1', '1', '1', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('2', '1', '1', '1', '2', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('3', '1', '1', '1', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('4', '1', '1', '1', '4', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('5', '1', '1', '1', '5', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('6', '1', '1', '1', '6', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('7', '1', '1', '2', '1', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('8', '1', '1', '2', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('9', '1', '1', '2', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('10', '1', '1', '2', '4', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('11', '1', '1', '2', '5', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('12', '1', '1', '2', '6', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('13', '1', '1', '3', '1', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('14', '1', '1', '3', '2', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('15', '1', '1', '4', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('16', '1', '1', '4', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('17', '1', '1', '5', '1', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('18', '1', '1', '5', '2', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('19', '1', '1', '6', '1', '10', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('20', '1', '1', '6', '2', '10', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('21', '1', '1', '7', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('22', '1', '1', '7', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('23', '1', '1', '7', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('24', '1', '1', '8', '1', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('25', '1', '1', '8', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('26', '1', '1', '8', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('27', '1', '1', '8', '4', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('28', '1', '1', '9', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('29', '1', '1', '9', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('30', '1', '1', '9', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('31', '1', '1', '10', '1', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('32', '1', '1', '11', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('33', '1', '1', '12', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('34', '1', '1', '12', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('35', '1', '1', '12', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('36', '1', '1', '12', '4', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('37', '1', '1', '13', '1', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('38', '1', '1', '13', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('39', '1', '1', '13', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('40', '1', '1', '13', '4', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('41', '1', '1', '14', 'KTT', '220', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('42', '1', '1', '15', 'KTT', '45', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('43', '1', '1', '16', 'KTT', '45', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('44', '1', '1', '17', 'KTT', '40', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('45', '1', '1', '18', 'KTT', '40', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('46', '1', '2', '19', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('47', '1', '2', '19', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('48', '1', '2', '19', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('49', '1', '2', '19', '4', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('50', '1', '2', '20', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('51', '1', '2', '20', '2', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('52', '1', '2', '20', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('53', '1', '2', '20', '4', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('54', '1', '2', '20', '5', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('55', '1', '2', '21', '1', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('56', '1', '2', '21', '2', '10', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('57', '1', '2', '22', '1', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('58', '1', '2', '22', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('59', '1', '2', '22', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('60', '1', '2', '22', '4', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('61', '1', '2', '22', '5', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('62', '1', '2', '23', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('63', '1', '2', '23', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('64', '1', '2', '24', '1', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('65', '1', '2', '24', '2', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('66', '1', '2', '24', '3', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('67', '1', '2', '24', '4', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('68', '1', '2', '24', '5', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('69', '1', '2', '24', '6', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('70', '1', '2', '24', '7', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('71', '1', '2', '24', '8', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('72', '1', '2', '24', '9', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('73', '1', '2', '24', '10', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('74', '1', '2', '25', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('75', '1', '2', '25', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('76', '1', '2', '25', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('77', '1', '2', '26', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('78', '1', '2', '26', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('79', '1', '2', '27', '1', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('80', '1', '2', '27', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('81', '1', '2', '27', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('82', '1', '2', '27', '4', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('83', '1', '2', '28', '1', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('84', '1', '2', '28', '2', '20', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('85', '1', '2', '28', '3', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('86', '1', '2', '29', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('87', '1', '2', '29', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('88', '1', '2', '29', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('89', '1', '2', '29', '4', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('90', '1', '2', '30', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('91', '1', '2', '30', 'KTT', '32', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('92', '1', '2', '31', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('93', '1', '2', '31', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('94', '1', '2', '31', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('95', '1', '2', '31', '4', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('96', '1', '2', '32', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('97', '1', '2', '32', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('98', '1', '2', '32', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('99', '1', '2', '33', '1', '20', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('100', '1', '2', '34', '1', '10', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('101', '1', '2', '34', '2', '10', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('102', '1', '2', '34', '3', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('103', '1', '2', '34', '4', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('104', '1', '2', '35', '1', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('105', '1', '2', '35', '2', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('106', '1', '2', '35', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('107', '1', '2', '35', '4', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('108', '1', '2', '35', '5', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('109', '1', '2', '35', '6', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('110', '1', '2', '36', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('111', '1', '2', '36', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('112', '1', '2', '36', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('113', '1', '2', '37', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('114', '1', '2', '37', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('115', '1', '2', '37', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('116', '1', '2', '38', '1', '60', '0000-00-00', null, '', '', null);
+INSERT INTO `trafo` VALUES ('117', '1', '2', '39', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('118', '1', '2', '39', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('119', '1', '2', '40', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('120', '1', '2', '40', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('121', '1', '2', '41', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('122', '1', '2', '41', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('123', '1', '3', '42', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('124', '1', '3', '42', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('125', '1', '3', '42', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('126', '1', '3', '43', 'KTT', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('127', '1', '3', '44', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('128', '1', '3', '44', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('129', '1', '3', '44', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('130', '1', '3', '44', 'KTT', '13.75', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('131', '1', '3', '45', '1', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('132', '1', '3', '45', '2', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('133', '1', '3', '45', '3', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('134', '1', '3', '45', '4', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('135', '1', '3', '45', '5', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('136', '1', '3', '45', '6', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('137', '1', '3', '45', '7', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('138', '1', '3', '45', '8', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('139', '1', '3', '46', 'KTT', '45', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('140', '1', '3', '47', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('141', '1', '3', '47', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('142', '1', '3', '48', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('143', '1', '3', '48', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('144', '1', '3', '48', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('145', '1', '3', '49', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('146', '1', '3', '49', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('147', '1', '3', '50', 'KTT', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('148', '1', '3', '51', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('149', '1', '3', '51', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('150', '1', '3', '51', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('151', '1', '3', '51', '4', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('152', '1', '3', '52', 'KTT', '45', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('153', '1', '3', '53', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('154', '1', '3', '53', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('155', '1', '3', '53', 'KTT', '31.06', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('156', '1', '3', '54', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('157', '1', '3', '54', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('158', '1', '3', '54', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('159', '1', '3', '54', 'KTT', '14.8', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('160', '1', '3', '55', '1', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('161', '1', '3', '55', '2', '20', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('162', '1', '3', '55', '3', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('163', '1', '3', '55', '4', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('164', '1', '3', '56', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('165', '1', '3', '56', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('166', '1', '3', '57', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('167', '1', '3', '57', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('168', '1', '3', '57', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('169', '1', '3', '58', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('170', '1', '3', '58', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('171', '1', '3', '58', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('172', '1', '3', '59', '1', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('173', '1', '3', '59', '2', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('174', '1', '3', '59', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('175', '1', '3', '59', '4', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('176', '1', '3', '59', 'KTT', '145', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('177', '1', '3', '60', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('178', '1', '3', '60', '2', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('179', '1', '3', '60', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('180', '1', '3', '60', '4', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('181', '1', '3', '60', 'KTT', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('182', '1', '3', '61', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('183', '1', '3', '61', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('184', '1', '3', '61', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('185', '1', '3', '62', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('186', '1', '3', '62', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('187', '1', '3', '62', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('188', '1', '3', '62', '4', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('189', '1', '3', '62', 'KTT', '40', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('190', '1', '3', '63', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('191', '1', '3', '63', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('192', '1', '3', '63', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('193', '1', '3', '63', '4', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('194', '1', '3', '64', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('195', '1', '3', '64', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('196', '1', '3', '64', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('197', '1', '3', '64', '4', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('198', '1', '3', '64', '5', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('199', '1', '3', '65', 'KTT', '37.5', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('200', '1', '3', '66', 'KTT', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('201', '1', '3', '67', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('202', '1', '3', '67', 'KTT', '35', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('203', '1', '3', '68', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('204', '1', '3', '68', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('205', '1', '3', '69', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('206', '1', '3', '69', 'KTT', '100', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('207', '1', '3', '70', '1', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('208', '1', '3', '70', '2', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('209', '1', '3', '70', '3', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('210', '1', '3', '70', '4', '20', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('211', '1', '3', '70', '5', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('212', '1', '3', '71', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('213', '1', '3', '71', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('214', '1', '3', '71', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('215', '1', '3', '72', 'KTT', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('216', '1', '3', '73', 'KTT', '15.14', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('217', '1', '3', '74', 'KTT', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('218', '1', '3', '75', 'KTT', '32', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('219', '1', '3', '76', 'KTT', '5.2', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('220', '1', '3', '77', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('221', '1', '3', '77', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('222', '1', '3', '78', '1', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('223', '1', '3', '78', '2', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('224', '1', '3', '78', '3', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('225', '1', '3', '78', '4', '20', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('226', '1', '3', '79', 'KTT', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('227', '1', '3', '80', 'KTT', '180', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('228', '1', '3', '81', '1', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('229', '1', '3', '81', '2', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('230', '1', '3', '81', '3', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('231', '1', '4', '82', '1', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('232', '1', '4', '82', '2', '20', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('233', '1', '4', '82', '3', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('234', '1', '4', '83', '1', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('235', '1', '4', '83', '2', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('236', '1', '4', '83', '3', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('237', '1', '4', '84', '1', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('238', '1', '4', '85', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('239', '1', '4', '85', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('240', '1', '4', '86', '1', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('241', '1', '4', '86', '2', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('242', '1', '4', '86', '3', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('243', '1', '4', '87', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('244', '1', '4', '87', '2', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('245', '1', '4', '87', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('246', '1', '4', '88', '1', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('247', '1', '4', '88', '2', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('248', '1', '4', '88', '3', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('249', '1', '4', '89', '1', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('250', '1', '4', '89', '2', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('251', '1', '4', '89', '3', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('252', '1', '4', '90', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('253', '1', '4', '90', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('254', '1', '4', '91', '1', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('255', '1', '4', '91', '2', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('256', '1', '4', '91', '3', '10', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('257', '1', '4', '92', 'KTT', '59', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('258', '1', '4', '93', '1', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('259', '1', '4', '93', '2', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('260', '1', '4', '93', '3', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('261', '1', '4', '93', '4', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('262', '1', '4', '93', '5', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('263', '1', '4', '93', '6', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('264', '1', '4', '93', '7', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('265', '1', '4', '94', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('266', '1', '4', '95', '1', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('267', '1', '4', '95', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('268', '1', '4', '95', '3', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('269', '1', '4', '95', '4', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('270', '1', '4', '96', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('271', '1', '4', '96', '2', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('272', '1', '4', '96', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('273', '1', '4', '97', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('274', '1', '4', '97', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('275', '1', '4', '97', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('276', '1', '4', '98', '1', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('277', '1', '4', '98', '2', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('278', '1', '4', '98', '3', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('279', '1', '4', '98', '4', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('280', '1', '4', '98', '5', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('281', '1', '4', '98', '6', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('282', '1', '4', '98', '7', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('283', '1', '4', '99', '1', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('284', '1', '4', '99', '2', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('285', '1', '4', '99', '3', '20', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('286', '1', '4', '100', '1', '20', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('287', '1', '4', '100', '2', '10', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('288', '1', '4', '100', '3', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('289', '1', '4', '101', '1', '20', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('290', '1', '4', '101', '2', '10', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('291', '1', '4', '101', '3', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('292', '1', '4', '102', '1', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('293', '1', '4', '102', '2', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('294', '1', '4', '103', '1', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('295', '1', '4', '103', '2', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('296', '1', '4', '103', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('297', '1', '4', '103', '4', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('298', '1', '4', '103', '5', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('299', '1', '4', '104', '1', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('300', '1', '4', '104', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('301', '1', '4', '105', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('302', '1', '4', '106', '1', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('303', '2', '5', '107', 'KTT', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('304', '2', '5', '108', 'KTT', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('305', '2', '5', '108', 'KTT', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('306', '2', '5', '109', '1', '20', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('307', '2', '5', '109', '2', '20', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('308', '2', '5', '109', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('309', '2', '5', '109', '4', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('310', '2', '5', '109', '5', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('311', '2', '5', '110', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('312', '2', '5', '110', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('313', '2', '5', '111', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('314', '2', '5', '111', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('315', '2', '5', '112', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('316', '2', '5', '112', '2', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('317', '2', '5', '113', '1', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('318', '2', '5', '113', '2', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('319', '2', '5', '114', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('320', '2', '5', '114', '2', '20', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('321', '2', '5', '114', '3', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('322', '2', '5', '115', '1', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('323', '2', '5', '115', '2', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('324', '2', '5', '115', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('325', '2', '5', '116', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('326', '2', '5', '116', '2', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('327', '2', '5', '117', '1', '20', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('328', '2', '5', '117', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('329', '2', '5', '117', '3', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('330', '2', '5', '118', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('331', '2', '5', '119', '1', '20', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('332', '2', '5', '119', '2', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('333', '2', '5', '119', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('334', '2', '5', '120', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('335', '2', '5', '120', '2', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('336', '2', '5', '121', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('337', '2', '5', '122', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('338', '2', '5', '122', '2', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('339', '2', '5', '122', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('340', '2', '5', '123', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('341', '2', '5', '123', '2', '20', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('342', '2', '5', '123', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('343', '2', '5', '123', '4', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('344', '2', '5', '124', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('345', '2', '5', '124', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('346', '2', '5', '124', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('347', '2', '5', '125', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('348', '2', '5', '125', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('349', '2', '5', '125', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('350', '2', '5', '126', '1', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('351', '2', '5', '126', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('352', '2', '5', '126', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('353', '2', '5', '127', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('354', '2', '6', '128', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('355', '2', '6', '128', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('356', '2', '6', '129', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('357', '2', '6', '129', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('358', '2', '6', '130', '1', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('359', '2', '6', '131', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('360', '2', '6', '131', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('361', '2', '6', '132', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('362', '2', '6', '132', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('363', '2', '6', '132', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('364', '2', '6', '133', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('365', '2', '6', '133', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('366', '2', '6', '133', '3', '16', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('367', '2', '6', '134', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('368', '2', '6', '134', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('369', '2', '6', '135', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('370', '2', '6', '135', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('371', '2', '6', '135', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('372', '2', '6', '136', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('373', '2', '6', '136', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('374', '2', '6', '137', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('375', '2', '6', '137', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('376', '2', '6', '137', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('377', '2', '6', '138', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('378', '2', '6', '138', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('379', '2', '6', '139', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('380', '2', '6', '139', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('381', '2', '6', '140', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('382', '2', '6', '140', '2', '20', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('383', '2', '6', '140', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('384', '2', '6', '141', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('385', '2', '6', '141', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('386', '2', '6', '142', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('387', '2', '6', '142', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('388', '2', '6', '143', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('389', '2', '6', '144', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('390', '2', '6', '144', '2', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('391', '2', '6', '144', '3', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('392', '2', '6', '145', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('393', '2', '6', '145', '2', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('394', '2', '6', '145', '3', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('395', '2', '6', '145', '4', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('396', '2', '6', '146', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('397', '2', '6', '146', '2', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('398', '2', '6', '147', '1', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('399', '2', '6', '147', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('400', '2', '6', '148', '1', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('401', '2', '6', '148', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('402', '2', '6', '148', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('403', '2', '6', '149', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('404', '2', '6', '149', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('405', '2', '6', '149', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('406', '2', '6', '150', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('407', '2', '6', '150', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('408', '2', '6', '151', '1', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('409', '2', '6', '151', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('410', '2', '6', '152', '1', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('411', '2', '6', '152', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('412', '2', '6', '152', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('413', '2', '6', '152', '4', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('414', '2', '6', '153', '1', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('415', '2', '6', '153', '2', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('416', '2', '6', '154', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('417', '2', '6', '154', '2', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('418', '2', '6', '155', '1', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('419', '2', '6', '155', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('420', '2', '6', '156', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('421', '2', '6', '157', '1', '16', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('422', '2', '7', '158', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('423', '2', '7', '158', '2', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('424', '2', '7', '159', '1', '20', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('425', '2', '7', '159', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('426', '2', '7', '160', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('427', '2', '7', '160', '2', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('428', '2', '7', '161', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('429', '2', '7', '161', '2', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('430', '2', '7', '162', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('431', '2', '7', '162', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('432', '2', '7', '163', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('433', '2', '7', '163', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('434', '2', '7', '164', '1', '16', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('435', '2', '7', '165', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('436', '2', '7', '165', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('437', '2', '7', '165', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('438', '2', '7', '166', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('439', '2', '7', '166', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('440', '2', '7', '166', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('441', '2', '7', '167', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('442', '2', '7', '168', '1', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('443', '2', '7', '168', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('444', '2', '7', '168', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('445', '2', '7', '169', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('446', '2', '7', '169', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('447', '2', '7', '169', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('448', '2', '7', '170', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('449', '2', '7', '170', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('450', '2', '7', '170', '3', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('451', '2', '7', '171', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('452', '2', '7', '171', '2', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('453', '2', '7', '172', '1', '30', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('454', '2', '7', '172', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('455', '2', '7', '172', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('456', '2', '7', '173', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('457', '2', '7', '173', '2', '31.5', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('458', '2', '7', '174', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('459', '2', '7', '174', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('460', '2', '7', '175', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('461', '2', '7', '176', '1', '', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('462', '2', '7', '176', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('463', '2', '7', '176', '3', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('464', '2', '7', '177', '1', '16', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('465', '2', '7', '177', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('466', '2', '7', '178', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('467', '2', '7', '178', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('468', '2', '7', '179', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('469', '2', '7', '180', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('470', '2', '7', '180', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('471', '2', '7', '181', '1', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('472', '2', '7', '181', '2', '60', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('473', '2', '7', '182', 'KTT', '76', '0000-00-00', null, null, null, null);
+INSERT INTO `trafo` VALUES ('474', '2', '7', '183', 'KTT', '30', '0000-00-00', null, null, null, null);
 
-INSERT INTO `trafo` (`kodetrafo`, `kodeapd`, `kodeapp`, `kodegi`, `nomortrafo`, `mvaterpasang`, `mvadeklarasi`, `realisasimvadeklarasi`, `tanggalinput`, `statustrafo`, `statusapprove`, `bulanapprove`, `tahunapprove`, `alasan`) VALUES
-(1, 1, 1, 1, '1', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(2, 1, 1, 1, '2', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(3, 1, 1, 1, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(4, 1, 1, 1, '4', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(5, 1, 1, 1, '5', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(6, 1, 1, 1, '6', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(7, 1, 1, 2, '1', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(8, 1, 1, 2, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(9, 1, 1, 2, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(10, 1, 1, 2, '4', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(11, 1, 1, 2, '5', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(12, 1, 1, 2, '6', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(13, 1, 1, 3, '1', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(14, 1, 1, 3, '2', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(15, 1, 1, 4, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(16, 1, 1, 4, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(17, 1, 1, 5, '1', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(18, 1, 1, 5, '2', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(19, 1, 1, 6, '1', '10', '10', '10', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(20, 1, 1, 6, '2', '10', '10', '10', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(21, 1, 1, 7, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(22, 1, 1, 7, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(23, 1, 1, 7, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(24, 1, 1, 8, '1', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(25, 1, 1, 8, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(26, 1, 1, 8, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(27, 1, 1, 8, '4', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(28, 1, 1, 9, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(29, 1, 1, 9, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(30, 1, 1, 9, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(31, 1, 1, 10, '1', '30', '24', '24', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(32, 1, 1, 11, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(33, 1, 1, 12, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(34, 1, 1, 12, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(35, 1, 1, 12, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(36, 1, 1, 12, '4', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(37, 1, 1, 13, '1', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(38, 1, 1, 13, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(39, 1, 1, 13, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(40, 1, 1, 13, '4', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(41, 1, 1, 14, 'KTT', '220', '220', '220', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(42, 1, 1, 15, 'KTT', '45', '45', '45', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(43, 1, 1, 16, 'KTT', '45', '45', '45', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(44, 1, 1, 17, 'KTT', '40', '40', '40', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(45, 1, 1, 18, 'KTT', '40', '40', '40', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(46, 1, 2, 19, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(47, 1, 2, 19, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(48, 1, 2, 19, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(49, 1, 2, 19, '4', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(50, 1, 2, 20, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(51, 1, 2, 20, '2', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(52, 1, 2, 20, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(53, 1, 2, 20, '4', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(54, 1, 2, 20, '5', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(55, 1, 2, 21, '1', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(56, 1, 2, 21, '2', '10', '10', '10', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(57, 1, 2, 22, '1', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(58, 1, 2, 22, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(59, 1, 2, 22, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(60, 1, 2, 22, '4', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(61, 1, 2, 22, '5', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(62, 1, 2, 23, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(63, 1, 2, 23, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(64, 1, 2, 24, '1', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(65, 1, 2, 24, '2', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(66, 1, 2, 24, '3', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(67, 1, 2, 24, '4', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(68, 1, 2, 24, '5', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(69, 1, 2, 24, '6', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(70, 1, 2, 24, '7', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(71, 1, 2, 24, '8', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(72, 1, 2, 24, '9', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(73, 1, 2, 24, '10', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(74, 1, 2, 25, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(75, 1, 2, 25, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(76, 1, 2, 25, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(77, 1, 2, 26, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(78, 1, 2, 26, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(79, 1, 2, 27, '1', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(80, 1, 2, 27, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(81, 1, 2, 27, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(82, 1, 2, 27, '4', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(83, 1, 2, 28, '1', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(84, 1, 2, 28, '2', '20', '20', '20', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(85, 1, 2, 28, '3', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(86, 1, 2, 29, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(87, 1, 2, 29, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(88, 1, 2, 29, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(89, 1, 2, 29, '4', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(90, 1, 2, 30, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(91, 1, 2, 30, 'KTT', '32', '32', '32', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(92, 1, 2, 31, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(93, 1, 2, 31, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(94, 1, 2, 31, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(95, 1, 2, 31, '4', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(96, 1, 2, 32, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(97, 1, 2, 32, '2', '60', '59.58', '59.58', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(98, 1, 2, 32, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(99, 1, 2, 33, '1', '20', '20', '20', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(100, 1, 2, 34, '1', '10', '10', '10', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(101, 1, 2, 34, '2', '10', '10', '10', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(102, 1, 2, 34, '3', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(103, 1, 2, 34, '4', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(104, 1, 2, 35, '1', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(105, 1, 2, 35, '2', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(106, 1, 2, 35, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(107, 1, 2, 35, '4', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(108, 1, 2, 35, '5', '60', '48.4', '48.4', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(109, 1, 2, 35, '6', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(110, 1, 2, 36, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(111, 1, 2, 36, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(112, 1, 2, 36, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(113, 1, 2, 37, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(114, 1, 2, 37, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(115, 1, 2, 37, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(116, 1, 2, 38, '1', '60', '60', '60', '0000-00-00', 'aktif', 2, '9', '2017', NULL),
-(117, 1, 2, 39, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(118, 1, 2, 39, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(119, 1, 2, 40, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(120, 1, 2, 40, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(121, 1, 2, 41, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(122, 1, 2, 41, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(123, 1, 3, 42, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(124, 1, 3, 42, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(125, 1, 3, 42, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(126, 1, 3, 43, 'KTT', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(127, 1, 3, 44, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(128, 1, 3, 44, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(129, 1, 3, 44, '3', '60', '59.76', '59.76', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(130, 1, 3, 44, 'KTT', '13.75', '13.75', '13.75', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(131, 1, 3, 45, '1', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(132, 1, 3, 45, '2', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(133, 1, 3, 45, '3', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(134, 1, 3, 45, '4', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(135, 1, 3, 45, '5', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(136, 1, 3, 45, '6', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(137, 1, 3, 45, '7', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(138, 1, 3, 45, '8', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(139, 1, 3, 46, 'KTT', '45', '45', '45', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(140, 1, 3, 47, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(141, 1, 3, 47, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(142, 1, 3, 48, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(143, 1, 3, 48, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(144, 1, 3, 48, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(145, 1, 3, 49, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(146, 1, 3, 49, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(147, 1, 3, 50, 'KTT', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(148, 1, 3, 51, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(149, 1, 3, 51, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(150, 1, 3, 51, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(151, 1, 3, 51, '4', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(152, 1, 3, 52, 'KTT', '45', '45', '45', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(153, 1, 3, 53, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(154, 1, 3, 53, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(155, 1, 3, 53, 'KTT', '31.06', '31.06', '31.06', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(156, 1, 3, 54, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(157, 1, 3, 54, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(158, 1, 3, 54, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(159, 1, 3, 54, 'KTT', '14.8', '14.8', '14.8', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(160, 1, 3, 55, '1', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(161, 1, 3, 55, '2', '20', '20', '20', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(162, 1, 3, 55, '3', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(163, 1, 3, 55, '4', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(164, 1, 3, 56, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(165, 1, 3, 56, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(166, 1, 3, 57, '1', '60', '59.68', '59.68', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(167, 1, 3, 57, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(168, 1, 3, 57, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(169, 1, 3, 58, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(170, 1, 3, 58, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(171, 1, 3, 58, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(172, 1, 3, 59, '1', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(173, 1, 3, 59, '2', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(174, 1, 3, 59, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(175, 1, 3, 59, '4', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(176, 1, 3, 59, 'KTT', '145', '145', '145', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(177, 1, 3, 60, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(178, 1, 3, 60, '2', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(179, 1, 3, 60, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(180, 1, 3, 60, '4', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(181, 1, 3, 60, 'KTT', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(182, 1, 3, 61, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(183, 1, 3, 61, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(184, 1, 3, 61, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(185, 1, 3, 62, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(186, 1, 3, 62, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(187, 1, 3, 62, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(188, 1, 3, 62, '4', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(189, 1, 3, 62, 'KTT', '40', '40', '40', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(190, 1, 3, 63, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(191, 1, 3, 63, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(192, 1, 3, 63, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(193, 1, 3, 63, '4', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(194, 1, 3, 64, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(195, 1, 3, 64, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(196, 1, 3, 64, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(197, 1, 3, 64, '4', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(198, 1, 3, 64, '5', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(199, 1, 3, 65, 'KTT', '37.5', '37.5', '37.5', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(200, 1, 3, 66, 'KTT', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(201, 1, 3, 67, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(202, 1, 3, 67, 'KTT', '35', '35', '35', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(203, 1, 3, 68, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(204, 1, 3, 68, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(205, 1, 3, 69, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(206, 1, 3, 69, 'KTT', '100', '100', '100', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(207, 1, 3, 70, '1', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(208, 1, 3, 70, '2', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(209, 1, 3, 70, '3', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(210, 1, 3, 70, '4', '20', '0', '0', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(211, 1, 3, 70, '5', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(212, 1, 3, 71, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(213, 1, 3, 71, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(214, 1, 3, 71, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(215, 1, 3, 72, 'KTT', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(216, 1, 3, 73, 'KTT', '15.14', '15.14', '15.14', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(217, 1, 3, 74, 'KTT', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(218, 1, 3, 75, 'KTT', '32', '32', '32', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(219, 1, 3, 76, 'KTT', '5.2', '5.2', '5.2', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(220, 1, 3, 77, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(221, 1, 3, 77, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(222, 1, 3, 78, '1', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(223, 1, 3, 78, '2', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(224, 1, 3, 78, '3', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(225, 1, 3, 78, '4', '20', '20', '20', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(226, 1, 3, 79, 'KTT', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(227, 1, 3, 80, 'KTT', '180', '180', '180', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(228, 1, 3, 81, '1', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(229, 1, 3, 81, '2', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(230, 1, 3, 81, '3', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(231, 1, 4, 82, '1', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(232, 1, 4, 82, '2', '20', '19', '19', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(233, 1, 4, 82, '3', '30', '27', '27', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(234, 1, 4, 83, '1', '30', '26', '26', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(235, 1, 4, 83, '2', '30', '29', '29', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(236, 1, 4, 83, '3', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(237, 1, 4, 84, '1', '30', '18', '18', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(238, 1, 4, 85, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(239, 1, 4, 85, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(240, 1, 4, 86, '1', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(241, 1, 4, 86, '2', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(242, 1, 4, 86, '3', '30', '27', '27', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(243, 1, 4, 87, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(244, 1, 4, 87, '2', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(245, 1, 4, 87, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(246, 1, 4, 88, '1', '30', '20', '20', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(247, 1, 4, 88, '2', '30', '20', '20', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(248, 1, 4, 88, '3', '30', '23', '23', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(249, 1, 4, 89, '1', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(250, 1, 4, 89, '2', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(251, 1, 4, 89, '3', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(252, 1, 4, 90, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(253, 1, 4, 90, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(254, 1, 4, 91, '1', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(255, 1, 4, 91, '2', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(256, 1, 4, 91, '3', '10', '9', '9', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(257, 1, 4, 92, 'KTT', '59', '59', '59', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(258, 1, 4, 93, '1', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(259, 1, 4, 93, '2', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(260, 1, 4, 93, '3', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(261, 1, 4, 93, '4', '60', '54', '54', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(262, 1, 4, 93, '5', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(263, 1, 4, 93, '6', '60', '59.7', '59.7', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(264, 1, 4, 93, '7', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(265, 1, 4, 94, '1', '60', '35', '35', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(266, 1, 4, 95, '1', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(267, 1, 4, 95, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(268, 1, 4, 95, '3', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(269, 1, 4, 95, '4', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(270, 1, 4, 96, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(271, 1, 4, 96, '2', '30', '28', '28', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(272, 1, 4, 96, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(273, 1, 4, 97, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(274, 1, 4, 97, '2', '60', '54', '54', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(275, 1, 4, 97, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(276, 1, 4, 98, '1', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(277, 1, 4, 98, '2', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(278, 1, 4, 98, '3', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(279, 1, 4, 98, '4', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(280, 1, 4, 98, '5', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(281, 1, 4, 98, '6', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(282, 1, 4, 98, '7', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(283, 1, 4, 99, '1', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(284, 1, 4, 99, '2', '30', '24', '24', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(285, 1, 4, 99, '3', '20', '18', '18', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(286, 1, 4, 100, '1', '20', '10', '10', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(287, 1, 4, 100, '2', '10', '9', '9', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(288, 1, 4, 100, '3', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(289, 1, 4, 101, '1', '20', '12', '12', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(290, 1, 4, 101, '2', '10', '9', '9', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(291, 1, 4, 101, '3', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(292, 1, 4, 102, '1', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(293, 1, 4, 102, '2', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(294, 1, 4, 103, '1', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(295, 1, 4, 103, '2', '30', '26', '26', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(296, 1, 4, 103, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(297, 1, 4, 103, '4', '60', '51', '51', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(298, 1, 4, 103, '5', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(299, 1, 4, 104, '1', '30', '29', '29', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(300, 1, 4, 104, '2', '60', '55', '55', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(301, 1, 4, 105, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(302, 1, 4, 106, '1', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(303, 2, 5, 107, 'KTT', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(304, 2, 5, 108, 'KTT', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(305, 2, 5, 108, 'KTT', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(306, 2, 5, 109, '1', '20', '20', '20', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(307, 2, 5, 109, '2', '20', '20', '20', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(308, 2, 5, 109, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(309, 2, 5, 109, '4', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(310, 2, 5, 109, '5', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(311, 2, 5, 110, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(312, 2, 5, 110, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(313, 2, 5, 111, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(314, 2, 5, 111, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(315, 2, 5, 112, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(316, 2, 5, 112, '2', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(317, 2, 5, 113, '1', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(318, 2, 5, 113, '2', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(319, 2, 5, 114, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(320, 2, 5, 114, '2', '20', '20', '20', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(321, 2, 5, 114, '3', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(322, 2, 5, 115, '1', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(323, 2, 5, 115, '2', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(324, 2, 5, 115, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(325, 2, 5, 116, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(326, 2, 5, 116, '2', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(327, 2, 5, 117, '1', '20', '20', '20', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(328, 2, 5, 117, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(329, 2, 5, 117, '3', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(330, 2, 5, 118, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(331, 2, 5, 119, '1', '20', '20', '20', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(332, 2, 5, 119, '2', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(333, 2, 5, 119, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(334, 2, 5, 120, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(335, 2, 5, 120, '2', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(336, 2, 5, 121, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(337, 2, 5, 122, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(338, 2, 5, 122, '2', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(339, 2, 5, 122, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(340, 2, 5, 123, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(341, 2, 5, 123, '2', '20', '20', '20', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(342, 2, 5, 123, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(343, 2, 5, 123, '4', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(344, 2, 5, 124, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(345, 2, 5, 124, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(346, 2, 5, 124, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(347, 2, 5, 125, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(348, 2, 5, 125, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(349, 2, 5, 125, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(350, 2, 5, 126, '1', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(351, 2, 5, 126, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(352, 2, 5, 126, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(353, 2, 5, 127, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(354, 2, 6, 128, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(355, 2, 6, 128, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(356, 2, 6, 129, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(357, 2, 6, 129, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(358, 2, 6, 130, '1', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(359, 2, 6, 131, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(360, 2, 6, 131, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(361, 2, 6, 132, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(362, 2, 6, 132, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(363, 2, 6, 132, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(364, 2, 6, 133, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(365, 2, 6, 133, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(366, 2, 6, 133, '3', '16', '16', '16', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(367, 2, 6, 134, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(368, 2, 6, 134, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(369, 2, 6, 135, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(370, 2, 6, 135, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(371, 2, 6, 135, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(372, 2, 6, 136, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(373, 2, 6, 136, '2', '60', '58', '58', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(374, 2, 6, 137, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(375, 2, 6, 137, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(376, 2, 6, 137, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(377, 2, 6, 138, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(378, 2, 6, 138, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(379, 2, 6, 139, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(380, 2, 6, 139, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(381, 2, 6, 140, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(382, 2, 6, 140, '2', '20', '20', '20', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(383, 2, 6, 140, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(384, 2, 6, 141, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(385, 2, 6, 141, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(386, 2, 6, 142, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(387, 2, 6, 142, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(388, 2, 6, 143, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(389, 2, 6, 144, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(390, 2, 6, 144, '2', '30', '24', '24', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(391, 2, 6, 144, '3', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(392, 2, 6, 145, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(393, 2, 6, 145, '2', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(394, 2, 6, 145, '3', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(395, 2, 6, 145, '4', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(396, 2, 6, 146, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(397, 2, 6, 146, '2', '30', '0', '0', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(398, 2, 6, 147, '1', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(399, 2, 6, 147, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(400, 2, 6, 148, '1', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(401, 2, 6, 148, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(402, 2, 6, 148, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(403, 2, 6, 149, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(404, 2, 6, 149, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(405, 2, 6, 149, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(406, 2, 6, 150, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(407, 2, 6, 150, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(408, 2, 6, 151, '1', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(409, 2, 6, 151, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(410, 2, 6, 152, '1', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(411, 2, 6, 152, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(412, 2, 6, 152, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(413, 2, 6, 152, '4', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(414, 2, 6, 153, '1', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(415, 2, 6, 153, '2', '30', '24', '24', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(416, 2, 6, 154, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(417, 2, 6, 154, '2', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(418, 2, 6, 155, '1', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(419, 2, 6, 155, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(420, 2, 6, 156, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(421, 2, 6, 157, '1', '16', '16', '16', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(422, 2, 7, 158, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(423, 2, 7, 158, '2', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(424, 2, 7, 159, '1', '20', '20', '20', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(425, 2, 7, 159, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(426, 2, 7, 160, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(427, 2, 7, 160, '2', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(428, 2, 7, 161, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(429, 2, 7, 161, '2', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(430, 2, 7, 162, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(431, 2, 7, 162, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(432, 2, 7, 163, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(433, 2, 7, 163, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(434, 2, 7, 164, '1', '16', '16', '16', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(435, 2, 7, 165, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(436, 2, 7, 165, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(437, 2, 7, 165, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(438, 2, 7, 166, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(439, 2, 7, 166, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(440, 2, 7, 166, '3', '60', '54.55', '54.55', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(441, 2, 7, 167, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(442, 2, 7, 168, '1', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(443, 2, 7, 168, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(444, 2, 7, 168, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(445, 2, 7, 169, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(446, 2, 7, 169, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(447, 2, 7, 169, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(448, 2, 7, 170, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(449, 2, 7, 170, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(450, 2, 7, 170, '3', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(451, 2, 7, 171, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(452, 2, 7, 171, '2', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(453, 2, 7, 172, '1', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(454, 2, 7, 172, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(455, 2, 7, 172, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(456, 2, 7, 173, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(457, 2, 7, 173, '2', '31.5', '31.5', '31.5', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(458, 2, 7, 174, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(459, 2, 7, 174, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(460, 2, 7, 175, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(461, 2, 7, 176, '1', '', '', '', '0000-00-00', 'nonaktif', NULL, NULL, NULL, NULL),
-(462, 2, 7, 176, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(463, 2, 7, 176, '3', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(464, 2, 7, 177, '1', '16', '16', '16', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(465, 2, 7, 177, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(466, 2, 7, 178, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(467, 2, 7, 178, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(468, 2, 7, 179, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(469, 2, 7, 180, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(470, 2, 7, 180, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(471, 2, 7, 181, '1', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(472, 2, 7, 181, '2', '60', '60', '60', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(473, 2, 7, 182, 'KTT', '76', '76', '76', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL),
-(474, 2, 7, 183, 'KTT', '30', '30', '30', '0000-00-00', 'aktif', NULL, NULL, NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `userakses`
---
-
+-- ----------------------------
+-- Table structure for `userakses`
+-- ----------------------------
+DROP TABLE IF EXISTS `userakses`;
 CREATE TABLE `userakses` (
-  `kodeakses` int(5) NOT NULL,
+  `kodeakses` int(5) NOT NULL AUTO_INCREMENT,
   `kodelogin` int(5) DEFAULT NULL,
   `kodeaplikasi` int(5) DEFAULT NULL,
-  `status` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`kodeakses`)
+) ENGINE=InnoDB AUTO_INCREMENT=1256 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `userakses`
---
-
-INSERT INTO `userakses` (`kodeakses`, `kodelogin`, `kodeaplikasi`, `status`) VALUES
-(1, 1, 1, 'aktif'),
-(2, 1, 2, 'aktif'),
-(3, 1, 3, 'aktif'),
-(4, 1, 4, 'aktif'),
-(5, 1, 5, 'aktif'),
-(6, 1, 6, 'aktif'),
-(7, 2, 1, 'aktif'),
-(8, 2, 2, 'aktif'),
-(9, 2, 3, 'aktif'),
-(10, 2, 4, 'aktif'),
-(11, 2, 5, 'aktif'),
-(12, 2, 6, 'aktif'),
-(13, 3, 1, 'aktif'),
-(14, 3, 2, 'aktif'),
-(15, 3, 3, 'aktif'),
-(16, 3, 4, 'aktif'),
-(17, 3, 5, 'aktif'),
-(18, 3, 6, 'aktif'),
-(19, 4, 1, 'aktif'),
-(20, 4, 2, 'aktif'),
-(21, 4, 3, 'aktif'),
-(22, 4, 4, 'aktif'),
-(23, 4, 5, 'aktif'),
-(24, 4, 6, 'aktif'),
-(25, 5, 1, 'aktif'),
-(26, 5, 2, 'aktif'),
-(27, 5, 3, 'aktif'),
-(28, 5, 4, 'aktif'),
-(29, 5, 5, 'aktif'),
-(30, 5, 6, 'aktif'),
-(31, 6, 1, 'aktif'),
-(32, 6, 2, 'aktif'),
-(33, 6, 3, 'aktif'),
-(34, 6, 4, 'aktif'),
-(35, 6, 5, 'aktif'),
-(36, 6, 6, 'aktif'),
-(37, 7, 1, 'aktif'),
-(38, 7, 2, 'aktif'),
-(39, 7, 3, 'aktif'),
-(40, 7, 4, 'aktif'),
-(41, 7, 5, 'aktif'),
-(42, 7, 6, 'aktif'),
-(43, 8, 1, 'aktif'),
-(44, 8, 2, 'aktif'),
-(45, 8, 3, 'aktif'),
-(46, 8, 4, 'aktif'),
-(47, 8, 5, 'aktif'),
-(48, 8, 6, 'aktif'),
-(49, 9, 1, 'aktif'),
-(50, 9, 2, 'aktif'),
-(51, 9, 3, 'aktif'),
-(52, 9, 4, 'aktif'),
-(53, 9, 5, 'aktif'),
-(54, 9, 6, 'aktif'),
-(55, 10, 1, 'aktif'),
-(56, 10, 2, 'aktif'),
-(57, 10, 3, 'aktif'),
-(58, 10, 4, 'aktif'),
-(59, 10, 5, 'aktif'),
-(60, 10, 6, 'aktif'),
-(61, 11, 1, 'aktif'),
-(62, 11, 2, 'aktif'),
-(63, 11, 3, 'aktif'),
-(64, 11, 4, 'aktif'),
-(65, 11, 5, 'aktif'),
-(66, 11, 6, 'aktif'),
-(67, 12, 1, 'aktif'),
-(68, 12, 2, 'aktif'),
-(69, 12, 3, 'aktif'),
-(70, 12, 4, 'aktif'),
-(71, 12, 5, 'aktif'),
-(72, 12, 6, 'aktif'),
-(73, 13, 1, 'aktif'),
-(74, 13, 2, 'aktif'),
-(75, 13, 3, 'aktif'),
-(76, 13, 4, 'aktif'),
-(77, 13, 5, 'aktif'),
-(78, 13, 6, 'aktif'),
-(79, 14, 1, 'aktif'),
-(80, 14, 2, 'aktif'),
-(81, 14, 3, 'aktif'),
-(82, 14, 4, 'aktif'),
-(83, 14, 5, 'aktif'),
-(84, 14, 6, 'aktif'),
-(85, 15, 1, 'aktif'),
-(86, 15, 2, 'aktif'),
-(87, 15, 3, 'aktif'),
-(88, 15, 4, 'aktif'),
-(89, 15, 5, 'aktif'),
-(90, 15, 6, 'aktif'),
-(91, 16, 1, 'aktif'),
-(92, 16, 2, 'aktif'),
-(93, 16, 3, 'aktif'),
-(94, 16, 4, 'aktif'),
-(95, 16, 5, 'aktif'),
-(96, 16, 6, 'aktif'),
-(97, 17, 1, 'aktif'),
-(98, 17, 2, 'aktif'),
-(99, 17, 3, 'aktif'),
-(100, 17, 4, 'aktif'),
-(101, 17, 5, 'aktif'),
-(102, 17, 6, 'aktif'),
-(103, 18, 1, 'aktif'),
-(104, 18, 2, 'aktif'),
-(105, 18, 3, 'aktif'),
-(106, 18, 4, 'aktif'),
-(107, 18, 5, 'aktif'),
-(108, 18, 6, 'aktif'),
-(109, 19, 1, 'aktif'),
-(110, 19, 2, 'aktif'),
-(111, 19, 3, 'aktif'),
-(112, 19, 4, 'aktif'),
-(113, 19, 5, 'aktif'),
-(114, 19, 6, 'aktif'),
-(115, 20, 1, 'aktif'),
-(116, 20, 2, 'aktif'),
-(117, 20, 3, 'aktif'),
-(118, 20, 4, 'aktif'),
-(119, 20, 5, 'aktif'),
-(120, 20, 6, 'aktif'),
-(121, 21, 1, 'aktif'),
-(122, 21, 2, 'aktif'),
-(123, 21, 3, 'aktif'),
-(124, 21, 4, 'aktif'),
-(125, 21, 5, 'aktif'),
-(126, 21, 6, 'aktif'),
-(127, 22, 1, 'aktif'),
-(128, 22, 2, 'aktif'),
-(129, 22, 3, 'aktif'),
-(130, 22, 4, 'aktif'),
-(131, 22, 5, 'aktif'),
-(132, 22, 6, 'aktif'),
-(133, 23, 1, 'aktif'),
-(134, 23, 2, 'aktif'),
-(135, 23, 3, 'aktif'),
-(136, 23, 4, 'aktif'),
-(137, 23, 5, 'aktif'),
-(138, 23, 6, 'aktif'),
-(139, 24, 1, 'aktif'),
-(140, 24, 2, 'aktif'),
-(141, 24, 3, 'aktif'),
-(142, 24, 4, 'aktif'),
-(143, 24, 5, 'aktif'),
-(144, 24, 6, 'aktif'),
-(145, 25, 1, 'aktif'),
-(146, 25, 2, 'aktif'),
-(147, 25, 3, 'aktif'),
-(148, 25, 4, 'aktif'),
-(149, 25, 5, 'aktif'),
-(150, 25, 6, 'aktif'),
-(151, 26, 1, 'aktif'),
-(152, 26, 2, 'aktif'),
-(153, 26, 3, 'aktif'),
-(154, 26, 4, 'aktif'),
-(155, 26, 5, 'aktif'),
-(156, 26, 6, 'aktif'),
-(157, 27, 1, 'aktif'),
-(158, 27, 2, 'aktif'),
-(159, 27, 3, 'aktif'),
-(160, 27, 4, 'aktif'),
-(161, 27, 5, 'aktif'),
-(162, 27, 6, 'aktif'),
-(163, 28, 1, 'aktif'),
-(164, 28, 2, 'aktif'),
-(165, 28, 3, 'aktif'),
-(166, 28, 4, 'aktif'),
-(167, 28, 5, 'aktif'),
-(168, 28, 6, 'aktif'),
-(169, 29, 1, 'aktif'),
-(170, 29, 2, 'aktif'),
-(171, 29, 3, 'aktif'),
-(172, 29, 4, 'aktif'),
-(173, 29, 5, 'aktif'),
-(174, 29, 6, 'aktif'),
-(175, 30, 1, 'aktif'),
-(176, 30, 2, 'aktif'),
-(177, 30, 3, 'aktif'),
-(178, 30, 4, 'aktif'),
-(179, 30, 5, 'aktif'),
-(180, 30, 6, 'aktif'),
-(181, 31, 1, 'aktif'),
-(182, 31, 2, 'aktif'),
-(183, 31, 3, 'aktif'),
-(184, 31, 4, 'aktif'),
-(185, 31, 5, 'aktif'),
-(186, 31, 6, 'aktif'),
-(187, 32, 1, 'aktif'),
-(188, 32, 2, 'aktif'),
-(189, 32, 3, 'aktif'),
-(190, 32, 4, 'aktif'),
-(191, 32, 5, 'aktif'),
-(192, 32, 6, 'aktif'),
-(193, 33, 1, 'aktif'),
-(194, 33, 2, 'aktif'),
-(195, 33, 3, 'aktif'),
-(196, 33, 4, 'aktif'),
-(197, 33, 5, 'aktif'),
-(198, 33, 6, 'aktif'),
-(199, 34, 1, 'aktif'),
-(200, 34, 2, 'aktif'),
-(201, 34, 3, 'aktif'),
-(202, 34, 4, 'aktif'),
-(203, 34, 5, 'aktif'),
-(204, 34, 6, 'aktif'),
-(205, 35, 1, 'aktif'),
-(206, 35, 2, 'aktif'),
-(207, 35, 3, 'aktif'),
-(208, 35, 4, 'aktif'),
-(209, 35, 5, 'aktif'),
-(210, 35, 6, 'aktif'),
-(211, 36, 1, 'aktif'),
-(212, 36, 2, 'aktif'),
-(213, 36, 3, 'aktif'),
-(214, 36, 4, 'aktif'),
-(215, 36, 5, 'aktif'),
-(216, 36, 6, 'aktif'),
-(217, 37, 1, 'aktif'),
-(218, 37, 2, 'aktif'),
-(219, 37, 3, 'aktif'),
-(220, 37, 4, 'aktif'),
-(221, 37, 5, 'aktif'),
-(222, 37, 6, 'aktif'),
-(223, 38, 1, 'aktif'),
-(224, 38, 2, 'aktif'),
-(225, 38, 3, 'aktif'),
-(226, 38, 4, 'aktif'),
-(227, 38, 5, 'aktif'),
-(228, 38, 6, 'aktif'),
-(229, 39, 1, 'aktif'),
-(230, 39, 2, 'aktif'),
-(231, 39, 3, 'aktif'),
-(232, 39, 4, 'aktif'),
-(233, 39, 5, 'aktif'),
-(234, 39, 6, 'aktif'),
-(235, 40, 1, 'aktif'),
-(236, 40, 2, 'aktif'),
-(237, 40, 3, 'aktif'),
-(238, 40, 4, 'aktif'),
-(239, 40, 5, 'aktif'),
-(240, 40, 6, 'aktif'),
-(241, 41, 1, 'aktif'),
-(242, 41, 2, 'aktif'),
-(243, 41, 3, 'aktif'),
-(244, 41, 4, 'aktif'),
-(245, 41, 5, 'aktif'),
-(246, 41, 6, 'aktif'),
-(247, 42, 1, 'aktif'),
-(248, 42, 2, 'aktif'),
-(249, 42, 3, 'aktif'),
-(250, 42, 4, 'aktif'),
-(251, 42, 5, 'aktif'),
-(252, 42, 6, 'aktif'),
-(253, 43, 1, 'aktif'),
-(254, 43, 2, 'aktif'),
-(255, 43, 3, 'aktif'),
-(256, 43, 4, 'aktif'),
-(257, 43, 5, 'aktif'),
-(258, 43, 6, 'aktif'),
-(259, 44, 1, 'aktif'),
-(260, 44, 2, 'aktif'),
-(261, 44, 3, 'aktif'),
-(262, 44, 4, 'aktif'),
-(263, 44, 5, 'aktif'),
-(264, 44, 6, 'aktif'),
-(265, 45, 1, 'aktif'),
-(266, 45, 2, 'aktif'),
-(267, 45, 3, 'aktif'),
-(268, 45, 4, 'aktif'),
-(269, 45, 5, 'aktif'),
-(270, 45, 6, 'aktif'),
-(271, 46, 1, 'aktif'),
-(272, 46, 2, 'aktif'),
-(273, 46, 3, 'aktif'),
-(274, 46, 4, 'aktif'),
-(275, 46, 5, 'aktif'),
-(276, 46, 6, 'aktif'),
-(277, 47, 1, 'aktif'),
-(278, 47, 2, 'aktif'),
-(279, 47, 3, 'aktif'),
-(280, 47, 4, 'aktif'),
-(281, 47, 5, 'aktif'),
-(282, 47, 6, 'aktif'),
-(283, 48, 1, 'aktif'),
-(284, 48, 2, 'aktif'),
-(285, 48, 3, 'aktif'),
-(286, 48, 4, 'aktif'),
-(287, 48, 5, 'aktif'),
-(288, 48, 6, 'aktif'),
-(289, 49, 1, 'aktif'),
-(290, 49, 2, 'aktif'),
-(291, 49, 3, 'aktif'),
-(292, 49, 4, 'aktif'),
-(293, 49, 5, 'aktif'),
-(294, 49, 6, 'aktif'),
-(295, 50, 1, 'aktif'),
-(296, 50, 2, 'aktif'),
-(297, 50, 3, 'aktif'),
-(298, 50, 4, 'aktif'),
-(299, 50, 5, 'aktif'),
-(300, 50, 6, 'aktif'),
-(301, 51, 1, 'aktif'),
-(302, 51, 2, 'aktif'),
-(303, 51, 3, 'aktif'),
-(304, 51, 4, 'aktif'),
-(305, 51, 5, 'aktif'),
-(306, 51, 6, 'aktif'),
-(307, 52, 1, 'aktif'),
-(308, 52, 2, 'aktif'),
-(309, 52, 3, 'aktif'),
-(310, 52, 4, 'aktif'),
-(311, 52, 5, 'aktif'),
-(312, 52, 6, 'aktif'),
-(313, 53, 1, 'aktif'),
-(314, 53, 2, 'aktif'),
-(315, 53, 3, 'aktif'),
-(316, 53, 4, 'aktif'),
-(317, 53, 5, 'aktif'),
-(318, 53, 6, 'aktif'),
-(319, 54, 1, 'aktif'),
-(320, 54, 2, 'aktif'),
-(321, 54, 3, 'aktif'),
-(322, 54, 4, 'aktif'),
-(323, 54, 5, 'aktif'),
-(324, 54, 6, 'aktif'),
-(325, 55, 1, 'aktif'),
-(326, 55, 2, 'aktif'),
-(327, 55, 3, 'aktif'),
-(328, 55, 4, 'aktif'),
-(329, 55, 5, 'aktif'),
-(330, 55, 6, 'aktif'),
-(331, 56, 1, 'aktif'),
-(332, 56, 2, 'aktif'),
-(333, 56, 3, 'aktif'),
-(334, 56, 4, 'aktif'),
-(335, 56, 5, 'aktif'),
-(336, 56, 6, 'aktif'),
-(337, 57, 1, 'aktif'),
-(338, 57, 2, 'aktif'),
-(339, 57, 3, 'aktif'),
-(340, 57, 4, 'aktif'),
-(341, 57, 5, 'aktif'),
-(342, 57, 6, 'aktif'),
-(343, 58, 1, 'aktif'),
-(344, 58, 2, 'aktif'),
-(345, 58, 3, 'aktif'),
-(346, 58, 4, 'aktif'),
-(347, 58, 5, 'aktif'),
-(348, 58, 6, 'aktif'),
-(349, 59, 1, 'aktif'),
-(350, 59, 2, 'aktif'),
-(351, 59, 3, 'aktif'),
-(352, 59, 4, 'aktif'),
-(353, 59, 5, 'aktif'),
-(354, 59, 6, 'aktif'),
-(355, 60, 1, 'aktif'),
-(356, 60, 2, 'aktif'),
-(357, 60, 3, 'aktif'),
-(358, 60, 4, 'aktif'),
-(359, 60, 5, 'aktif'),
-(360, 60, 6, 'aktif'),
-(361, 61, 1, 'aktif'),
-(362, 61, 2, 'aktif'),
-(363, 61, 3, 'aktif'),
-(364, 61, 4, 'aktif'),
-(365, 61, 5, 'aktif'),
-(366, 61, 6, 'aktif'),
-(367, 62, 1, 'aktif'),
-(368, 62, 2, 'aktif'),
-(369, 62, 3, 'aktif'),
-(370, 62, 4, 'aktif'),
-(371, 62, 5, 'aktif'),
-(372, 62, 6, 'aktif'),
-(373, 63, 1, 'aktif'),
-(374, 63, 2, 'aktif'),
-(375, 63, 3, 'aktif'),
-(376, 63, 4, 'aktif'),
-(377, 63, 5, 'aktif'),
-(378, 63, 6, 'aktif'),
-(379, 64, 1, 'aktif'),
-(380, 64, 2, 'aktif'),
-(381, 64, 3, 'aktif'),
-(382, 64, 4, 'aktif'),
-(383, 64, 5, 'aktif'),
-(384, 64, 6, 'aktif'),
-(385, 65, 1, 'aktif'),
-(386, 65, 2, 'aktif'),
-(387, 65, 3, 'aktif'),
-(388, 65, 4, 'aktif'),
-(389, 65, 5, 'aktif'),
-(390, 65, 6, 'aktif'),
-(391, 66, 1, 'aktif'),
-(392, 66, 2, 'aktif'),
-(393, 66, 3, 'aktif'),
-(394, 66, 4, 'aktif'),
-(395, 66, 5, 'aktif'),
-(396, 66, 6, 'aktif'),
-(397, 67, 1, 'aktif'),
-(398, 67, 2, 'aktif'),
-(399, 67, 3, 'aktif'),
-(400, 67, 4, 'aktif'),
-(401, 67, 5, 'aktif'),
-(402, 67, 6, 'aktif'),
-(403, 68, 1, 'aktif'),
-(404, 68, 2, 'aktif'),
-(405, 68, 3, 'aktif'),
-(406, 68, 4, 'aktif'),
-(407, 68, 5, 'aktif'),
-(408, 68, 6, 'aktif'),
-(409, 69, 1, 'aktif'),
-(410, 69, 2, 'aktif'),
-(411, 69, 3, 'aktif'),
-(412, 69, 4, 'aktif'),
-(413, 69, 5, 'aktif'),
-(414, 69, 6, 'aktif'),
-(415, 70, 1, 'aktif'),
-(416, 70, 2, 'aktif'),
-(417, 70, 3, 'aktif'),
-(418, 70, 4, 'aktif'),
-(419, 70, 5, 'aktif'),
-(420, 70, 6, 'aktif'),
-(421, 71, 1, 'aktif'),
-(422, 71, 2, 'aktif'),
-(423, 71, 3, 'aktif'),
-(424, 71, 4, 'aktif'),
-(425, 71, 5, 'aktif'),
-(426, 71, 6, 'aktif'),
-(427, 72, 1, 'aktif'),
-(428, 72, 2, 'aktif'),
-(429, 72, 3, 'aktif'),
-(430, 72, 4, 'aktif'),
-(431, 72, 5, 'aktif'),
-(432, 72, 6, 'aktif'),
-(433, 73, 1, 'aktif'),
-(434, 73, 2, 'aktif'),
-(435, 73, 3, 'aktif'),
-(436, 73, 4, 'aktif'),
-(437, 73, 5, 'aktif'),
-(438, 73, 6, 'aktif'),
-(439, 74, 1, 'aktif'),
-(440, 74, 2, 'aktif'),
-(441, 74, 3, 'aktif'),
-(442, 74, 4, 'aktif'),
-(443, 74, 5, 'aktif'),
-(444, 74, 6, 'aktif'),
-(445, 75, 1, 'aktif'),
-(446, 75, 2, 'aktif'),
-(447, 75, 3, 'aktif'),
-(448, 75, 4, 'aktif'),
-(449, 75, 5, 'aktif'),
-(450, 75, 6, 'aktif'),
-(451, 76, 1, 'aktif'),
-(452, 76, 2, 'aktif'),
-(453, 76, 3, 'aktif'),
-(454, 76, 4, 'aktif'),
-(455, 76, 5, 'aktif'),
-(456, 76, 6, 'aktif'),
-(457, 77, 1, 'aktif'),
-(458, 77, 2, 'aktif'),
-(459, 77, 3, 'aktif'),
-(460, 77, 4, 'aktif'),
-(461, 77, 5, 'aktif'),
-(462, 77, 6, 'aktif'),
-(463, 78, 1, 'aktif'),
-(464, 78, 2, 'aktif'),
-(465, 78, 3, 'aktif'),
-(466, 78, 4, 'aktif'),
-(467, 78, 5, 'aktif'),
-(468, 78, 6, 'aktif'),
-(469, 79, 1, 'aktif'),
-(470, 79, 2, 'aktif'),
-(471, 79, 3, 'aktif'),
-(472, 79, 4, 'aktif'),
-(473, 79, 5, 'aktif'),
-(474, 79, 6, 'aktif'),
-(475, 80, 1, 'aktif'),
-(476, 80, 2, 'aktif'),
-(477, 80, 3, 'aktif'),
-(478, 80, 4, 'aktif'),
-(479, 80, 5, 'aktif'),
-(480, 80, 6, 'aktif'),
-(481, 81, 1, 'aktif'),
-(482, 81, 2, 'aktif'),
-(483, 81, 3, 'aktif'),
-(484, 81, 4, 'aktif'),
-(485, 81, 5, 'aktif'),
-(486, 81, 6, 'aktif'),
-(487, 82, 1, 'aktif'),
-(488, 82, 2, 'aktif'),
-(489, 82, 3, 'aktif'),
-(490, 82, 4, 'aktif'),
-(491, 82, 5, 'aktif'),
-(492, 82, 6, 'aktif'),
-(493, 83, 1, 'aktif'),
-(494, 83, 2, 'aktif'),
-(495, 83, 3, 'aktif'),
-(496, 83, 4, 'aktif'),
-(497, 83, 5, 'aktif'),
-(498, 83, 6, 'aktif'),
-(499, 84, 1, 'aktif'),
-(500, 84, 2, 'aktif'),
-(501, 84, 3, 'aktif'),
-(502, 84, 4, 'aktif'),
-(503, 84, 5, 'aktif'),
-(504, 84, 6, 'aktif'),
-(505, 85, 1, 'aktif'),
-(506, 85, 2, 'aktif'),
-(507, 85, 3, 'aktif'),
-(508, 85, 4, 'aktif'),
-(509, 85, 5, 'aktif'),
-(510, 85, 6, 'aktif'),
-(511, 86, 1, 'aktif'),
-(512, 86, 2, 'aktif'),
-(513, 86, 3, 'aktif'),
-(514, 86, 4, 'aktif'),
-(515, 86, 5, 'aktif'),
-(516, 86, 6, 'aktif'),
-(517, 87, 1, 'aktif'),
-(518, 87, 2, 'aktif'),
-(519, 87, 3, 'aktif'),
-(520, 87, 4, 'aktif'),
-(521, 87, 5, 'aktif'),
-(522, 87, 6, 'aktif'),
-(523, 88, 1, 'aktif'),
-(524, 88, 2, 'aktif'),
-(525, 88, 3, 'aktif'),
-(526, 88, 4, 'aktif'),
-(527, 88, 5, 'aktif'),
-(528, 88, 6, 'aktif'),
-(529, 89, 1, 'aktif'),
-(530, 89, 2, 'aktif'),
-(531, 89, 3, 'aktif'),
-(532, 89, 4, 'aktif'),
-(533, 89, 5, 'aktif'),
-(534, 89, 6, 'aktif'),
-(535, 90, 1, 'aktif'),
-(536, 90, 2, 'aktif'),
-(537, 90, 3, 'aktif'),
-(538, 90, 4, 'aktif'),
-(539, 90, 5, 'aktif'),
-(540, 90, 6, 'aktif'),
-(541, 91, 1, 'aktif'),
-(542, 91, 2, 'aktif'),
-(543, 91, 3, 'aktif'),
-(544, 91, 4, 'aktif'),
-(545, 91, 5, 'aktif'),
-(546, 91, 6, 'aktif'),
-(547, 92, 1, 'aktif'),
-(548, 92, 2, 'aktif'),
-(549, 92, 3, 'aktif'),
-(550, 92, 4, 'aktif'),
-(551, 92, 5, 'aktif'),
-(552, 92, 6, 'aktif'),
-(553, 93, 1, 'aktif'),
-(554, 93, 2, 'aktif'),
-(555, 93, 3, 'aktif'),
-(556, 93, 4, 'aktif'),
-(557, 93, 5, 'aktif'),
-(558, 93, 6, 'aktif'),
-(559, 94, 1, 'aktif'),
-(560, 94, 2, 'aktif'),
-(561, 94, 3, 'aktif'),
-(562, 94, 4, 'aktif'),
-(563, 94, 5, 'aktif'),
-(564, 94, 6, 'aktif'),
-(565, 95, 1, 'aktif'),
-(566, 95, 2, 'aktif'),
-(567, 95, 3, 'aktif'),
-(568, 95, 4, 'aktif'),
-(569, 95, 5, 'aktif'),
-(570, 95, 6, 'aktif'),
-(571, 96, 1, 'aktif'),
-(572, 96, 2, 'aktif'),
-(573, 96, 3, 'aktif'),
-(574, 96, 4, 'aktif'),
-(575, 96, 5, 'aktif'),
-(576, 96, 6, 'aktif'),
-(577, 97, 1, 'aktif'),
-(578, 97, 2, 'aktif'),
-(579, 97, 3, 'aktif'),
-(580, 97, 4, 'aktif'),
-(581, 97, 5, 'aktif'),
-(582, 97, 6, 'aktif'),
-(583, 98, 1, 'aktif'),
-(584, 98, 2, 'aktif'),
-(585, 98, 3, 'aktif'),
-(586, 98, 4, 'aktif'),
-(587, 98, 5, 'aktif'),
-(588, 98, 6, 'aktif'),
-(589, 99, 1, 'aktif'),
-(590, 99, 2, 'aktif'),
-(591, 99, 3, 'aktif'),
-(592, 99, 4, 'aktif'),
-(593, 99, 5, 'aktif'),
-(594, 99, 6, 'aktif'),
-(595, 100, 1, 'aktif'),
-(596, 100, 2, 'aktif'),
-(597, 100, 3, 'aktif'),
-(598, 100, 4, 'aktif'),
-(599, 100, 5, 'aktif'),
-(600, 100, 6, 'aktif'),
-(601, 101, 1, 'aktif'),
-(602, 101, 2, 'aktif'),
-(603, 101, 3, 'aktif'),
-(604, 101, 4, 'aktif'),
-(605, 101, 5, 'aktif'),
-(606, 101, 6, 'aktif'),
-(607, 102, 1, 'aktif'),
-(608, 102, 2, 'aktif'),
-(609, 102, 3, 'aktif'),
-(610, 102, 4, 'aktif'),
-(611, 102, 5, 'aktif'),
-(612, 102, 6, 'aktif'),
-(613, 103, 1, 'aktif'),
-(614, 103, 2, 'aktif'),
-(615, 103, 3, 'aktif'),
-(616, 103, 4, 'aktif'),
-(617, 103, 5, 'aktif'),
-(618, 103, 6, 'aktif'),
-(619, 104, 1, 'aktif'),
-(620, 104, 2, 'aktif'),
-(621, 104, 3, 'aktif'),
-(622, 104, 4, 'aktif'),
-(623, 104, 5, 'aktif'),
-(624, 104, 6, 'aktif'),
-(625, 105, 1, 'aktif'),
-(626, 105, 2, 'aktif'),
-(627, 105, 3, 'aktif'),
-(628, 105, 4, 'aktif'),
-(629, 105, 5, 'aktif'),
-(630, 105, 6, 'aktif'),
-(631, 106, 1, 'aktif'),
-(632, 106, 2, 'aktif'),
-(633, 106, 3, 'aktif'),
-(634, 106, 4, 'aktif'),
-(635, 106, 5, 'aktif'),
-(636, 106, 6, 'aktif'),
-(637, 107, 1, 'aktif'),
-(638, 107, 2, 'aktif'),
-(639, 107, 3, 'aktif'),
-(640, 107, 4, 'aktif'),
-(641, 107, 5, 'aktif'),
-(642, 107, 6, 'aktif'),
-(643, 108, 1, 'aktif'),
-(644, 108, 2, 'aktif'),
-(645, 108, 3, 'aktif'),
-(646, 108, 4, 'aktif'),
-(647, 108, 5, 'aktif'),
-(648, 108, 6, 'aktif'),
-(649, 109, 1, 'aktif'),
-(650, 109, 2, 'aktif'),
-(651, 109, 3, 'aktif'),
-(652, 109, 4, 'aktif'),
-(653, 109, 5, 'aktif'),
-(654, 109, 6, 'aktif'),
-(655, 110, 1, 'aktif'),
-(656, 110, 2, 'aktif'),
-(657, 110, 3, 'aktif'),
-(658, 110, 4, 'aktif'),
-(659, 110, 5, 'aktif'),
-(660, 110, 6, 'aktif'),
-(661, 111, 1, 'aktif'),
-(662, 111, 2, 'aktif'),
-(663, 111, 3, 'aktif'),
-(664, 111, 4, 'aktif'),
-(665, 111, 5, 'aktif'),
-(666, 111, 6, 'aktif'),
-(667, 112, 1, 'aktif'),
-(668, 112, 2, 'aktif'),
-(669, 112, 3, 'aktif'),
-(670, 112, 4, 'aktif'),
-(671, 112, 5, 'aktif'),
-(672, 112, 6, 'aktif'),
-(673, 113, 1, 'aktif'),
-(674, 113, 2, 'aktif'),
-(675, 113, 3, 'aktif'),
-(676, 113, 4, 'aktif'),
-(677, 113, 5, 'aktif'),
-(678, 113, 6, 'aktif'),
-(679, 114, 1, 'aktif'),
-(680, 114, 2, 'aktif'),
-(681, 114, 3, 'aktif'),
-(682, 114, 4, 'aktif'),
-(683, 114, 5, 'aktif'),
-(684, 114, 6, 'aktif'),
-(685, 115, 1, 'aktif'),
-(686, 115, 2, 'aktif'),
-(687, 115, 3, 'aktif'),
-(688, 115, 4, 'aktif'),
-(689, 115, 5, 'aktif'),
-(690, 115, 6, 'aktif'),
-(691, 116, 1, 'aktif'),
-(692, 116, 2, 'aktif'),
-(693, 116, 3, 'aktif'),
-(694, 116, 4, 'aktif'),
-(695, 116, 5, 'aktif'),
-(696, 116, 6, 'aktif'),
-(697, 117, 1, 'aktif'),
-(698, 117, 2, 'aktif'),
-(699, 117, 3, 'aktif'),
-(700, 117, 4, 'aktif'),
-(701, 117, 5, 'aktif'),
-(702, 117, 6, 'aktif'),
-(703, 118, 1, 'aktif'),
-(704, 118, 2, 'aktif'),
-(705, 118, 3, 'aktif'),
-(706, 118, 4, 'aktif'),
-(707, 118, 5, 'aktif'),
-(708, 118, 6, 'aktif'),
-(709, 119, 1, 'aktif'),
-(710, 119, 2, 'aktif'),
-(711, 119, 3, 'aktif'),
-(712, 119, 4, 'aktif'),
-(713, 119, 5, 'aktif'),
-(714, 119, 6, 'aktif'),
-(715, 120, 1, 'aktif'),
-(716, 120, 2, 'aktif'),
-(717, 120, 3, 'aktif'),
-(718, 120, 4, 'aktif'),
-(719, 120, 5, 'aktif'),
-(720, 120, 6, 'aktif'),
-(721, 121, 1, 'aktif'),
-(722, 121, 2, 'aktif'),
-(723, 121, 3, 'aktif'),
-(724, 121, 4, 'aktif'),
-(725, 121, 5, 'aktif'),
-(726, 121, 6, 'aktif'),
-(727, 122, 1, 'aktif'),
-(728, 122, 2, 'aktif'),
-(729, 122, 3, 'aktif'),
-(730, 122, 4, 'aktif'),
-(731, 122, 5, 'aktif'),
-(732, 122, 6, 'aktif'),
-(733, 123, 1, 'aktif'),
-(734, 123, 2, 'aktif'),
-(735, 123, 3, 'aktif'),
-(736, 123, 4, 'aktif'),
-(737, 123, 5, 'aktif'),
-(738, 123, 6, 'aktif'),
-(739, 124, 1, 'aktif'),
-(740, 124, 2, 'aktif'),
-(741, 124, 3, 'aktif'),
-(742, 124, 4, 'aktif'),
-(743, 124, 5, 'aktif'),
-(744, 124, 6, 'aktif'),
-(745, 125, 1, 'aktif'),
-(746, 125, 2, 'aktif'),
-(747, 125, 3, 'aktif'),
-(748, 125, 4, 'aktif'),
-(749, 125, 5, 'aktif'),
-(750, 125, 6, 'aktif'),
-(751, 126, 1, 'aktif'),
-(752, 126, 2, 'aktif'),
-(753, 126, 3, 'aktif'),
-(754, 126, 4, 'aktif'),
-(755, 126, 5, 'aktif'),
-(756, 126, 6, 'aktif'),
-(757, 127, 1, 'aktif'),
-(758, 127, 2, 'aktif'),
-(759, 127, 3, 'aktif'),
-(760, 127, 4, 'aktif'),
-(761, 127, 5, 'aktif'),
-(762, 127, 6, 'aktif'),
-(763, 128, 1, 'aktif'),
-(764, 128, 2, 'aktif'),
-(765, 128, 3, 'aktif'),
-(766, 128, 4, 'aktif'),
-(767, 128, 5, 'aktif'),
-(768, 128, 6, 'aktif'),
-(769, 129, 1, 'aktif'),
-(770, 129, 2, 'aktif'),
-(771, 129, 3, 'aktif'),
-(772, 129, 4, 'aktif'),
-(773, 129, 5, 'aktif'),
-(774, 129, 6, 'aktif'),
-(775, 130, 1, 'aktif'),
-(776, 130, 2, 'aktif'),
-(777, 130, 3, 'aktif'),
-(778, 130, 4, 'aktif'),
-(779, 130, 5, 'aktif'),
-(780, 130, 6, 'aktif'),
-(781, 131, 1, 'aktif'),
-(782, 131, 2, 'aktif'),
-(783, 131, 3, 'aktif'),
-(784, 131, 4, 'aktif'),
-(785, 131, 5, 'aktif'),
-(786, 131, 6, 'aktif'),
-(787, 132, 1, 'aktif'),
-(788, 132, 2, 'aktif'),
-(789, 132, 3, 'aktif'),
-(790, 132, 4, 'aktif'),
-(791, 132, 5, 'aktif'),
-(792, 132, 6, 'aktif'),
-(793, 133, 1, 'aktif'),
-(794, 133, 2, 'aktif'),
-(795, 133, 3, 'aktif'),
-(796, 133, 4, 'aktif'),
-(797, 133, 5, 'aktif'),
-(798, 133, 6, 'aktif'),
-(799, 134, 1, 'aktif'),
-(800, 134, 2, 'aktif'),
-(801, 134, 3, 'aktif'),
-(802, 134, 4, 'aktif'),
-(803, 134, 5, 'aktif'),
-(804, 134, 6, 'aktif'),
-(805, 135, 1, 'aktif'),
-(806, 135, 2, 'aktif'),
-(807, 135, 3, 'aktif'),
-(808, 135, 4, 'aktif'),
-(809, 135, 5, 'aktif'),
-(810, 135, 6, 'aktif'),
-(811, 136, 1, 'aktif'),
-(812, 136, 2, 'aktif'),
-(813, 136, 3, 'aktif'),
-(814, 136, 4, 'aktif'),
-(815, 136, 5, 'aktif'),
-(816, 136, 6, 'aktif'),
-(817, 137, 1, 'aktif'),
-(818, 137, 2, 'aktif'),
-(819, 137, 3, 'aktif'),
-(820, 137, 4, 'aktif'),
-(821, 137, 5, 'aktif'),
-(822, 137, 6, 'aktif'),
-(823, 138, 1, 'aktif'),
-(824, 138, 2, 'aktif'),
-(825, 138, 3, 'aktif'),
-(826, 138, 4, 'aktif'),
-(827, 138, 5, 'aktif'),
-(828, 138, 6, 'aktif'),
-(829, 139, 1, 'aktif'),
-(830, 139, 2, 'aktif'),
-(831, 139, 3, 'aktif'),
-(832, 139, 4, 'aktif'),
-(833, 139, 5, 'aktif'),
-(834, 139, 6, 'aktif'),
-(835, 140, 1, 'aktif'),
-(836, 140, 2, 'aktif'),
-(837, 140, 3, 'aktif'),
-(838, 140, 4, 'aktif'),
-(839, 140, 5, 'aktif'),
-(840, 140, 6, 'aktif'),
-(841, 141, 1, 'aktif'),
-(842, 141, 2, 'aktif'),
-(843, 141, 3, 'aktif'),
-(844, 141, 4, 'aktif'),
-(845, 141, 5, 'aktif'),
-(846, 141, 6, 'aktif'),
-(847, 142, 1, 'aktif'),
-(848, 142, 2, 'aktif'),
-(849, 142, 3, 'aktif'),
-(850, 142, 4, 'aktif'),
-(851, 142, 5, 'aktif'),
-(852, 142, 6, 'aktif'),
-(853, 143, 1, 'aktif'),
-(854, 143, 2, 'aktif'),
-(855, 143, 3, 'aktif'),
-(856, 143, 4, 'aktif'),
-(857, 143, 5, 'aktif'),
-(858, 143, 6, 'aktif'),
-(859, 144, 1, 'aktif'),
-(860, 144, 2, 'aktif'),
-(861, 144, 3, 'aktif'),
-(862, 144, 4, 'aktif'),
-(863, 144, 5, 'aktif'),
-(864, 144, 6, 'aktif'),
-(865, 145, 1, 'aktif'),
-(866, 145, 2, 'aktif'),
-(867, 145, 3, 'aktif'),
-(868, 145, 4, 'aktif'),
-(869, 145, 5, 'aktif'),
-(870, 145, 6, 'aktif'),
-(871, 146, 1, 'aktif'),
-(872, 146, 2, 'aktif'),
-(873, 146, 3, 'aktif'),
-(874, 146, 4, 'aktif'),
-(875, 146, 5, 'aktif'),
-(876, 146, 6, 'aktif'),
-(877, 147, 1, 'aktif'),
-(878, 147, 2, 'aktif'),
-(879, 147, 3, 'aktif'),
-(880, 147, 4, 'aktif'),
-(881, 147, 5, 'aktif'),
-(882, 147, 6, 'aktif'),
-(883, 148, 1, 'aktif'),
-(884, 148, 2, 'aktif'),
-(885, 148, 3, 'aktif'),
-(886, 148, 4, 'aktif'),
-(887, 148, 5, 'aktif'),
-(888, 148, 6, 'aktif'),
-(889, 149, 1, 'aktif'),
-(890, 149, 2, 'aktif'),
-(891, 149, 3, 'aktif'),
-(892, 149, 4, 'aktif'),
-(893, 149, 5, 'aktif'),
-(894, 149, 6, 'aktif'),
-(895, 150, 1, 'aktif'),
-(896, 150, 2, 'aktif'),
-(897, 150, 3, 'aktif'),
-(898, 150, 4, 'aktif'),
-(899, 150, 5, 'aktif'),
-(900, 150, 6, 'aktif'),
-(901, 151, 1, 'aktif'),
-(902, 151, 2, 'aktif'),
-(903, 151, 3, 'aktif'),
-(904, 151, 4, 'aktif'),
-(905, 151, 5, 'aktif'),
-(906, 151, 6, 'aktif'),
-(907, 152, 1, 'aktif'),
-(908, 152, 2, 'aktif'),
-(909, 152, 3, 'aktif'),
-(910, 152, 4, 'aktif'),
-(911, 152, 5, 'aktif'),
-(912, 152, 6, 'aktif'),
-(913, 153, 1, 'aktif'),
-(914, 153, 2, 'aktif'),
-(915, 153, 3, 'aktif'),
-(916, 153, 4, 'aktif'),
-(917, 153, 5, 'aktif'),
-(918, 153, 6, 'aktif'),
-(919, 154, 1, 'aktif'),
-(920, 154, 2, 'aktif'),
-(921, 154, 3, 'aktif'),
-(922, 154, 4, 'aktif'),
-(923, 154, 5, 'aktif'),
-(924, 154, 6, 'aktif'),
-(925, 155, 1, 'aktif'),
-(926, 155, 2, 'aktif'),
-(927, 155, 3, 'aktif'),
-(928, 155, 4, 'aktif'),
-(929, 155, 5, 'aktif'),
-(930, 155, 6, 'aktif'),
-(931, 156, 1, 'aktif'),
-(932, 156, 2, 'aktif'),
-(933, 156, 3, 'aktif'),
-(934, 156, 4, 'aktif'),
-(935, 156, 5, 'aktif'),
-(936, 156, 6, 'aktif'),
-(937, 157, 1, 'aktif'),
-(938, 157, 2, 'aktif'),
-(939, 157, 3, 'aktif'),
-(940, 157, 4, 'aktif'),
-(941, 157, 5, 'aktif'),
-(942, 157, 6, 'aktif'),
-(943, 158, 1, 'aktif'),
-(944, 158, 2, 'aktif'),
-(945, 158, 3, 'aktif'),
-(946, 158, 4, 'aktif'),
-(947, 158, 5, 'aktif'),
-(948, 158, 6, 'aktif'),
-(949, 159, 1, 'aktif'),
-(950, 159, 2, 'aktif'),
-(951, 159, 3, 'aktif'),
-(952, 159, 4, 'aktif'),
-(953, 159, 5, 'aktif'),
-(954, 159, 6, 'aktif'),
-(955, 160, 1, 'aktif'),
-(956, 160, 2, 'aktif'),
-(957, 160, 3, 'aktif'),
-(958, 160, 4, 'aktif'),
-(959, 160, 5, 'aktif'),
-(960, 160, 6, 'aktif'),
-(961, 161, 1, 'aktif'),
-(962, 161, 2, 'aktif'),
-(963, 161, 3, 'aktif'),
-(964, 161, 4, 'aktif'),
-(965, 161, 5, 'aktif'),
-(966, 161, 6, 'aktif'),
-(967, 162, 1, 'aktif'),
-(968, 162, 2, 'aktif'),
-(969, 162, 3, 'aktif'),
-(970, 162, 4, 'aktif'),
-(971, 162, 5, 'aktif'),
-(972, 162, 6, 'aktif'),
-(973, 163, 1, 'aktif'),
-(974, 163, 2, 'aktif'),
-(975, 163, 3, 'aktif'),
-(976, 163, 4, 'aktif'),
-(977, 163, 5, 'aktif'),
-(978, 163, 6, 'aktif'),
-(979, 164, 1, 'aktif'),
-(980, 164, 2, 'aktif'),
-(981, 164, 3, 'aktif'),
-(982, 164, 4, 'aktif'),
-(983, 164, 5, 'aktif'),
-(984, 164, 6, 'aktif'),
-(985, 165, 1, 'aktif'),
-(986, 165, 2, 'aktif'),
-(987, 165, 3, 'aktif'),
-(988, 165, 4, 'aktif'),
-(989, 165, 5, 'aktif'),
-(990, 165, 6, 'aktif'),
-(991, 166, 1, 'aktif'),
-(992, 166, 2, 'aktif'),
-(993, 166, 3, 'aktif'),
-(994, 166, 4, 'aktif'),
-(995, 166, 5, 'aktif'),
-(996, 166, 6, 'aktif'),
-(997, 167, 1, 'aktif'),
-(998, 167, 2, 'aktif'),
-(999, 167, 3, 'aktif'),
-(1000, 167, 4, 'aktif'),
-(1001, 167, 5, 'aktif'),
-(1002, 167, 6, 'aktif'),
-(1003, 168, 1, 'aktif'),
-(1004, 168, 2, 'aktif'),
-(1005, 168, 3, 'aktif'),
-(1006, 168, 4, 'aktif'),
-(1007, 168, 5, 'aktif'),
-(1008, 168, 6, 'aktif'),
-(1009, 169, 1, 'aktif'),
-(1010, 169, 2, 'aktif'),
-(1011, 169, 3, 'aktif'),
-(1012, 169, 4, 'aktif'),
-(1013, 169, 5, 'aktif'),
-(1014, 169, 6, 'aktif'),
-(1015, 170, 1, 'aktif'),
-(1016, 170, 2, 'aktif'),
-(1017, 170, 3, 'aktif'),
-(1018, 170, 4, 'aktif'),
-(1019, 170, 5, 'aktif'),
-(1020, 170, 6, 'aktif'),
-(1021, 171, 1, 'aktif'),
-(1022, 171, 2, 'aktif'),
-(1023, 171, 3, 'aktif'),
-(1024, 171, 4, 'aktif'),
-(1025, 171, 5, 'aktif'),
-(1026, 171, 6, 'aktif'),
-(1027, 172, 1, 'aktif'),
-(1028, 172, 2, 'aktif'),
-(1029, 172, 3, 'aktif'),
-(1030, 172, 4, 'aktif'),
-(1031, 172, 5, 'aktif'),
-(1032, 172, 6, 'aktif'),
-(1033, 173, 1, 'aktif'),
-(1034, 173, 2, 'aktif'),
-(1035, 173, 3, 'aktif'),
-(1036, 173, 4, 'aktif'),
-(1037, 173, 5, 'aktif'),
-(1038, 173, 6, 'aktif'),
-(1039, 174, 1, 'aktif'),
-(1040, 174, 2, 'aktif'),
-(1041, 174, 3, 'aktif'),
-(1042, 174, 4, 'aktif'),
-(1043, 174, 5, 'aktif'),
-(1044, 174, 6, 'aktif'),
-(1045, 175, 1, 'aktif'),
-(1046, 175, 2, 'aktif'),
-(1047, 175, 3, 'aktif'),
-(1048, 175, 4, 'aktif'),
-(1049, 175, 5, 'aktif'),
-(1050, 175, 6, 'aktif'),
-(1051, 176, 1, 'aktif'),
-(1052, 176, 2, 'aktif'),
-(1053, 176, 3, 'aktif'),
-(1054, 176, 4, 'aktif'),
-(1055, 176, 5, 'aktif'),
-(1056, 176, 6, 'aktif'),
-(1057, 177, 1, 'aktif'),
-(1058, 177, 2, 'aktif'),
-(1059, 177, 3, 'aktif'),
-(1060, 177, 4, 'aktif'),
-(1061, 177, 5, 'aktif'),
-(1062, 177, 6, 'aktif'),
-(1063, 178, 1, 'aktif'),
-(1064, 178, 2, 'aktif'),
-(1065, 178, 3, 'aktif'),
-(1066, 178, 4, 'aktif'),
-(1067, 178, 5, 'aktif'),
-(1068, 178, 6, 'aktif'),
-(1069, 179, 1, 'aktif'),
-(1070, 179, 2, 'aktif'),
-(1071, 179, 3, 'aktif'),
-(1072, 179, 4, 'aktif'),
-(1073, 179, 5, 'aktif'),
-(1074, 179, 6, 'aktif'),
-(1075, 180, 1, 'aktif'),
-(1076, 180, 2, 'aktif'),
-(1077, 180, 3, 'aktif'),
-(1078, 180, 4, 'aktif'),
-(1079, 180, 5, 'aktif'),
-(1080, 180, 6, 'aktif'),
-(1081, 181, 1, 'aktif'),
-(1082, 181, 2, 'aktif'),
-(1083, 181, 3, 'aktif'),
-(1084, 181, 4, 'aktif'),
-(1085, 181, 5, 'aktif'),
-(1086, 181, 6, 'aktif'),
-(1087, 182, 1, 'aktif'),
-(1088, 182, 2, 'aktif'),
-(1089, 182, 3, 'aktif'),
-(1090, 182, 4, 'aktif'),
-(1091, 182, 5, 'aktif'),
-(1092, 182, 6, 'aktif'),
-(1093, 183, 1, 'aktif'),
-(1094, 183, 2, 'aktif'),
-(1095, 183, 3, 'aktif'),
-(1096, 183, 4, 'aktif'),
-(1097, 183, 5, 'aktif'),
-(1098, 183, 6, 'aktif'),
-(1099, 184, 1, 'aktif'),
-(1100, 184, 2, 'aktif'),
-(1101, 184, 3, 'aktif'),
-(1102, 184, 4, 'aktif'),
-(1103, 184, 5, 'aktif'),
-(1104, 184, 6, 'aktif'),
-(1105, 185, 1, 'aktif'),
-(1106, 185, 2, 'aktif'),
-(1107, 185, 3, 'aktif'),
-(1108, 185, 4, 'aktif'),
-(1109, 185, 5, 'aktif'),
-(1110, 185, 6, 'aktif'),
-(1111, 186, 1, 'aktif'),
-(1112, 186, 2, 'aktif'),
-(1113, 186, 3, 'aktif'),
-(1114, 186, 4, 'aktif'),
-(1115, 186, 5, 'aktif'),
-(1116, 186, 6, 'aktif'),
-(1117, 187, 1, 'aktif'),
-(1118, 187, 2, 'aktif'),
-(1119, 187, 3, 'aktif'),
-(1120, 187, 4, 'aktif'),
-(1121, 187, 5, 'aktif'),
-(1122, 187, 6, 'aktif'),
-(1123, 188, 1, 'aktif'),
-(1124, 188, 2, 'aktif'),
-(1125, 188, 3, 'aktif'),
-(1126, 188, 4, 'aktif'),
-(1127, 188, 5, 'aktif'),
-(1128, 188, 6, 'aktif'),
-(1129, 189, 1, 'aktif'),
-(1130, 189, 2, 'aktif'),
-(1131, 189, 3, 'aktif'),
-(1132, 189, 4, 'aktif'),
-(1133, 189, 5, 'aktif'),
-(1134, 189, 6, 'aktif'),
-(1135, 190, 1, 'aktif'),
-(1136, 190, 2, 'aktif'),
-(1137, 190, 3, 'aktif'),
-(1138, 190, 4, 'aktif'),
-(1139, 190, 5, 'aktif'),
-(1140, 190, 6, 'aktif'),
-(1141, 191, 1, 'aktif'),
-(1142, 191, 2, 'aktif'),
-(1143, 191, 3, 'aktif'),
-(1144, 191, 4, 'aktif'),
-(1145, 191, 5, 'aktif'),
-(1146, 191, 6, 'aktif'),
-(1147, 192, 1, 'aktif'),
-(1148, 192, 2, 'aktif'),
-(1149, 192, 3, 'aktif'),
-(1150, 192, 4, 'aktif'),
-(1151, 192, 5, 'aktif'),
-(1152, 192, 6, 'aktif'),
-(1153, 193, 1, 'aktif'),
-(1154, 193, 2, 'aktif'),
-(1155, 193, 3, 'aktif'),
-(1156, 193, 4, 'aktif'),
-(1157, 193, 5, 'aktif'),
-(1158, 193, 6, 'aktif'),
-(1159, 194, 1, 'aktif'),
-(1160, 194, 2, 'aktif'),
-(1161, 194, 3, 'aktif'),
-(1162, 194, 4, 'aktif'),
-(1163, 194, 5, 'aktif'),
-(1164, 194, 6, 'aktif'),
-(1165, 195, 1, 'aktif'),
-(1166, 195, 2, 'aktif'),
-(1167, 195, 3, 'aktif'),
-(1168, 195, 4, 'aktif'),
-(1169, 195, 5, 'aktif'),
-(1170, 195, 6, 'aktif'),
-(1171, 196, 1, 'aktif'),
-(1172, 196, 2, 'aktif'),
-(1173, 196, 3, 'aktif'),
-(1174, 196, 4, 'aktif'),
-(1175, 196, 5, 'aktif'),
-(1176, 196, 6, 'aktif'),
-(1177, 197, 1, 'aktif'),
-(1178, 197, 2, 'aktif'),
-(1179, 197, 3, 'aktif'),
-(1180, 197, 4, 'aktif'),
-(1181, 197, 5, 'aktif'),
-(1182, 197, 6, 'aktif'),
-(1183, 198, 1, 'aktif'),
-(1184, 198, 2, 'aktif'),
-(1185, 198, 3, 'aktif'),
-(1186, 198, 4, 'aktif'),
-(1187, 198, 5, 'aktif'),
-(1188, 198, 6, 'aktif'),
-(1189, 199, 1, 'aktif'),
-(1190, 199, 2, 'aktif'),
-(1191, 199, 3, 'aktif'),
-(1192, 199, 4, 'aktif'),
-(1193, 199, 5, 'aktif'),
-(1194, 199, 6, 'aktif'),
-(1195, 200, 1, 'aktif'),
-(1196, 200, 2, 'aktif'),
-(1197, 200, 3, 'aktif'),
-(1198, 200, 4, 'aktif'),
-(1199, 200, 5, 'aktif'),
-(1200, 200, 6, 'aktif'),
-(1201, 201, 1, 'aktif'),
-(1202, 201, 2, 'aktif'),
-(1203, 201, 3, 'aktif'),
-(1204, 201, 4, 'aktif'),
-(1205, 201, 5, 'aktif'),
-(1206, 201, 6, 'aktif'),
-(1207, 202, 1, 'aktif'),
-(1208, 202, 2, 'aktif'),
-(1209, 202, 3, 'aktif'),
-(1210, 202, 4, 'aktif'),
-(1211, 202, 5, 'aktif'),
-(1212, 202, 6, 'aktif'),
-(1213, 203, 1, 'aktif'),
-(1214, 203, 2, 'aktif'),
-(1215, 203, 3, 'aktif'),
-(1216, 203, 4, 'aktif'),
-(1217, 203, 5, 'aktif'),
-(1218, 203, 6, 'aktif'),
-(1219, 204, 1, 'aktif'),
-(1220, 204, 2, 'aktif'),
-(1221, 204, 3, 'aktif'),
-(1222, 204, 4, 'aktif'),
-(1223, 204, 5, 'aktif'),
-(1224, 204, 6, 'aktif'),
-(1225, 205, 1, 'aktif'),
-(1226, 205, 2, 'aktif'),
-(1227, 205, 3, 'aktif'),
-(1228, 205, 4, 'aktif'),
-(1229, 205, 5, 'aktif'),
-(1230, 205, 6, 'aktif'),
-(1231, 206, 1, 'aktif'),
-(1232, 206, 2, 'aktif'),
-(1233, 206, 3, 'aktif'),
-(1234, 206, 4, 'aktif'),
-(1235, 206, 5, 'aktif'),
-(1236, 206, 6, 'aktif'),
-(1237, 207, 1, 'aktif'),
-(1238, 207, 2, 'aktif'),
-(1239, 207, 3, 'aktif'),
-(1240, 207, 4, 'aktif'),
-(1241, 207, 5, 'aktif'),
-(1242, 207, 6, 'aktif'),
-(1243, 208, 1, 'aktif'),
-(1244, 208, 2, 'aktif'),
-(1245, 208, 3, 'aktif'),
-(1246, 208, 4, 'aktif'),
-(1247, 208, 5, 'aktif'),
-(1248, 208, 6, 'aktif');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `apd`
---
-ALTER TABLE `apd`
-  ADD PRIMARY KEY (`kodeapd`);
-
---
--- Indexes for table `aplikasi`
---
-ALTER TABLE `aplikasi`
-  ADD PRIMARY KEY (`kodeaplikasi`);
-
---
--- Indexes for table `app`
---
-ALTER TABLE `app`
-  ADD PRIMARY KEY (`kodeapp`),
-  ADD KEY `kodeapd` (`kodeapd`);
-
---
--- Indexes for table `bidang`
---
-ALTER TABLE `bidang`
-  ADD PRIMARY KEY (`kodebidang`);
-
---
--- Indexes for table `gi`
---
-ALTER TABLE `gi`
-  ADD PRIMARY KEY (`kodegi`),
-  ADD KEY `kodeapp` (`kodeapp`);
-
---
--- Indexes for table `login`
---
-ALTER TABLE `login`
-  ADD PRIMARY KEY (`kodelogin`);
-
---
--- Indexes for table `loglogin`
---
-ALTER TABLE `loglogin`
-  ADD PRIMARY KEY (`kodelog`);
-
---
--- Indexes for table `trafo`
---
-ALTER TABLE `trafo`
-  ADD PRIMARY KEY (`kodetrafo`),
-  ADD KEY `kodegi` (`kodegi`);
-
---
--- Indexes for table `userakses`
---
-ALTER TABLE `userakses`
-  ADD PRIMARY KEY (`kodeakses`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `apd`
---
-ALTER TABLE `apd`
-  MODIFY `kodeapd` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `aplikasi`
---
-ALTER TABLE `aplikasi`
-  MODIFY `kodeaplikasi` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `app`
---
-ALTER TABLE `app`
-  MODIFY `kodeapp` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
---
--- AUTO_INCREMENT for table `bidang`
---
-ALTER TABLE `bidang`
-  MODIFY `kodebidang` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `gi`
---
-ALTER TABLE `gi`
-  MODIFY `kodegi` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=184;
---
--- AUTO_INCREMENT for table `login`
---
-ALTER TABLE `login`
-  MODIFY `kodelogin` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=230;
---
--- AUTO_INCREMENT for table `loglogin`
---
-ALTER TABLE `loglogin`
-  MODIFY `kodelog` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=217;
---
--- AUTO_INCREMENT for table `trafo`
---
-ALTER TABLE `trafo`
-  MODIFY `kodetrafo` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=475;
---
--- AUTO_INCREMENT for table `userakses`
---
-ALTER TABLE `userakses`
-  MODIFY `kodeakses` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1249;
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `app`
---
-ALTER TABLE `app`
-  ADD CONSTRAINT `kodeapd` FOREIGN KEY (`kodeapd`) REFERENCES `apd` (`kodeapd`);
-
---
--- Constraints for table `gi`
---
-ALTER TABLE `gi`
-  ADD CONSTRAINT `kodeapp` FOREIGN KEY (`kodeapp`) REFERENCES `app` (`kodeapp`);
-
---
--- Constraints for table `trafo`
---
-ALTER TABLE `trafo`
-  ADD CONSTRAINT `kodegi` FOREIGN KEY (`kodegi`) REFERENCES `gi` (`kodegi`);
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+-- ----------------------------
+-- Records of userakses
+-- ----------------------------
+INSERT INTO `userakses` VALUES ('1', '1', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('2', '1', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('3', '1', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('4', '1', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('5', '1', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('6', '1', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('7', '2', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('8', '2', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('9', '2', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('10', '2', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('11', '2', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('12', '2', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('13', '3', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('14', '3', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('15', '3', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('16', '3', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('17', '3', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('18', '3', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('19', '4', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('20', '4', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('21', '4', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('22', '4', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('23', '4', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('24', '4', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('25', '5', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('26', '5', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('27', '5', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('28', '5', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('29', '5', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('30', '5', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('31', '6', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('32', '6', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('33', '6', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('34', '6', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('35', '6', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('36', '6', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('37', '7', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('38', '7', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('39', '7', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('40', '7', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('41', '7', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('42', '7', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('43', '8', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('44', '8', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('45', '8', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('46', '8', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('47', '8', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('48', '8', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('49', '9', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('50', '9', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('51', '9', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('52', '9', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('53', '9', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('54', '9', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('55', '10', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('56', '10', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('57', '10', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('58', '10', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('59', '10', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('60', '10', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('61', '11', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('62', '11', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('63', '11', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('64', '11', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('65', '11', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('66', '11', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('67', '12', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('68', '12', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('69', '12', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('70', '12', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('71', '12', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('72', '12', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('73', '13', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('74', '13', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('75', '13', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('76', '13', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('77', '13', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('78', '13', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('79', '14', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('80', '14', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('81', '14', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('82', '14', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('83', '14', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('84', '14', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('85', '15', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('86', '15', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('87', '15', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('88', '15', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('89', '15', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('90', '15', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('91', '16', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('92', '16', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('93', '16', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('94', '16', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('95', '16', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('96', '16', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('97', '17', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('98', '17', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('99', '17', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('100', '17', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('101', '17', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('102', '17', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('103', '18', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('104', '18', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('105', '18', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('106', '18', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('107', '18', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('108', '18', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('109', '19', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('110', '19', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('111', '19', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('112', '19', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('113', '19', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('114', '19', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('115', '20', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('116', '20', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('117', '20', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('118', '20', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('119', '20', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('120', '20', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('121', '21', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('122', '21', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('123', '21', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('124', '21', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('125', '21', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('126', '21', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('127', '22', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('128', '22', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('129', '22', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('130', '22', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('131', '22', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('132', '22', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('133', '23', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('134', '23', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('135', '23', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('136', '23', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('137', '23', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('138', '23', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('139', '24', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('140', '24', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('141', '24', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('142', '24', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('143', '24', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('144', '24', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('145', '25', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('146', '25', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('147', '25', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('148', '25', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('149', '25', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('150', '25', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('151', '26', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('152', '26', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('153', '26', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('154', '26', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('155', '26', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('156', '26', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('157', '27', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('158', '27', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('159', '27', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('160', '27', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('161', '27', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('162', '27', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('163', '28', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('164', '28', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('165', '28', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('166', '28', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('167', '28', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('168', '28', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('169', '29', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('170', '29', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('171', '29', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('172', '29', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('173', '29', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('174', '29', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('175', '30', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('176', '30', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('177', '30', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('178', '30', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('179', '30', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('180', '30', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('181', '31', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('182', '31', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('183', '31', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('184', '31', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('185', '31', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('186', '31', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('187', '32', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('188', '32', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('189', '32', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('190', '32', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('191', '32', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('192', '32', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('193', '33', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('194', '33', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('195', '33', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('196', '33', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('197', '33', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('198', '33', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('199', '34', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('200', '34', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('201', '34', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('202', '34', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('203', '34', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('204', '34', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('205', '35', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('206', '35', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('207', '35', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('208', '35', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('209', '35', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('210', '35', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('211', '36', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('212', '36', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('213', '36', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('214', '36', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('215', '36', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('216', '36', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('217', '37', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('218', '37', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('219', '37', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('220', '37', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('221', '37', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('222', '37', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('223', '38', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('224', '38', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('225', '38', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('226', '38', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('227', '38', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('228', '38', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('229', '39', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('230', '39', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('231', '39', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('232', '39', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('233', '39', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('234', '39', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('235', '40', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('236', '40', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('237', '40', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('238', '40', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('239', '40', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('240', '40', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('241', '41', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('242', '41', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('243', '41', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('244', '41', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('245', '41', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('246', '41', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('247', '42', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('248', '42', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('249', '42', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('250', '42', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('251', '42', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('252', '42', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('253', '43', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('254', '43', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('255', '43', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('256', '43', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('257', '43', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('258', '43', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('259', '44', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('260', '44', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('261', '44', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('262', '44', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('263', '44', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('264', '44', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('265', '45', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('266', '45', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('267', '45', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('268', '45', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('269', '45', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('270', '45', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('271', '46', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('272', '46', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('273', '46', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('274', '46', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('275', '46', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('276', '46', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('277', '47', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('278', '47', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('279', '47', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('280', '47', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('281', '47', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('282', '47', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('283', '48', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('284', '48', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('285', '48', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('286', '48', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('287', '48', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('288', '48', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('289', '49', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('290', '49', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('291', '49', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('292', '49', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('293', '49', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('294', '49', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('295', '50', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('296', '50', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('297', '50', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('298', '50', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('299', '50', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('300', '50', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('301', '51', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('302', '51', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('303', '51', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('304', '51', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('305', '51', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('306', '51', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('307', '52', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('308', '52', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('309', '52', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('310', '52', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('311', '52', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('312', '52', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('313', '53', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('314', '53', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('315', '53', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('316', '53', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('317', '53', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('318', '53', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('319', '54', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('320', '54', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('321', '54', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('322', '54', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('323', '54', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('324', '54', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('325', '55', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('326', '55', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('327', '55', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('328', '55', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('329', '55', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('330', '55', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('331', '56', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('332', '56', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('333', '56', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('334', '56', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('335', '56', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('336', '56', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('337', '57', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('338', '57', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('339', '57', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('340', '57', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('341', '57', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('342', '57', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('343', '58', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('344', '58', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('345', '58', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('346', '58', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('347', '58', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('348', '58', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('349', '59', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('350', '59', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('351', '59', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('352', '59', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('353', '59', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('354', '59', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('355', '60', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('356', '60', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('357', '60', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('358', '60', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('359', '60', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('360', '60', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('361', '61', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('362', '61', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('363', '61', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('364', '61', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('365', '61', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('366', '61', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('367', '62', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('368', '62', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('369', '62', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('370', '62', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('371', '62', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('372', '62', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('373', '63', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('374', '63', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('375', '63', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('376', '63', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('377', '63', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('378', '63', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('379', '64', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('380', '64', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('381', '64', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('382', '64', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('383', '64', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('384', '64', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('385', '65', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('386', '65', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('387', '65', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('388', '65', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('389', '65', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('390', '65', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('391', '66', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('392', '66', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('393', '66', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('394', '66', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('395', '66', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('396', '66', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('397', '67', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('398', '67', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('399', '67', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('400', '67', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('401', '67', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('402', '67', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('403', '68', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('404', '68', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('405', '68', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('406', '68', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('407', '68', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('408', '68', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('409', '69', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('410', '69', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('411', '69', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('412', '69', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('413', '69', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('414', '69', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('415', '70', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('416', '70', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('417', '70', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('418', '70', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('419', '70', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('420', '70', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('421', '71', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('422', '71', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('423', '71', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('424', '71', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('425', '71', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('426', '71', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('427', '72', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('428', '72', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('429', '72', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('430', '72', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('431', '72', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('432', '72', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('433', '73', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('434', '73', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('435', '73', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('436', '73', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('437', '73', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('438', '73', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('439', '74', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('440', '74', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('441', '74', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('442', '74', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('443', '74', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('444', '74', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('445', '75', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('446', '75', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('447', '75', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('448', '75', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('449', '75', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('450', '75', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('451', '76', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('452', '76', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('453', '76', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('454', '76', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('455', '76', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('456', '76', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('457', '77', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('458', '77', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('459', '77', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('460', '77', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('461', '77', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('462', '77', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('463', '78', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('464', '78', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('465', '78', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('466', '78', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('467', '78', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('468', '78', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('469', '79', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('470', '79', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('471', '79', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('472', '79', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('473', '79', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('474', '79', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('475', '80', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('476', '80', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('477', '80', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('478', '80', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('479', '80', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('480', '80', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('481', '81', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('482', '81', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('483', '81', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('484', '81', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('485', '81', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('486', '81', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('487', '82', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('488', '82', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('489', '82', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('490', '82', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('491', '82', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('492', '82', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('493', '83', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('494', '83', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('495', '83', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('496', '83', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('497', '83', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('498', '83', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('499', '84', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('500', '84', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('501', '84', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('502', '84', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('503', '84', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('504', '84', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('505', '85', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('506', '85', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('507', '85', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('508', '85', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('509', '85', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('510', '85', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('511', '86', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('512', '86', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('513', '86', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('514', '86', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('515', '86', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('516', '86', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('517', '87', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('518', '87', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('519', '87', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('520', '87', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('521', '87', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('522', '87', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('523', '88', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('524', '88', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('525', '88', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('526', '88', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('527', '88', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('528', '88', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('529', '89', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('530', '89', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('531', '89', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('532', '89', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('533', '89', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('534', '89', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('535', '90', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('536', '90', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('537', '90', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('538', '90', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('539', '90', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('540', '90', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('541', '91', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('542', '91', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('543', '91', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('544', '91', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('545', '91', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('546', '91', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('547', '92', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('548', '92', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('549', '92', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('550', '92', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('551', '92', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('552', '92', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('553', '93', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('554', '93', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('555', '93', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('556', '93', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('557', '93', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('558', '93', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('559', '94', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('560', '94', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('561', '94', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('562', '94', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('563', '94', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('564', '94', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('565', '95', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('566', '95', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('567', '95', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('568', '95', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('569', '95', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('570', '95', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('571', '96', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('572', '96', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('573', '96', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('574', '96', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('575', '96', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('576', '96', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('577', '97', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('578', '97', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('579', '97', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('580', '97', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('581', '97', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('582', '97', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('583', '98', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('584', '98', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('585', '98', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('586', '98', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('587', '98', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('588', '98', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('589', '99', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('590', '99', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('591', '99', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('592', '99', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('593', '99', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('594', '99', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('595', '100', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('596', '100', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('597', '100', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('598', '100', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('599', '100', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('600', '100', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('601', '101', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('602', '101', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('603', '101', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('604', '101', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('605', '101', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('606', '101', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('607', '102', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('608', '102', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('609', '102', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('610', '102', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('611', '102', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('612', '102', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('613', '103', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('614', '103', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('615', '103', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('616', '103', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('617', '103', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('618', '103', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('619', '104', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('620', '104', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('621', '104', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('622', '104', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('623', '104', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('624', '104', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('625', '105', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('626', '105', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('627', '105', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('628', '105', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('629', '105', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('630', '105', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('631', '106', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('632', '106', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('633', '106', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('634', '106', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('635', '106', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('636', '106', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('637', '107', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('638', '107', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('639', '107', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('640', '107', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('641', '107', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('642', '107', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('643', '108', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('644', '108', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('645', '108', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('646', '108', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('647', '108', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('648', '108', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('649', '109', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('650', '109', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('651', '109', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('652', '109', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('653', '109', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('654', '109', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('655', '110', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('656', '110', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('657', '110', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('658', '110', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('659', '110', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('660', '110', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('661', '111', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('662', '111', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('663', '111', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('664', '111', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('665', '111', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('666', '111', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('667', '112', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('668', '112', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('669', '112', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('670', '112', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('671', '112', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('672', '112', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('673', '113', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('674', '113', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('675', '113', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('676', '113', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('677', '113', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('678', '113', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('679', '114', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('680', '114', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('681', '114', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('682', '114', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('683', '114', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('684', '114', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('685', '115', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('686', '115', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('687', '115', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('688', '115', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('689', '115', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('690', '115', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('691', '116', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('692', '116', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('693', '116', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('694', '116', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('695', '116', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('696', '116', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('697', '117', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('698', '117', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('699', '117', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('700', '117', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('701', '117', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('702', '117', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('703', '118', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('704', '118', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('705', '118', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('706', '118', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('707', '118', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('708', '118', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('709', '119', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('710', '119', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('711', '119', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('712', '119', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('713', '119', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('714', '119', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('715', '120', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('716', '120', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('717', '120', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('718', '120', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('719', '120', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('720', '120', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('721', '121', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('722', '121', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('723', '121', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('724', '121', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('725', '121', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('726', '121', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('727', '122', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('728', '122', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('729', '122', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('730', '122', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('731', '122', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('732', '122', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('733', '123', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('734', '123', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('735', '123', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('736', '123', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('737', '123', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('738', '123', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('739', '124', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('740', '124', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('741', '124', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('742', '124', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('743', '124', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('744', '124', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('745', '125', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('746', '125', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('747', '125', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('748', '125', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('749', '125', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('750', '125', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('751', '126', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('752', '126', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('753', '126', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('754', '126', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('755', '126', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('756', '126', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('757', '127', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('758', '127', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('759', '127', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('760', '127', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('761', '127', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('762', '127', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('763', '128', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('764', '128', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('765', '128', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('766', '128', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('767', '128', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('768', '128', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('769', '129', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('770', '129', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('771', '129', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('772', '129', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('773', '129', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('774', '129', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('775', '130', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('776', '130', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('777', '130', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('778', '130', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('779', '130', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('780', '130', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('781', '131', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('782', '131', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('783', '131', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('784', '131', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('785', '131', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('786', '131', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('787', '132', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('788', '132', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('789', '132', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('790', '132', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('791', '132', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('792', '132', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('793', '133', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('794', '133', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('795', '133', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('796', '133', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('797', '133', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('798', '133', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('799', '134', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('800', '134', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('801', '134', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('802', '134', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('803', '134', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('804', '134', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('805', '135', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('806', '135', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('807', '135', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('808', '135', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('809', '135', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('810', '135', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('811', '136', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('812', '136', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('813', '136', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('814', '136', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('815', '136', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('816', '136', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('817', '137', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('818', '137', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('819', '137', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('820', '137', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('821', '137', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('822', '137', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('823', '138', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('824', '138', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('825', '138', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('826', '138', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('827', '138', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('828', '138', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('829', '139', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('830', '139', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('831', '139', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('832', '139', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('833', '139', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('834', '139', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('835', '140', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('836', '140', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('837', '140', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('838', '140', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('839', '140', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('840', '140', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('841', '141', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('842', '141', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('843', '141', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('844', '141', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('845', '141', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('846', '141', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('847', '142', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('848', '142', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('849', '142', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('850', '142', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('851', '142', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('852', '142', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('853', '143', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('854', '143', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('855', '143', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('856', '143', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('857', '143', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('858', '143', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('859', '144', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('860', '144', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('861', '144', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('862', '144', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('863', '144', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('864', '144', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('865', '145', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('866', '145', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('867', '145', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('868', '145', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('869', '145', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('870', '145', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('871', '146', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('872', '146', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('873', '146', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('874', '146', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('875', '146', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('876', '146', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('877', '147', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('878', '147', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('879', '147', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('880', '147', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('881', '147', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('882', '147', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('883', '148', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('884', '148', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('885', '148', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('886', '148', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('887', '148', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('888', '148', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('889', '149', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('890', '149', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('891', '149', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('892', '149', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('893', '149', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('894', '149', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('895', '150', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('896', '150', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('897', '150', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('898', '150', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('899', '150', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('900', '150', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('901', '151', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('902', '151', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('903', '151', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('904', '151', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('905', '151', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('906', '151', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('907', '152', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('908', '152', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('909', '152', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('910', '152', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('911', '152', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('912', '152', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('913', '153', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('914', '153', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('915', '153', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('916', '153', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('917', '153', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('918', '153', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('919', '154', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('920', '154', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('921', '154', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('922', '154', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('923', '154', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('924', '154', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('925', '155', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('926', '155', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('927', '155', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('928', '155', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('929', '155', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('930', '155', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('931', '156', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('932', '156', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('933', '156', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('934', '156', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('935', '156', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('936', '156', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('937', '157', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('938', '157', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('939', '157', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('940', '157', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('941', '157', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('942', '157', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('943', '158', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('944', '158', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('945', '158', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('946', '158', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('947', '158', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('948', '158', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('949', '159', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('950', '159', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('951', '159', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('952', '159', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('953', '159', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('954', '159', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('955', '160', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('956', '160', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('957', '160', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('958', '160', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('959', '160', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('960', '160', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('961', '161', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('962', '161', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('963', '161', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('964', '161', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('965', '161', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('966', '161', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('967', '162', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('968', '162', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('969', '162', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('970', '162', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('971', '162', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('972', '162', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('973', '163', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('974', '163', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('975', '163', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('976', '163', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('977', '163', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('978', '163', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('979', '164', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('980', '164', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('981', '164', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('982', '164', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('983', '164', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('984', '164', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('985', '165', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('986', '165', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('987', '165', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('988', '165', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('989', '165', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('990', '165', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('991', '166', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('992', '166', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('993', '166', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('994', '166', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('995', '166', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('996', '166', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('997', '167', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('998', '167', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('999', '167', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1000', '167', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1001', '167', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1002', '167', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1003', '168', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1004', '168', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1005', '168', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1006', '168', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1007', '168', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1008', '168', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1009', '169', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1010', '169', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1011', '169', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1012', '169', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1013', '169', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1014', '169', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1015', '170', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1016', '170', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1017', '170', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1018', '170', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1019', '170', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1020', '170', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1021', '171', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1022', '171', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1023', '171', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1024', '171', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1025', '171', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1026', '171', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1027', '172', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1028', '172', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1029', '172', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1030', '172', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1031', '172', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1032', '172', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1033', '173', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1034', '173', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1035', '173', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1036', '173', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1037', '173', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1038', '173', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1039', '174', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1040', '174', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1041', '174', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1042', '174', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1043', '174', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1044', '174', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1045', '175', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1046', '175', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1047', '175', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1048', '175', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1049', '175', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1050', '175', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1051', '176', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1052', '176', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1053', '176', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1054', '176', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1055', '176', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1056', '176', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1057', '177', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1058', '177', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1059', '177', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1060', '177', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1061', '177', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1062', '177', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1063', '178', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1064', '178', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1065', '178', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1066', '178', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1067', '178', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1068', '178', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1069', '179', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1070', '179', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1071', '179', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1072', '179', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1073', '179', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1074', '179', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1075', '180', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1076', '180', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1077', '180', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1078', '180', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1079', '180', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1080', '180', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1081', '181', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1082', '181', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1083', '181', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1084', '181', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1085', '181', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1086', '181', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1087', '182', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1088', '182', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1089', '182', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1090', '182', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1091', '182', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1092', '182', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1093', '183', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1094', '183', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1095', '183', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1096', '183', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1097', '183', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1098', '183', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1099', '184', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1100', '184', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1101', '184', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1102', '184', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1103', '184', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1104', '184', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1105', '185', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1106', '185', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1107', '185', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1108', '185', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1109', '185', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1110', '185', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1111', '186', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1112', '186', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1113', '186', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1114', '186', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1115', '186', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1116', '186', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1117', '187', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1118', '187', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1119', '187', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1120', '187', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1121', '187', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1122', '187', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1123', '188', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1124', '188', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1125', '188', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1126', '188', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1127', '188', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1128', '188', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1129', '189', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1130', '189', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1131', '189', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1132', '189', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1133', '189', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1134', '189', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1135', '190', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1136', '190', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1137', '190', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1138', '190', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1139', '190', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1140', '190', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1141', '191', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1142', '191', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1143', '191', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1144', '191', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1145', '191', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1146', '191', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1147', '192', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1148', '192', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1149', '192', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1150', '192', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1151', '192', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1152', '192', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1153', '193', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1154', '193', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1155', '193', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1156', '193', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1157', '193', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1158', '193', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1159', '194', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1160', '194', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1161', '194', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1162', '194', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1163', '194', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1164', '194', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1165', '195', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1166', '195', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1167', '195', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1168', '195', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1169', '195', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1170', '195', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1171', '196', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1172', '196', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1173', '196', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1174', '196', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1175', '196', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1176', '196', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1177', '197', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1178', '197', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1179', '197', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1180', '197', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1181', '197', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1182', '197', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1183', '198', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1184', '198', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1185', '198', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1186', '198', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1187', '198', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1188', '198', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1189', '199', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1190', '199', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1191', '199', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1192', '199', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1193', '199', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1194', '199', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1195', '200', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1196', '200', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1197', '200', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1198', '200', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1199', '200', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1200', '200', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1201', '201', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1202', '201', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1203', '201', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1204', '201', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1205', '201', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1206', '201', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1207', '202', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1208', '202', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1209', '202', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1210', '202', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1211', '202', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1212', '202', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1213', '203', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1214', '203', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1215', '203', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1216', '203', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1217', '203', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1218', '203', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1219', '204', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1220', '204', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1221', '204', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1222', '204', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1223', '204', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1224', '204', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1225', '205', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1226', '205', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1227', '205', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1228', '205', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1229', '205', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1230', '205', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1231', '206', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1232', '206', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1233', '206', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1234', '206', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1235', '206', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1236', '206', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1237', '207', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1238', '207', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1239', '207', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1240', '207', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1241', '207', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1242', '207', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1243', '208', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1244', '208', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1245', '208', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1246', '208', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1247', '208', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1248', '208', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1249', '230', '1', 'aktif');
+INSERT INTO `userakses` VALUES ('1250', '230', '2', 'aktif');
+INSERT INTO `userakses` VALUES ('1251', '230', '3', 'aktif');
+INSERT INTO `userakses` VALUES ('1252', '230', '4', 'aktif');
+INSERT INTO `userakses` VALUES ('1253', '230', '5', 'aktif');
+INSERT INTO `userakses` VALUES ('1254', '230', '6', 'aktif');
+INSERT INTO `userakses` VALUES ('1255', '1', '7', 'aktif');

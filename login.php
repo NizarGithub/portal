@@ -21,6 +21,7 @@ if(isset($_POST["submit_login"])){
         $_SESSION["kodeapd"]        = $row_administrator["kodeapd"];
         $_SESSION["email"]          = $row_administrator["email"];
         $_SESSION["jenisuser"]          = $row_administrator["jenisuser"];
+        $_SESSION["kodebidang"]          = $row_administrator["kodebidang"];
         $date  = date("Y-m-d H:i:s");
         // mysql_query("INSERT INTO loglogin VALUES ('','$_SESSION[username]','$date','$ip')");
         header("location:index.php?dashboard");
