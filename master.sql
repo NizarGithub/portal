@@ -11,7 +11,7 @@
  Target Server Version : 100125
  File Encoding         : 65001
 
- Date: 04/10/2017 08:43:33
+ Date: 04/10/2017 13:29:56
 */
 
 SET NAMES utf8mb4;
@@ -336,11 +336,11 @@ INSERT INTO `login` VALUES (1, 'Administrator', 'admin@pln.co.id', '21232f297a57
 INSERT INTO `login` VALUES (2, 'Admin KI', 'admin.ki@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'ki', '0000-00-00', NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `login` VALUES (3, 'Admin APD', 'jabar@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'apd', '0000-00-00', 1, NULL, NULL, NULL, NULL);
 INSERT INTO `login` VALUES (4, 'Admin APD', 'jateng@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'apd', '0000-00-00', 2, NULL, NULL, NULL, NULL);
-INSERT INTO `login` VALUES (5, 'Admin APP', 'bogor@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'app', '0000-00-00', 1, 1, NULL, NULL, '');
-INSERT INTO `login` VALUES (6, 'Admin APP', 'bandung@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'app', '0000-00-00', 1, 2, NULL, NULL, NULL);
-INSERT INTO `login` VALUES (7, 'Admin APP', 'karawang@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'app', '0000-00-00', 1, 3, NULL, NULL, NULL);
-INSERT INTO `login` VALUES (8, 'Admin APP', 'cirebon@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'app', '0000-00-00', 1, 4, NULL, NULL, NULL);
-INSERT INTO `login` VALUES (9, 'Admin APP', 'purwokerto@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'app', '0000-00-00', 2, 5, NULL, NULL, NULL);
+INSERT INTO `login` VALUES (5, 'Admin APP', 'bogor@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'app', '0000-00-00', 1, 1, NULL, 6, '');
+INSERT INTO `login` VALUES (6, 'Admin APP', 'bandung@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'app', '0000-00-00', 1, 2, NULL, 8, NULL);
+INSERT INTO `login` VALUES (7, 'Admin APP', 'karawang@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'app', '0000-00-00', 1, 3, NULL, 7, NULL);
+INSERT INTO `login` VALUES (8, 'Admin APP', 'cirebon@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'app', '0000-00-00', 1, 4, NULL, 9, NULL);
+INSERT INTO `login` VALUES (9, 'Admin APP', 'purwokerto@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'app', '0000-00-00', 2, 5, NULL, 10, NULL);
 INSERT INTO `login` VALUES (10, 'Admin APP', 'salatiga@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'app', '0000-00-00', 2, 6, NULL, NULL, NULL);
 INSERT INTO `login` VALUES (11, 'Admin APP', 'semarang@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'app', '0000-00-00', 2, 7, NULL, NULL, NULL);
 INSERT INTO `login` VALUES (12, 'Admin GI', 'admin1.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 1, 1, NULL, '');
@@ -561,10 +561,10 @@ INSERT INTO `login` VALUES (226, 'Admin GI', 'admin201.gi@pln.co.id', '21232f297
 INSERT INTO `login` VALUES (227, 'Admin GI', 'admin202.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 2, 7, 202, NULL, NULL);
 INSERT INTO `login` VALUES (228, 'Admin GI', 'admin203.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 3, 203, NULL, NULL);
 INSERT INTO `login` VALUES (229, 'Admin GI', 'admin204.gi@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'gi', '0000-00-00', 1, 4, 204, NULL, NULL);
-INSERT INTO `login` VALUES (230, 'Bidang Kontruksi', 'admin.bk-ki@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'app', NULL, NULL, 99, NULL, 4, NULL);
-INSERT INTO `login` VALUES (231, 'Bidang Perencanaan', 'admin.br-ki@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'app', NULL, NULL, 99, NULL, 2, NULL);
-INSERT INTO `login` VALUES (232, 'Bidang KSA', 'admin.bksa-ki@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'app', NULL, NULL, 99, NULL, 3, NULL);
-INSERT INTO `login` VALUES (233, 'Bidang Pemeliharaan', 'admin.bp-ki@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'app', NULL, NULL, 99, NULL, 5, NULL);
+INSERT INTO `login` VALUES (230, 'Bidang Kontruksi', 'admin.bk-ki@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'appki', NULL, NULL, 99, NULL, 4, NULL);
+INSERT INTO `login` VALUES (231, 'Bidang Perencanaan', 'admin.br-ki@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'appki', NULL, NULL, 99, NULL, 2, NULL);
+INSERT INTO `login` VALUES (232, 'Bidang KSA', 'admin.bksa-ki@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'appki', NULL, NULL, 99, NULL, 3, NULL);
+INSERT INTO `login` VALUES (233, 'Bidang Pemeliharaan', 'admin.bp-ki@pln.co.id', '21232f297a57a5a743894a0e4a801fc3', 'user', 'appki', NULL, NULL, 99, NULL, 5, NULL);
 
 -- ----------------------------
 -- Table structure for loglogin
@@ -576,7 +576,7 @@ CREATE TABLE `loglogin`  (
   `kodeaplikasi` int(5) NULL DEFAULT NULL,
   `tgllogin` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`kodelog`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 267 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 273 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of loglogin
@@ -837,6 +837,12 @@ INSERT INTO `loglogin` VALUES (263, 5, 3, '2017-10-03 13:41:55');
 INSERT INTO `loglogin` VALUES (264, 6, 3, '2017-10-03 13:51:11');
 INSERT INTO `loglogin` VALUES (265, 5, 1, '2017-10-03 17:39:02');
 INSERT INTO `loglogin` VALUES (266, 2, 3, '2017-10-04 08:36:03');
+INSERT INTO `loglogin` VALUES (267, 5, 1, '2017-10-04 08:57:45');
+INSERT INTO `loglogin` VALUES (268, 6, 1, '2017-10-04 09:26:07');
+INSERT INTO `loglogin` VALUES (269, 5, 3, '2017-10-04 10:17:50');
+INSERT INTO `loglogin` VALUES (270, 5, 3, '2017-10-04 11:03:51');
+INSERT INTO `loglogin` VALUES (271, 5, 1, '2017-10-04 11:03:58');
+INSERT INTO `loglogin` VALUES (272, 5, 3, '2017-10-04 11:25:17');
 
 -- ----------------------------
 -- Table structure for trafo
