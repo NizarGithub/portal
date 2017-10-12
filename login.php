@@ -55,7 +55,7 @@ if(isset($_POST["submit_login"])){
            </div>
             <form class="form-signin" method="POST">
                 <span id="reauth-email" class="reauth-email"></span>
-                <input autocomplete="off" name="email" type="text" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
+                <input autocomplete="off" name="email" type="text" id="inputEmail" class="form-control" placeholder="User" required autofocus>
                 <input autocomplete="off" name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
                 <button name="submit_login" class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Masuk</button>
                 <div class="cltop" >
